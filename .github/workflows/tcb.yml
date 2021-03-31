@@ -14,6 +14,6 @@ jobs:
             secretId: ${{secrets.SECRET_ID}}
             secretKey: ${{secrets.SECRET_KEY}}
             # 云开发的环境id
-            envId: ${{secrets.ENV_ID}}
+            # envId: ${{secrets.ENV_ID}}
             localPath: public
             cloudPath: /
