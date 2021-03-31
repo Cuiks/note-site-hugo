@@ -7,8 +7,7 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v2
         # 使用云开发 Github Action 部署
-        - name: Deploy static to Tencent CloudBase
-          id: deployStatic
+        - name: Deploy to Tencent CloudBase
           uses: Cuiks/cloudbase-action@master
           with: 
             # 云开发的访问密钥 secretId 和 secretKey
@@ -16,3 +15,5 @@ jobs:
             secretKey: ${{secrets.SECRET_KEY}}
             # 云开发的环境id
             envId: ${{secrets.ENV_ID}}
+            localPath: public
+            cloudPath: /
