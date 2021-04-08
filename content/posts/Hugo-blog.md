@@ -1,5 +1,5 @@
 ---
-title: "Hugo + CloudBase 搭建个人博客"
+title: "Hugo + 腾讯云CloudBase 搭建个人博客"
 date: 2021-03-30T20:50:09+08:00
 draft: true
 ---

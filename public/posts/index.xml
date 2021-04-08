@@ -1,11 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on Note Site</title>
     <link>https://www.cuiks.top/posts/</link>
     <description>Recent content in Posts on Note Site</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 06 Apr 2021 10:31:03 +0800</lastBuildDate><atom:link href="https://www.cuiks.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 08 Apr 2021 21:31:44 +0800</lastBuildDate>
+    
+	<atom:link href="https://www.cuiks.top/posts/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Django富文本编辑器django-quill-editor</title>
+      <link>https://www.cuiks.top/posts/django-richtext-quill/</link>
+      <pubDate>Thu, 08 Apr 2021 21:31:44 +0800</pubDate>
+      
+      <guid>https://www.cuiks.top/posts/django-richtext-quill/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Django Richtext Quill</title>
+      <link>https://www.cuiks.top/posts/content/posts/django-richtext-quill/</link>
+      <pubDate>Thu, 08 Apr 2021 21:25:09 +0800</pubDate>
+      
+      <guid>https://www.cuiks.top/posts/content/posts/django-richtext-quill/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>postgresql配置远程访问、账号授权</title>
       <link>https://www.cuiks.top/posts/postgre-config/</link>
@@ -13,29 +35,25 @@
       
       <guid>https://www.cuiks.top/posts/postgre-config/</guid>
       <description>前言 因为工作中用到PostgreSQL。数据库装在物理机中，对外提供服务。
-远程访问   查看配置文件位置
-# 连接pgsql psql -U &amp;lt;用户名&amp;gt; # 查看配置文件位置 select name,setting from pg_settings where category=&amp;#39;File Locations&amp;#39;;   修改服务监听地址
-# 修改配置文件postgresql.conf。上述步骤获取 vim &amp;lt;config_file 配置文件地址&amp;gt; # 修改监听地址。打开配置项 listen_addresses listen_addresses = &amp;#39;0.0.0.0&amp;#39;   修改Client Authentication
-# 修改配置文件pg_hba.conf。第一步获取 vim &amp;lt;hba_file 配置文件地址&amp;gt; # 修改`IPv4 local connections:`行配置。允许所有用户所有IP以MD5加密方式访问。 IPv4 local connections: host all all 0.0.0.0/0 md5   重启pgsql服务
-sudo systemctl restart postgresql.service
-  账号授权   创建新的数据库角色
-create user &amp;lt;user_name&amp;gt; with password &#39;******&#39;;</description>
+远程访问  查看配置文件位置  # 连接pgsql psql -U &amp;lt;用户名&amp;gt; # 查看配置文件位置 select name,setting from pg_settings where category=&#39;File Locations&#39;;   修改服务监听地址  # 修改配置文件postgresql.conf。上述步骤获取 vim &amp;lt;config_file 配置文件地址&amp;gt; # 修改监听地址。打开配置项 listen_addresses listen_addresses = &#39;0.0.0.0&#39;   修改Client Authentication  # 修改配置文件pg_hba.conf。第一步获取 vim &amp;lt;hba_file 配置文件地址&amp;gt; # 修改`IPv4 local connections:`行配置。允许所有用户所有IP以MD5加密方式访问。 IPv4 local connections: host all all 0.0.0.0/0 md5   重启pgsql服务  sudo systemctl restart postgresql.service
+账号授权  创建新的数据库角色  create user &amp;lt;user_name&amp;gt; with password &#39;******&#39;;</description>
     </item>
     
     <item>
-      <title>Hugo &#43; CloudBase 搭建个人博客</title>
-      <link>https://www.cuiks.top/posts/hugocloudbase%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</link>
+      <title>Hugo &#43; 腾讯云CloudBase 搭建个人博客</title>
+      <link>https://www.cuiks.top/posts/hugo-blog/</link>
       <pubDate>Tue, 30 Mar 2021 20:50:09 +0800</pubDate>
       
-      <guid>https://www.cuiks.top/posts/hugocloudbase%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</guid>
+      <guid>https://www.cuiks.top/posts/hugo-blog/</guid>
       <description>前言 当前有很多成熟的个人博客搭建方案。
 例如动态博客WordPress，静态博客Hexo、Jekyll等。相较于Wordpress，静态博客的使用及部署成本更低，更便于迁移。
 选择Hugo主要是出于好奇，因为Hugo官网给出的slogan：The world’s fastest framework for building websites 😎
-准备工作   Hugo 安装教程
-  # windows 直接下载releases安装。然后设置环境变量添加hugo https://github.com/gohugoio/hugo/releases # mac。先安装homebrew 然后brew安装hugo /usr/bin/ruby -e &amp;#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;#34; brew install hugo # linux。github releases下载安装 或 使用包管理工具 sudo apt-get install hugo sudo pacman -Sy hugo sudo dnf install hugo     git 下载地址
-  远程仓库(本文使用GitHub)
-  腾讯云
- 云开发 CloudBase &amp;ndash; 静态网站托管 对象存储    域名</description>
+准备工作  Hugo 安装教程
+ ```shell
+windows 直接下载releases安装。然后设置环境变量添加hugo https://github.com/gohugoio/hugo/releases
+  mac。先安装homebrew 然后brew安装hugo /usr/bin/ruby -e &amp;ldquo;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;quot; brew install hugo
+linux。github releases下载安装 或 使用包管理工具 sudo apt-get install hugo sudo pacman -Sy hugo sudo dnf install hugo
+ - git [下载地址](https://git-scm.com/downloads) - 远程仓库(本文使用GitHub) - 腾讯云 - 云开发 CloudBase -- 静态网站托管 - 对象存储 - 域名 - 已备案 - 已购买SSL证书（可以免费申请一年证书，各大云服务厂商也都会提供一键申请服务） ### Hugo搭建网站几个环节（各环节的解决方案） - 框架学习 - 代码的版本控制及存储 - 服务的部署 - 服务器端配置 - GitHub CI/CD - 成本问题 ### 框架学习 Hugo是一种用Go语言编写的快速，现代的静态网站生成器，旨在让网站创建再次变得有趣。（照抄原文😐） 刚开始使用Hugo所以对Hugo也不熟悉，这边只会列举几条简单常用的命令，后续使用中继续深入了解Hugo🙊 [创建站点](https://gohugo.</description>
     </item>
     
   </channel>
