@@ -1,6 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://www.cuiks.top/tags/django/</loc>
+    <lastmod>2021-04-08T21:31:44+08:00</lastmod>
+  </url>
   
   <url>
     <loc>https://www.cuiks.top/posts/django-richtext-quill/</loc>
@@ -8,13 +13,53 @@
   </url>
   
   <url>
-    <loc>https://www.cuiks.top/posts/content/posts/django-richtext-quill/</loc>
-    <lastmod>2021-04-08T21:25:09+08:00</lastmod>
+    <loc>https://www.cuiks.top/</loc>
+    <lastmod>2021-04-08T21:31:44+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.cuiks.top/posts/</loc>
+    <lastmod>2021-04-08T21:31:44+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.cuiks.top/tags/quill/</loc>
+    <lastmod>2021-04-08T21:31:44+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.cuiks.top/tags/</loc>
+    <lastmod>2021-04-08T21:31:44+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.cuiks.top/tags/database/</loc>
+    <lastmod>2021-04-06T10:31:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.cuiks.top/tags/postgresql/</loc>
+    <lastmod>2021-04-06T10:31:03+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.cuiks.top/posts/postgre-config/</loc>
     <lastmod>2021-04-06T10:31:03+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.cuiks.top/tags/blog/</loc>
+    <lastmod>2021-03-30T20:50:09+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.cuiks.top/tags/cloudbase/</loc>
+    <lastmod>2021-03-30T20:50:09+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.cuiks.top/tags/hugo/</loc>
+    <lastmod>2021-03-30T20:50:09+08:00</lastmod>
   </url>
   
   <url>
@@ -29,24 +74,6 @@
   
   <url>
     <loc>https://www.cuiks.top/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.cuiks.top/</loc>
-    <lastmod>2021-04-08T21:31:44+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.cuiks.top/posts/</loc>
-    <lastmod>2021-04-08T21:31:44+08:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://www.cuiks.top/tags/</loc>
-    <priority>0</priority>
   </url>
   
 </urlset>

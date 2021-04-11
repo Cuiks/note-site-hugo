@@ -1,7 +1,8 @@
 ---
 title: "postgresql配置远程访问、账号授权"
 date: 2021-04-06T10:31:03+08:00
-draft: true
+tags: ["database", "postgresql"]
+draft: false
 ---
 
 ## 前言

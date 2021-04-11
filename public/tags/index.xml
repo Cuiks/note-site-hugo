@@ -1,13 +1,73 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Note Site</title>
     <link>https://www.cuiks.top/tags/</link>
     <description>Recent content in Tags on Note Site</description>
     <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 08 Apr 2021 21:31:44 +0800</lastBuildDate><atom:link href="https://www.cuiks.top/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>django</title>
+      <link>https://www.cuiks.top/tags/django/</link>
+      <pubDate>Thu, 08 Apr 2021 21:31:44 +0800</pubDate>
+      
+      <guid>https://www.cuiks.top/tags/django/</guid>
+      <description></description>
+    </item>
     
-	<atom:link href="https://www.cuiks.top/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>quill</title>
+      <link>https://www.cuiks.top/tags/quill/</link>
+      <pubDate>Thu, 08 Apr 2021 21:31:44 +0800</pubDate>
+      
+      <guid>https://www.cuiks.top/tags/quill/</guid>
+      <description></description>
+    </item>
     
+    <item>
+      <title>database</title>
+      <link>https://www.cuiks.top/tags/database/</link>
+      <pubDate>Tue, 06 Apr 2021 10:31:03 +0800</pubDate>
+      
+      <guid>https://www.cuiks.top/tags/database/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>postgresql</title>
+      <link>https://www.cuiks.top/tags/postgresql/</link>
+      <pubDate>Tue, 06 Apr 2021 10:31:03 +0800</pubDate>
+      
+      <guid>https://www.cuiks.top/tags/postgresql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>blog</title>
+      <link>https://www.cuiks.top/tags/blog/</link>
+      <pubDate>Tue, 30 Mar 2021 20:50:09 +0800</pubDate>
+      
+      <guid>https://www.cuiks.top/tags/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>CloudBase</title>
+      <link>https://www.cuiks.top/tags/cloudbase/</link>
+      <pubDate>Tue, 30 Mar 2021 20:50:09 +0800</pubDate>
+      
+      <guid>https://www.cuiks.top/tags/cloudbase/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://www.cuiks.top/tags/hugo/</link>
+      <pubDate>Tue, 30 Mar 2021 20:50:09 +0800</pubDate>
+      
+      <guid>https://www.cuiks.top/tags/hugo/</guid>
+      <description></description>
+    </item>
     
   </channel>
 </rss>

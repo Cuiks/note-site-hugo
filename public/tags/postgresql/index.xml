@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>postgresql on Note Site</title>
+    <link>https://www.cuiks.top/tags/postgresql/</link>
+    <description>Recent content in postgresql on Note Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Tue, 06 Apr 2021 10:31:03 +0800</lastBuildDate><atom:link href="https://www.cuiks.top/tags/postgresql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>postgresql配置远程访问、账号授权</title>
+      <link>https://www.cuiks.top/posts/postgre-config/</link>
+      <pubDate>Tue, 06 Apr 2021 10:31:03 +0800</pubDate>
+      
+      <guid>https://www.cuiks.top/posts/postgre-config/</guid>
+      <description>前言 因为工作中用到PostgreSQL。数据库装在物理机中，对外提供服务。
+远程访问   查看配置文件位置
+# 连接pgsql psql -U &amp;lt;用户名&amp;gt; # 查看配置文件位置 select name,setting from pg_settings where category=&amp;#39;File Locations&amp;#39;;   修改服务监听地址
+# 修改配置文件postgresql.conf。上述步骤获取 vim &amp;lt;config_file 配置文件地址&amp;gt; # 修改监听地址。打开配置项 listen_addresses listen_addresses = &amp;#39;0.0.0.0&amp;#39;   修改Client Authentication
+# 修改配置文件pg_hba.conf。第一步获取 vim &amp;lt;hba_file 配置文件地址&amp;gt; # 修改`IPv4 local connections:`行配置。允许所有用户所有IP以MD5加密方式访问。 IPv4 local connections: host all all 0.0.0.0/0 md5   重启pgsql服务
+sudo systemctl restart postgresql.service
+  账号授权   创建新的数据库角色
+create user &amp;lt;user_name&amp;gt; with password &#39;******&#39;;</description>
+    </item>
+    
+  </channel>
+</rss>
