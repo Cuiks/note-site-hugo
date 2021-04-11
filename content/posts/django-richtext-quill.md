@@ -136,6 +136,15 @@ demo projec: [Cuiks/django-quill-editor](https://github.com/Cuiks/django-quill-e
 
    关于配置项可参考：[Quill Configuration](https://quilljs.com/docs/configuration/)
 
+7. 富文本编辑框的前端回显展示(Django模板语言)
+
+   ```html
+   # html页面展示
+   <div class="form-control ql-editor ql-container ql-snow">{{ object.content.html|safe }}</div>
+   ```
+
+   使用`conten.html`属性，可以获取该字段html格式，添加`safe`控制，可在前端进行展示。
+
 ### 2、`django-quill-editor`图片插件的配置及使用
 
 配置完成后，粘贴图片进去会发现往往图片充满了整个编辑框，看起来很不方便。通过查阅[Quill文档](https://quilljs.com/docs/modules/)。会发现Quill的Modules支持自定义扩展，所以确定方向：寻找(让我写，我也不会啊:new_moon_with_face:)Quill调整图片大小的扩展。[QuillJS](https://github.com/quilljs/quill)是一个比较热门的项目，很像web框架都开发了响应的扩展。在网上搜索发现项目[quill-image-resize-module](https://github.com/kensnyder/quill-image-resize-module)就是专门为Quill开发的扩展用于调整图片大小。到此我们就找到了Quill调节图片大小的方案。
