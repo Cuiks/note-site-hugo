@@ -28,7 +28,7 @@ draft: false
    # 修改配置文件postgresql.conf。上述步骤获取
    vim <config_file 配置文件地址>
    # 修改监听地址。打开配置项  listen_addresses
-   listen_addresses = '0.0.0.0'
+   listen_addresses = '*'
    ```
 
 3. 修改`Client Authentication`

@@ -11,7 +11,7 @@ from django.contrib import admin from .models import QuillPost @admin.register(Q
 Form表单使用...</p></section><footer class=entry-footer>April 8, 2021&nbsp;·&nbsp;2 min&nbsp;·&nbsp;Cuiks</footer><a class=entry-link aria-label="post link to Django富文本编辑器django-quill-editor" href=https://www.cuiks.top/posts/django-richtext-quill/></a></article><article class=post-entry><header class=entry-header><h2>postgresql配置远程访问、账号授权</h2></header><section class=entry-content><p>前言 因为工作中用到PostgreSQL。数据库装在物理机中，对外提供服务。
 远程访问 查看配置文件位置
 # 连接pgsql psql -U &lt;用户名> # 查看配置文件位置 select name,setting from pg_settings where category='File Locations'; 修改服务监听地址
-# 修改配置文件postgresql.conf。上述步骤获取 vim &lt;config_file 配置文件地址> # 修改监听地址。打开配置项 listen_addresses listen_addresses = '0.0.0.0' 修改Client Authentication
+# 修改配置文件postgresql.conf。上述步骤获取 vim &lt;config_file 配置文件地址> # 修改监听地址。打开配置项 listen_addresses listen_addresses = '*' 修改Client Authentication
 # 修改配置文件pg_hba.conf。第一步获取 vim &lt;hba_file 配置文件地址> # 修改`IPv4 local connections:`行配置。允许所有用户所有IP以MD5加密方式访问。 IPv4 local connections: host all all 0.0.0.0/0 md5 重启pgsql服务
 sudo systemctl restart postgresql.service
 账号授权 创建新的数据库角色
