@@ -194,9 +194,26 @@ demo projec: [Cuiks/django-quill-editor](https://github.com/Cuiks/django-quill-e
    }
    ```
 
-4. 实现效果
+4. 前端实现效果
 
    ![效果](https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210411230306-django_quill_editor_result.png)
+
+5. admin引入`imageResize`
+
+   ```python
+   # admin.py。添加静态文件并控制引入顺序
+   @admin.register(QuillPost)
+   class QuillPostAdmin(admin.ModelAdmin):
+       class Media:
+           js = (
+               'https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js',
+               'django_quill/django_quill.js',
+               'https://cdn.quilljs.com/1.3.7/quill.min.js',
+               "https://cdn.jsdelivr.net/npm/quill-image-resize-module@3.0.0/image-resize.min.js",
+           )
+   ```
+
+   
 
 ## 3、遇到的问题
 
