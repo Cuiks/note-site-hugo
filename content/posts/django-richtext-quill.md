@@ -151,7 +151,7 @@ demo projec: [Cuiks/django-quill-editor](https://github.com/Cuiks/django-quill-e
 
 接下来介绍怎么在`django-quill-editor`中使用自定义Modules。
 
-1. 下载Modules 或 使用CDN引入Modules。此处我使用后者。google上找的[CDN地址](https://cdn.jsdelivr.net/npm/quill-image-resize-module@3.0.0/image-resize.min.js)，也不知道稳不稳:new_moon:
+1. 下载[Modules](https://github.com/kensnyder/quill-image-resize-module/blob/master/image-resize.min.js) 或 使用CDN引入Modules。此处我使用后者。google上找的[CDN地址](https://cdn.jsdelivr.net/npm/quill-image-resize-module@3.0.0/image-resize.min.js)，也不知道稳不稳:new_moon:
 
 2. 项目中引入。此处需要注意，Modules必须在Quill后面引入，否则会报错。
 
