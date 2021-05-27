@@ -12,14 +12,7 @@
       <pubDate>Tue, 30 Mar 2021 20:50:09 +0800</pubDate>
       
       <guid>https://www.cuiks.top/posts/hugo-blog/</guid>
-      <description>前言 当前有很多成熟的个人博客搭建方案。
-例如动态博客WordPress，静态博客Hexo、Jekyll等。相较于Wordpress，静态博客的使用及部署成本更低，更便于迁移。
-选择Hugo主要是出于好奇，因为Hugo官网给出的slogan：The world’s fastest framework for building websites 😎
-准备工作   Hugo 安装教程
-  # windows 直接下载releases安装。然后设置环境变量添加hugo https://github.com/gohugoio/hugo/releases # mac。先安装homebrew 然后brew安装hugo /usr/bin/ruby -e &amp;#34;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&amp;#34; brew install hugo # linux。github releases下载安装 或 使用包管理工具 sudo apt-get install hugo sudo pacman -Sy hugo sudo dnf install hugo     git 下载地址
-  远程仓库(本文使用GitHub)
-  腾讯云
- 云开发 CloudBase &amp;ndash; 静态网站托管 对象存储    域名</description>
+      <description></description>
     </item>
     
   </channel>

@@ -5,6 +5,8 @@ tags: ["database", "postgresql"]
 draft: false
 ---
 
+<!--more-->
+
 ## 前言
 
 因为工作中用到PostgreSQL。数据库装在物理机中，对外提供服务。

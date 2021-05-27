@@ -1,6 +1,6 @@
 baseURL: "https://www.cuiks.top"
 title: Note Site
-paginate: 5
+paginate: 10
 theme: PaperMod
 enableEmoji: true
 
@@ -9,7 +9,7 @@ buildDrafts: false
 buildFuture: false
 buildExpired: false
 
-googleAnalytics: UA-123-45
+# googleAnalytics: UA-123-45
 
 minify:
     disableXML: true
@@ -31,7 +31,7 @@ params:
     disableSpecial1stPost: false
     comments: true
     hidemeta: false
-    showtoc: false
+    showtoc: true
     tocopen: false
 
     assets:
@@ -104,13 +104,17 @@ params:
 
 menu:
     main:
-        - identifier: categories
-          name: categories
-          url: /categories/
+        - identifier: posts
+          name: posts
+          url: /posts/
           weight: 10
         - identifier: tags
           name: tags
           url: /tags/
+          weight: 20
+        - identifier: about
+          name: about
+          url: /about/about
           weight: 20
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 # pygmentsUseClasses: true
