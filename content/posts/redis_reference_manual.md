@@ -5,6 +5,8 @@ tags: ["redis"]
 draft: false
 ---
 
+<!--more-->
+
 ### 字符串
 
 #### 1、SET
