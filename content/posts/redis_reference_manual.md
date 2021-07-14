@@ -1,7 +1,7 @@
 ---
 title: "Redis使用手册"
 date: 2021-07-06T17:56:38+08:00
-tags: ["redis"]
+tags: ["redis", "读书笔记"]
 draft: false
 ---
 
