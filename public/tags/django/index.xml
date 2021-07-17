@@ -1,19 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>django on Note Site</title>
-    <link>https://www.cuiks.top/tags/django/</link>
-    <description>Recent content in django on Note Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 08 Apr 2021 21:31:44 +0800</lastBuildDate><atom:link href="https://www.cuiks.top/tags/django/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Django富文本编辑器django-quill-editor</title>
-      <link>https://www.cuiks.top/posts/django-richtext-quill/</link>
-      <pubDate>Thu, 08 Apr 2021 21:31:44 +0800</pubDate>
-      
-      <guid>https://www.cuiks.top/posts/django-richtext-quill/</guid>
-      <description></description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>django - Tag - Note Site</title>
+        <link>https://cuiks.top/tags/django/</link>
+        <description>django - Tag - Note Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 08 Apr 2021 21:31:44 &#43;0800</lastBuildDate><atom:link href="https://cuiks.top/tags/django/" rel="self" type="application/rss+xml" /><item>
+    <title>Django富文本编辑器django-quill-editor</title>
+    <link>https://cuiks.top/django-richtext-quill/</link>
+    <pubDate>Thu, 08 Apr 2021 21:31:44 &#43;0800</pubDate>
+    <author>cuiks.top</author>
+    <guid>https://cuiks.top/django-richtext-quill/</guid>
+    <description><![CDATA[<ul>
+<li>介绍了<code>django-quill-editor</code>在Django中的使用</li>
+<li>在<a href="https://github.com/LeeHanYeong/django-quill-editor" target="_blank" rel="noopener noreffer">django-quill-editor</a>基础上添加了<code>imageResize</code>调整图片大小功能</li>
+</ul>]]></description>
+</item></channel>
 </rss>

@@ -5,6 +5,8 @@ tags: ["mysql"]
 draft: true
 ---
 
+- Mysql学习
+
 <!--more-->
 
 ## 01讲 基础架构：一条sql查询语句是如何运行的

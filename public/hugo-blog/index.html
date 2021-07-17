@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>Hugo &#43; 腾讯云CloudBase 搭建个人博客 | </title><meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content=""/>
+<meta name="twitter:title" content="Hugo &#43; 腾讯云CloudBase 搭建个人博客"/>
+<meta name="twitter:description" content=""/><meta name="Description" content="cuiks&#39;s Note"><meta property="og:title" content="Hugo &#43; 腾讯云CloudBase 搭建个人博客" />
+<meta property="og:description" content="
+Hugo安装及使用
+腾讯云CloudBase部署
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cuiks.top/hugo-blog/" /><meta property="og:image" content="https://cuiks.top/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-03-30T20:50:09+08:00" />
+<meta property="article:modified_time" content="2021-03-30T20:50:09+08:00" />
+
+<meta name="application-name" content="Note Site">
+<meta name="apple-mobile-web-app-title" content="Note Site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cuiks.top/hugo-blog/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Hugo + 腾讯云CloudBase 搭建个人博客",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/cuiks.top\/hugo-blog\/"
+        },"genre": "posts","keywords": "hugo, CloudBase, blog","wordCount":  211 ,
+        "url": "https:\/\/cuiks.top\/hugo-blog\/","datePublished": "2021-03-30T20:50:09+08:00","dateModified": "2021-03-30T20:50:09+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Note Site" class="header-logo logo-svg"><span class="header-title-pre"><i class='fas fa-pencil-alt fa-fw'></i></span>Note Site</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"> Tags </a>
+                        </li><li>
+                            <a class="menu-item" href="/about/about"> About </a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/cuiks" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Note Site" class="header-logo"><span class="header-title-pre"><i class='fas fa-pencil-alt fa-fw'></i></span>Note Site</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            Cancel
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title="">Tags</a>
+                        </li><li>
+                            <a class="menu-item" href="/about/about" title="">About</a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/cuiks" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+<div class="container content-article page-toc theme-classic"><div class="toc" id="toc-auto">
+            <div class="toc-title">Contents</div>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div>
+
+    
+    
+    <article>
+    
+
+        <header class="header-post">
+
+            
+
+            
+            <div class="post-title">
+
+                    <div class="post-all-meta">
+                        <nav class="breadcrumbs">
+    <ol>
+        <li><a href="/">Home </a></li><li>Hugo &#43; 腾讯云CloudBase 搭建个人博客</li>
+    </ol>
+</nav>
+                        <h1 class="single-title flipInX">Hugo &#43; 腾讯云CloudBase 搭建个人博客</h1><div class="post-meta summary-post-meta"><span class="post-meta-date meta-item">
+                                <span class="svg-icon icon-clock"></span><time class="timeago" datetime="2021-03-30">2021-03-30</time>
+                            </span><span class="post-meta-words meta-item">
+                                <span class="svg-icon icon-pencil"></span>211 words
+                            </span>
+                            <span class="post-meta-reading meta-item">
+                                <span class="svg-icon icon-stopwatch"></span>One minute
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                </header>
+
+        <div class="article-post toc-start">
+
+            <div class="content-block content-block-first content-block-position">
+
+                <div class="post single"><div class="details toc" id="toc-static"  data-kept="">
+                        <div class="details-summary toc-title">
+                            <span>Contents</span>
+                        </div>
+                        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#前言">前言</a></li>
+        <li><a href="#准备工作">准备工作</a></li>
+        <li><a href="#hugo搭建网站几个环节各环节的解决方案">Hugo搭建网站几个环节（各环节的解决方案）</a></li>
+        <li><a href="#框架学习">框架学习</a></li>
+        <li><a href="#代码的版本控制及存储">代码的版本控制及存储</a></li>
+        <li><a href="#服务的部署">服务的部署</a>
+          <ul>
+            <li><a href="#1服务器端配置">1、服务器端配置</a>
+              <ul>
+                <li><a href="#服务购买及开通">服务购买及开通</a></li>
+                <li><a href="#服务配置">服务配置</a></li>
+              </ul>
+            </li>
+            <li><a href="#2github-cicd">2、GitHub CI/CD</a></li>
+          </ul>
+        </li>
+        <li><a href="#填坑">填坑</a>
+          <ul>
+            <li><a href="#坑1">坑1：</a></li>
+            <li><a href="#坑2">坑2：</a></li>
+            <li><a href="#坑3">坑3：</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                    </div><ul>
+<li>Hugo安装及使用</li>
+<li>腾讯云<code>CloudBase</code>部署</li>
+</ul>
+<h3 id="前言" class="headerLink"><a href="#%e5%89%8d%e8%a8%80" class="header-mark"></a>前言</h3><p>当前有很多成熟的个人博客搭建方案。</p>
+<p>例如动态博客<code>WordPress</code>，静态博客<code>Hexo</code>、<code>Jekyll</code>等。相较于<code>Wordpress</code>，静态博客的使用及部署成本更低，更便于迁移。</p>
+<p>选择<code>Hugo</code>主要是出于好奇，因为<code>Hugo</code>官网给出的slogan：<code>The world’s fastest framework for building websites</code> 😎</p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/hugo_slogan.png"
+         alt="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/hugo_slogan.png"
+         title="hugo_slogan.png"
+    /></p>
+<h3 id="准备工作" class="headerLink"><a href="#%e5%87%86%e5%a4%87%e5%b7%a5%e4%bd%9c" class="header-mark"></a>准备工作</h3><ul>
+<li>
+<p>Hugo <a href="https://gohugo.io/getting-started/installing/" target="_blank" rel="noopener noreffer">安装教程</a></p>
+<ul>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># windows 直接下载releases安装。然后设置环境变量添加hugo</span>
+https://github.com/gohugoio/hugo/releases
+
+<span class="c1"># mac。先安装homebrew 然后brew安装hugo</span>
+/usr/bin/ruby -e <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">&#34;</span>
+brew install hugo
+
+<span class="c1"># linux。github releases下载安装 或 使用包管理工具</span>
+sudo apt-get install hugo
+sudo pacman -Sy hugo
+sudo dnf install hugo
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+</li>
+<li>
+<p>git  <a href="https://git-scm.com/downloads" target="_blank" rel="noopener noreffer">下载地址</a></p>
+</li>
+<li>
+<p>远程仓库(本文使用GitHub)</p>
+</li>
+<li>
+<p>腾讯云</p>
+<ul>
+<li>云开发 CloudBase &ndash; 静态网站托管</li>
+<li>对象存储</li>
+</ul>
+</li>
+<li>
+<p>域名</p>
+<ul>
+<li>已备案</li>
+<li>已购买SSL证书（可以免费申请一年证书，各大云服务厂商也都会提供一键申请服务）</li>
+</ul>
+</li>
+</ul>
+<h3 id="hugo搭建网站几个环节各环节的解决方案" class="headerLink"><a href="#hugo%e6%90%ad%e5%bb%ba%e7%bd%91%e7%ab%99%e5%87%a0%e4%b8%aa%e7%8e%af%e8%8a%82%e5%90%84%e7%8e%af%e8%8a%82%e7%9a%84%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88" class="header-mark"></a>Hugo搭建网站几个环节（各环节的解决方案）</h3><ul>
+<li>框架学习</li>
+<li>代码的版本控制及存储</li>
+<li>服务的部署
+<ul>
+<li>服务器端配置</li>
+<li>GitHub CI/CD</li>
+</ul>
+</li>
+<li>成本问题</li>
+</ul>
+<h3 id="框架学习" class="headerLink"><a href="#%e6%a1%86%e6%9e%b6%e5%ad%a6%e4%b9%a0" class="header-mark"></a>框架学习</h3><p>Hugo是一种用Go语言编写的快速，现代的静态网站生成器，旨在让网站创建再次变得有趣。（照抄原文😐）</p>
+<p>刚开始使用Hugo所以对Hugo也不熟悉，这边只会列举几条简单常用的命令，后续使用中继续深入了解Hugo🙊</p>
+<p><a href="https://gohugo.io/getting-started/quick-start/#step-2-create-a-new-site" target="_blank" rel="noopener noreffer">创建站点</a></p>
+<ul>
+<li><code>hugo new site quickstart</code></li>
+</ul>
+<p><a href="https://gohugo.io/getting-started/quick-start/#step-3-add-a-theme" target="_blank" rel="noopener noreffer">主题安装</a></p>
+<ul>
+<li>
+<p>Hugo官方提供了多种[主题][https://themes.gohugo.io/]。下载到站点下的themes目录下</p>
+</li>
+<li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> quickstart
+git init
+git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke
+<span class="c1"># 使用主题</span>
+<span class="nb">echo</span> <span class="nv">theme</span> <span class="o">=</span> <span class="se">\&#34;</span>ananke<span class="se">\&#34;</span> &gt;&gt; config.toml
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ul>
+<p><a href="https://gohugo.io/getting-started/quick-start/#step-4-add-some-content" target="_blank" rel="noopener noreffer">新建文章</a></p>
+<ul>
+<li><code>hugo new posts/my-first-post.md</code></li>
+</ul>
+<p><a href="https://gohugo.io/getting-started/quick-start/#step-5-start-the-hugo-server" target="_blank" rel="noopener noreffer">启动服务</a></p>
+<ul>
+<li><code>hugo server -D</code></li>
+</ul>
+<p><a href="https://gohugo.io/getting-started/quick-start/#step-7-build-static-pages" target="_blank" rel="noopener noreffer">生成静态文件</a></p>
+<ul>
+<li><code>hugo -D</code></li>
+<li>该命令会在当前文件夹生成<code>public/</code>文件夹，包含生成的静态文件</li>
+</ul>
+<h3 id="代码的版本控制及存储" class="headerLink"><a href="#%e4%bb%a3%e7%a0%81%e7%9a%84%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6%e5%8f%8a%e5%ad%98%e5%82%a8" class="header-mark"></a>代码的版本控制及存储</h3><p>我是使用<code>git</code>作为我的版本控制工具，远程仓库使用<code>GitHub</code>。相关使用及配置可以自行Google。</p>
+<h3 id="服务的部署" class="headerLink"><a href="#%e6%9c%8d%e5%8a%a1%e7%9a%84%e9%83%a8%e7%bd%b2" class="header-mark"></a>服务的部署</h3><h4 id="1服务器端配置" class="headerLink"><a href="#1%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%ab%af%e9%85%8d%e7%bd%ae" class="header-mark"></a>1、服务器端配置</h4><p>最初考虑的方案是使用<code>github</code>的<code>pages</code>服务，之前的<code>hexo</code>也是使用的<code>pages</code>，但是该服务存在两个问题。</p>
+<ul>
+<li>访问不通畅</li>
+<li>经常404</li>
+</ul>
+<p>然后考虑的是使用<code>gitee</code>的<code>pages</code>服务。这样最大的优势就是免费。但是我比较习惯使用<code>github</code>，并且考虑到响应速度和404的问题，最终决定使用云服务厂商的文件存储及CDN加速。后续可能会使用<code>gitee</code>做仓库备份和中转，因为<code>github</code>慢</p>
+<p>之所以选用腾讯云，原因很简单：<strong>便宜，便宜，便宜</strong>👍，并且还有<strong>免费额度，免费额度，免费额度</strong>👍。对我们这种三分钟热度的简直太友好了。</p>
+<p>最初定的方案是准备使用<code>腾讯云COS+CDN</code>部署服务。但是注册腾讯云的时候发现他们提供<strong>静态网站托管服务</strong>，这也太爽了。到底有多爽的呢：他们的官方文档手把手教给你 创建Hugo + GitHub托管 + 腾讯云部署 + GitHub CI/CD。我* 简直是神仙产品啊。（当然，他们提供的部分教程可能也并不完善，后续会说明 *坑1）</p>
+<h5 id="服务购买及开通" class="headerLink"><a href="#%e6%9c%8d%e5%8a%a1%e8%b4%ad%e4%b9%b0%e5%8f%8a%e5%bc%80%e9%80%9a" class="header-mark"></a>服务购买及开通</h5><p>直接访问<a href="https://console.cloud.tencent.com/" target="_blank" rel="noopener noreffer">腾讯云控制台</a>， 注册登录一气呵成。左上角“云产品&ndash;静态网站托管”，服务开通，一把梭。然后选择按量付费开通静态托管服务。因为腾讯与会给一些免费使用额度，所以是可以放心开通的，<a href="https://cloud.tencent.com/document/product/876/47816" target="_blank" rel="noopener noreffer">腾讯云CloudBase免费额度</a>。CloudBase就是腾讯云的ServerLess服务。（后面会讲 *坑2）</p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/cloudbase-%e5%85%8d%e8%b4%b9%e9%a2%9d%e5%ba%a6.png"
+         alt="CloudBase免费额度"
+         title="cloudbase-免费额度.png"
+    /></p>
+<p>创建模板：选择空模板，下一步，按量付费&amp;开启免费资源，下一步，开通。</p>
+<p>注：腾讯云静态网站托管使用的是<code>CDN+COS</code>部署，所以速度和稳定性是很不错的。</p>
+<h5 id="服务配置" class="headerLink"><a href="#%e6%9c%8d%e5%8a%a1%e9%85%8d%e7%bd%ae" class="header-mark"></a>服务配置</h5><p>开通成功后，可以看到下面页面。我这边已经配置好了域名的解析。点击基础配置，添加域名。<a href="https://cloud.tencent.com/document/product/1210/42862" target="_blank" rel="noopener noreffer">域名配置</a></p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/%e9%9d%99%e6%80%81%e7%bd%91%e7%ab%99%e6%89%98%e7%ae%a1%e9%85%8d%e7%bd%ae%e4%bf%a1%e6%81%af.png"
+         alt="静态网站配置信息"
+         title="静态网站托管配置信息.png"
+    /></p>
+<p>到这里服务的配置基本完成。</p>
+<h4 id="2github-cicd" class="headerLink"><a href="#2github-cicd" class="header-mark"></a>2、GitHub CI/CD</h4><p>上面我是使用GitHub作为远程仓库，最终想要的效果是：本地push代码到远程仓库，远程仓库部署至静态资源代理服务器。（当前编译在本地，后续放在github action *坑3）</p>
+<p>直接整活：</p>
+<p>进入github项目页面，点击Action，然后&quot;Skip this and set up a workflow yourself &ldquo;。github会在项目根目录下的创建<code>.github/workflows/main.yml</code> <a href="https://github.com/Cuiks/note-site-hugo/blob/master/.github/workflows/tcb.yml" target="_blank" rel="noopener noreffer">我的配置文件</a>。此处用到的secrets key等可参考<a href="https://cloud.tencent.com/document/product/1210/52636" target="_blank" rel="noopener noreffer">腾讯云文档</a>，或自行google github secrets key设置。</p>
+<p>配置文件里面deploy的部署action我是基于腾讯云提供的脚本，自己改写的<a href="https://github.com/Cuiks/tcb-action" target="_blank" rel="noopener noreffer">action脚本</a>，这个脚本在腾讯云提供脚本基础上添加了部署时，首先删除之前的文件，不然服务端之前的文件会一直存在不会删除。</p>
+<p>到这里。我们就实现了push代码，自动部署至腾讯云静态网站托管。</p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/github-action.png"
+         alt="github action"
+         title="github-action.png"
+    /></p>
+<h3 id="填坑" class="headerLink"><a href="#%e5%a1%ab%e5%9d%91" class="header-mark"></a>填坑</h3><h4 id="坑1" class="headerLink"><a href="#%e5%9d%911" class="header-mark"></a>坑1：</h4><p>这里说腾讯云提供的教程不完善，主要是指自动部署的配置文件。他们提供的<a href="https://github.com/TencentCloudBase/cloudbase-action" target="_blank" rel="noopener noreffer">配置文件</a>最新的2.0版本运行时报错找不到<code>cloudbaserc.json</code>文件。该文件主要是为了使用<code>tcb framework deploy</code>命令 <a href="https://github.com/TencentCloudBase/cloudbase-action/blob/master/%40v2/run.sh" target="_blank" rel="noopener noreffer">行41</a>。于是我直接修改该脚本，使用CLI的方式进行部署，并在部署前添加清理历史数据问题。</p>
+<p>注：处理该问题带来的问题，因为会删除文件，会导致10-30秒(取决于github action速度)网站404。因为是个人博客，暂时可以接受。</p>
+<h4 id="坑2" class="headerLink"><a href="#%e5%9d%912" class="header-mark"></a>坑2：</h4><p>这里主要讲解腾讯云的免费额度及兜底方案。主要还是穷😢</p>
+<p>因为在之前工作中做过服务的迁移，所以多云服务有一定的了解。也被LB的按量付费坑过，也看过serverless应用被攻击导致的流量暴增而造成的费用激增。因为静态网站托管使用的是按量付费，所以害怕被攻击导致的费用激增。就此问题咨询过腾讯云的技术，是否可以服务自动关闭，答案是：no。</p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/hugo-%e8%85%be%e8%ae%af%e4%ba%91%e6%b2%9f%e9%80%9a%e8%ae%b0%e5%bd%95.png"
+         alt="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/hugo-腾讯云沟通记录.png"
+         title="hugo-腾讯云沟通记录.png"
+    /></p>
+<p>他们技术给出方案是设置告警，然后手动关停。额度监控在“云开发 &ndash; 环境 &ndash; 安全配置 &ndash; 额度监控”</p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/hugo-%e9%a2%9d%e5%ba%a6%e7%9b%91%e6%8e%a7.png"
+         alt="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/hugo-额度监控.png"
+         title="hugo-额度监控.png"
+    /></p>
+<p>这里就涉及到阈值的问题。文章前面讲到过腾讯云的免费额度。</p>
+<p>腾讯云CloudBase按量计费免费额度规则：<a href="https://cloud.tencent.com/document/product/876/47816" target="_blank" rel="noopener noreffer">DOC</a></p>
+<ul>
+<li>每月更新免费用量
+<ul>
+<li>云存储
+<ul>
+<li>容量  5G/月</li>
+<li>下载次数  2000/月</li>
+<li>上传次数  1000/月</li>
+<li>CDN回溯流量  1G/月</li>
+</ul>
+</li>
+<li>CDN
+<ul>
+<li>流量  1G/月</li>
+</ul>
+</li>
+<li>云函数
+<ul>
+<li>资源使用量  1000GBs/月</li>
+</ul>
+</li>
+<li>数据库
+<ul>
+<li>读次数  500/天</li>
+<li>写次数  300/天</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>一次性免费用量
+<ul>
+<li>静态网站托管
+<ul>
+<li>流量  5G/月</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>按照上面的限制，把资源限额平分到每天，然后设置监控告警，这样就能实现0费用。</p>
+<p>第二个月开始，静态网站托管流量不再赠送，网站托管流量是0.21元/GB。所以服务部署运行近乎0成本。</p>
+<h4 id="坑3" class="headerLink"><a href="#%e5%9d%913" class="header-mark"></a>坑3：</h4><p>关于hugo编译的问题。当前编译是放在本地生成静态文件，然后push到github。后续会继续完善action，把项目的编译也自动完成，实现完整的CI/CD。</p></div><footer>
+                        <div class="post">
+
+
+<div class="post-share"></div>
+
+
+
+
+
+
+<div class="post-tags"><a href="/tags/hugo/" class="tag">hugo</a><a href="/tags/cloudbase/" class="tag">CloudBase</a><a href="/tags/blog/" class="tag">blog</a></div></div>
+                </footer></div>
+
+        <div id="toc-final"></div>
+        </div>
+
+    
+    </article>
+    <section class="page single comments content-block-position">
+        <h1 class="display-hidden">Комментарии</h1><div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></section></div>
+
+</main></div>
+
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </aside><link rel="stylesheet" href="/lib/valine/valine.min.css"><script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"valine":{"appId":"qawpEGaIhzxE9qCJm9hisTxW-gzGzoHsz","appKey":"FkncojWQwaOzzkHjlvW0vH3b","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://qawpegai.lc-cn-n1-shared.com","visitor":true}},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body>
+</html>

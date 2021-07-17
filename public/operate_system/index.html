@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>计算机操作系统 | </title><meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content=""/>
+<meta name="twitter:title" content="计算机操作系统"/>
+<meta name="twitter:description" content=""/><meta name="Description" content="cuiks&#39;s Note"><meta property="og:title" content="计算机操作系统" />
+<meta property="og:description" content="
+操作系统之基础
+操作系统之提升
+操作系统实践
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cuiks.top/operate_system/" /><meta property="og:image" content="https://cuiks.top/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-05-27T15:22:39+08:00" />
+<meta property="article:modified_time" content="2021-05-27T15:22:39+08:00" />
+
+<meta name="application-name" content="Note Site">
+<meta name="apple-mobile-web-app-title" content="Note Site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cuiks.top/operate_system/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "计算机操作系统",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/cuiks.top\/operate_system\/"
+        },"genre": "posts","keywords": "计算机操作系统","wordCount":  620 ,
+        "url": "https:\/\/cuiks.top\/operate_system\/","datePublished": "2021-05-27T15:22:39+08:00","dateModified": "2021-05-27T15:22:39+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Note Site" class="header-logo logo-svg"><span class="header-title-pre"><i class='fas fa-pencil-alt fa-fw'></i></span>Note Site</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"> Tags </a>
+                        </li><li>
+                            <a class="menu-item" href="/about/about"> About </a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/cuiks" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Note Site" class="header-logo"><span class="header-title-pre"><i class='fas fa-pencil-alt fa-fw'></i></span>Note Site</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            Cancel
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title="">Tags</a>
+                        </li><li>
+                            <a class="menu-item" href="/about/about" title="">About</a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/cuiks" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+<div class="container content-article page-toc theme-classic"><div class="toc" id="toc-auto">
+            <div class="toc-title">Contents</div>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div>
+
+    
+    
+    <article>
+    
+
+        <header class="header-post">
+
+            
+
+            
+            <div class="post-title">
+
+                    <div class="post-all-meta">
+                        <nav class="breadcrumbs">
+    <ol>
+        <li><a href="/">Home </a></li><li>计算机操作系统</li>
+    </ol>
+</nav>
+                        <h1 class="single-title flipInX">计算机操作系统</h1><div class="post-meta summary-post-meta"><span class="post-meta-date meta-item">
+                                <span class="svg-icon icon-clock"></span><time class="timeago" datetime="2021-05-27">2021-05-27</time>
+                            </span><span class="post-meta-words meta-item">
+                                <span class="svg-icon icon-pencil"></span>620 words
+                            </span>
+                            <span class="post-meta-reading meta-item">
+                                <span class="svg-icon icon-stopwatch"></span>3 minutes
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                </header>
+
+        <div class="article-post toc-start">
+
+            <div class="content-block content-block-first content-block-position">
+
+                <div class="post single"><div class="details toc" id="toc-static"  data-kept="">
+                        <div class="details-summary toc-title">
+                            <span>Contents</span>
+                        </div>
+                        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#操作系统之基础篇">操作系统之基础篇</a>
+      <ul>
+        <li><a href="#操作系统概览">操作系统概览</a>
+          <ul>
+            <li><a href="#what">What</a></li>
+            <li><a href="#why">Why</a></li>
+            <li><a href="#操作系统的基本功能">操作系统的基本功能</a></li>
+            <li><a href="#操作系统相关概念">操作系统相关概念</a></li>
+          </ul>
+        </li>
+        <li><a href="#进程管理之进程实体">进程管理之进程实体</a>
+          <ul>
+            <li><a href="#为什么需要进程">为什么需要进程</a></li>
+            <li><a href="#进程的实体">进程的实体</a></li>
+          </ul>
+        </li>
+        <li><a href="#进程管理之五状态模型">进程管理之五状态模型</a></li>
+        <li><a href="#进程管理之进程同步">进程管理之进程同步</a>
+          <ul>
+            <li><a href="#为什么需要进程间同步">为什么需要进程间同步</a></li>
+            <li><a href="#进程间同步的原则">进程间同步的原则</a></li>
+            <li><a href="#线程同步">线程同步</a></li>
+          </ul>
+        </li>
+        <li><a href="#linux的进程管理">Linux的进程管理</a></li>
+        <li><a href="#作业管理之进程调度">作业管理之进程调度</a></li>
+        <li><a href="#作业管理之死锁">作业管理之死锁</a></li>
+        <li><a href="#存储管理之内存分配与回收">存储管理之内存分配与回收</a>
+          <ul>
+            <li><a href="#内存分配与回收目的">内存分配与回收目的</a></li>
+            <li><a href="#内存分配的过程">内存分配的过程</a></li>
+            <li><a href="#内存回收的过程">内存回收的过程</a></li>
+          </ul>
+        </li>
+        <li><a href="#存储管理之段页式存储管理">存储管理之段页式存储管理</a>
+          <ul>
+            <li><a href="#页式存储管理">页式存储管理</a></li>
+            <li><a href="#段式存储管理">段式存储管理</a></li>
+            <li><a href="#段页式存储管理">段页式存储管理</a></li>
+          </ul>
+        </li>
+        <li><a href="#存储管理之虚拟内存">存储管理之虚拟内存</a></li>
+        <li><a href="#linux的存储管理">Linux的存储管理</a>
+          <ul>
+            <li><a href="#buddy内存管理算法">Buddy内存管理算法</a></li>
+            <li><a href="#linux交换空间">Linux交换空间</a></li>
+          </ul>
+        </li>
+        <li><a href="#操作系统的文件管理">操作系统的文件管理</a>
+          <ul>
+            <li><a href="#文件的逻辑结构">文件的逻辑结构</a></li>
+            <li><a href="#辅存的存储空间分配">辅存的存储空间分配</a></li>
+            <li><a href="#目录管理">目录管理</a></li>
+          </ul>
+        </li>
+        <li><a href="#linux文件基本操作">linux文件基本操作</a></li>
+        <li><a href="#linux的文件系统">Linux的文件系统</a>
+          <ul>
+            <li><a href="#文件系统概览">文件系统概览</a></li>
+            <li><a href="#ext文件系统">Ext文件系统</a></li>
+          </ul>
+        </li>
+        <li><a href="#操作系统的设备管理">操作系统的设备管理</a>
+          <ul>
+            <li><a href="#广义的io设备">广义的IO设备</a></li>
+            <li><a href="#io设备的缓冲区">IO设备的缓冲区</a></li>
+            <li><a href="#spoling技术">SPOLing技术</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li><a href="#操作系统之提升篇">操作系统之提升篇</a>
+      <ul>
+        <li><a href="#线程同步之互斥量">线程同步之互斥量</a></li>
+        <li><a href="#线程同步之自旋锁">线程同步之自旋锁</a></li>
+        <li><a href="#线程同步之读写锁">线程同步之读写锁</a></li>
+        <li><a href="#线程同步之条件变量">线程同步之条件变量</a></li>
+        <li><a href="#线程同步方法对比">线程同步方法对比</a></li>
+        <li><a href="#使用fork系统调用创建进程">使用fork系统调用创建进程</a></li>
+        <li><a href="#进程同步之共享内存">进程同步之共享内存</a></li>
+        <li><a href="#进程同步之unix域套接字">进程同步之Unix域套接字</a></li>
+      </ul>
+    </li>
+    <li><a href="#操作系统实践">操作系统实践</a>
+      <ul>
+        <li><a href="#python同步原语">Python同步原语</a></li>
+        <li><a href="#实现线程安全的队列queue">实现线程安全的队列Queue</a></li>
+        <li><a href="#实现基本任务对象task">实现基本任务对象Task</a></li>
+        <li><a href="#线程池简介">线程池简介</a>
+          <ul>
+            <li><a href="#什么是线程池">什么是线程池</a></li>
+            <li><a href="#为什么使用线程池">为什么使用线程池</a></li>
+          </ul>
+        </li>
+        <li><a href="#实现任务处理线程processthread">实现任务处理线程ProcessThread</a></li>
+        <li><a href="#实现任务处理线程池pool">实现任务处理线程池Pool</a></li>
+        <li><a href="#编写测试用例">编写测试用例</a></li>
+        <li><a href="#实现异步任务处理asynctask">实现异步任务处理AsyncTask</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                    </div><ul>
+<li>操作系统之基础</li>
+<li>操作系统之提升</li>
+<li>操作系统实践</li>
+</ul>
+<h2 id="操作系统之基础篇" class="headerLink"><a href="#%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e4%b9%8b%e5%9f%ba%e7%a1%80%e7%af%87" class="header-mark"></a>操作系统之基础篇</h2><h3 id="操作系统概览" class="headerLink"><a href="#%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e6%a6%82%e8%a7%88" class="header-mark"></a>操作系统概览</h3><h4 id="what" class="headerLink"><a href="#what" class="header-mark"></a>What</h4><p>管理硬件、提供用户交互的软件系统</p>
+<ul>
+<li>操作系统是管理计算机硬件和软件资源的计算机程序</li>
+<li>管理配置内存、决定资源供需顺序、控制输入输出设备等</li>
+<li>操作系统提供让用户和系统交互的操作界面</li>
+</ul>
+<h4 id="why" class="headerLink"><a href="#why" class="header-mark"></a>Why</h4><ul>
+<li>我们不能直接操作计算机赢家</li>
+<li>设备种类繁多复杂，需要统一界面</li>
+<li>操作系统的建议性使得更多人能够使用计算机</li>
+</ul>
+<h4 id="操作系统的基本功能" class="headerLink"><a href="#%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e5%9f%ba%e6%9c%ac%e5%8a%9f%e8%83%bd" class="header-mark"></a>操作系统的基本功能</h4><ul>
+<li>操作系统统一管理着计算机资源
+<ul>
+<li>处理器资源、IO设备资源、存储器资源、文件资源</li>
+</ul>
+</li>
+<li>操作系统实现了对计算机资源的抽象
+<ul>
+<li>用户无需面向硬件接口编程</li>
+<li>IO设备管理软件，提供读写接口</li>
+<li>文件管理软件，提供操作文件接口</li>
+</ul>
+</li>
+<li>操作系统提供了用户与计算机之间的接口
+<ul>
+<li>图像窗口形式</li>
+<li>命令形式</li>
+<li>系统调用形式</li>
+</ul>
+</li>
+</ul>
+<h4 id="操作系统相关概念" class="headerLink"><a href="#%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9b%b8%e5%85%b3%e6%a6%82%e5%bf%b5" class="header-mark"></a>操作系统相关概念</h4><ul>
+<li>并发性
+<ul>
+<li>并行使之两个或多个时间可以在同一个时刻发生</li>
+<li>并发是指两个或多个时间可以在同一个时间间隔发生</li>
+</ul>
+</li>
+<li>共享性
+<ul>
+<li>共享性表现为操作系统中的资源可供多个并发的程序共同使用，这种共同使用的形式成为资源共享</li>
+<li>互斥共享形式</li>
+<li>同时访问形式</li>
+</ul>
+</li>
+<li>虚拟性
+<ul>
+<li>虚拟性表现为吧一个物理实体转变为若干个逻辑实体</li>
+<li>物理实体是真实存在的，逻辑实体是虚拟的</li>
+<li>虚拟的技术主要由时分复用技术和空分复用技术</li>
+<li>时分复用技术
+<ul>
+<li>资源在时间上进行复用，不同程序并发使用</li>
+<li>多道程序分时使用计算机的硬件资源</li>
+<li>提高资源利用率</li>
+<li>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210510160931.png"
+         alt="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210510160931.png"
+         title="20210510160931.png"
+    /></li>
+</ul>
+</li>
+<li>空分复用技术
+<ul>
+<li>空分复用技术用来实现虚拟磁盘、虚拟内存等</li>
+<li>提高资源的利用率，提升编程效率</li>
+<li>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210510161135.png"
+         alt="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210510161135.png"
+         title="20210510161135.png"
+    /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>异步性
+<ul>
+<li>在多道程序环境下，允许多个进程并发执行</li>
+<li>进程在使用资源时可能需要等待或放弃</li>
+<li>进程的执行不是一气呵成的，而是以走走停停的形式推进</li>
+</ul>
+</li>
+</ul>
+<h3 id="进程管理之进程实体" class="headerLink"><a href="#%e8%bf%9b%e7%a8%8b%e7%ae%a1%e7%90%86%e4%b9%8b%e8%bf%9b%e7%a8%8b%e5%ae%9e%e4%bd%93" class="header-mark"></a>进程管理之进程实体</h3><h4 id="为什么需要进程" class="headerLink"><a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e8%bf%9b%e7%a8%8b" class="header-mark"></a>为什么需要进程</h4><ul>
+<li>进程是系统进行资源分配和调度的基本单位</li>
+<li>进程作为程序独立运行的载体保障程序正常执行</li>
+<li>进程的存在使得操作系统资源的利用率大幅提升</li>
+</ul>
+<h4 id="进程的实体" class="headerLink"><a href="#%e8%bf%9b%e7%a8%8b%e7%9a%84%e5%ae%9e%e4%bd%93" class="header-mark"></a>进程的实体</h4><ul>
+<li>主存中的进程形态
+<ul>
+<li>进程标识符</li>
+<li>处理机状态</li>
+<li>处理调度信息</li>
+<li>进程控制信息</li>
+<li></li>
+<li>进程控制块
+<ul>
+<li>标识符：唯一标记一个进程，用于区别其他进程</li>
+<li>状态：标记进程的进程状态，如：运行态</li>
+<li>程序计数器：进程即将被执行的下一条指令的地址</li>
+<li>内存指针：程序代码、进程数据相关指针</li>
+<li>上下文数据：进程执行时处理器存储的数据</li>
+<li>IO状态信息：被进程IO操作所占用的文件列表</li>
+<li>记账信息：使用处理器时间、时钟数总和等</li>
+</ul>
+</li>
+<li>进程控制块(PCB)
+<ul>
+<li>用于描述和控制进程运行的通用数据结构</li>
+<li>记录进程当前状态和控制进程运行的全部信息</li>
+<li>PCB使得进程是能够独立运行的基本单位</li>
+<li>PCB是操作系统进行调度经常会被读取的信息</li>
+<li>PCB是常驻内存的，存放在系统专门开辟的PCB区域内</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>进程与线程
+<ul>
+<li>进程(Process)
+<ul>
+<li>进程是系统进行资源分配和调度的基本单位</li>
+</ul>
+</li>
+<li>线程(Thread)
+<ul>
+<li>线程是操作系统进行运行调度的最小单位</li>
+<li>包含在进程之中，是进程中实际运行工作的单位</li>
+<li>一个进程可以并发多个线程，每个线程执行不同的任务</li>
+<li>线程共享进程的资源</li>
+</ul>
+</li>
+<li>一个进程可以有一个或多个线程</li>
+<li>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210510171848.png"
+         alt="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210510171848.png"
+         title="20210510171848.png"
+    /></li>
+</ul>
+</li>
+</ul>
+<h3 id="进程管理之五状态模型" class="headerLink"><a href="#%e8%bf%9b%e7%a8%8b%e7%ae%a1%e7%90%86%e4%b9%8b%e4%ba%94%e7%8a%b6%e6%80%81%e6%a8%a1%e5%9e%8b" class="header-mark"></a>进程管理之五状态模型</h3><ul>
+<li>就绪状态
+<ul>
+<li>当进程被分配到除CPU以外的所有必要的资源后，只要再获取CPU的使用权，就可以立即运行。其他资源都准备好、只差CPU资源的状态为就绪状态。</li>
+</ul>
+</li>
+<li>执行状态
+<ul>
+<li>进行获得CPU，其程序正在执行成为执行状态。在单处理机中，在某个时刻只能有一个进程是出于执行状态。</li>
+</ul>
+</li>
+<li>阻塞状态
+<ul>
+<li>进程因某种原因(例如:其他设备未就绪而无法继续执行)从而放弃CPU的状态成为阻塞状态</li>
+</ul>
+</li>
+<li>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210510205110.png"
+         alt="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210510205110.png"
+         title="20210510205110.png"
+    /></li>
+<li>创建状态
+<ul>
+<li>创建进程时拥有PCB但其他资源尚未就绪的状态成为创建状态</li>
+<li>操作系统提供fork函数接口创建进程</li>
+</ul>
+</li>
+<li>终止状态
+<ul>
+<li>进程结束由系统清理或者归还PCB的状态称为终止状态</li>
+</ul>
+</li>
+<li>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210510205415.png"
+         alt="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210510205415.png"
+         title="20210510205415.png"
+    /></li>
+</ul>
+<h3 id="进程管理之进程同步" class="headerLink"><a href="#%e8%bf%9b%e7%a8%8b%e7%ae%a1%e7%90%86%e4%b9%8b%e8%bf%9b%e7%a8%8b%e5%90%8c%e6%ad%a5" class="header-mark"></a>进程管理之进程同步</h3><h4 id="为什么需要进程间同步" class="headerLink"><a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e8%bf%9b%e7%a8%8b%e9%97%b4%e5%90%8c%e6%ad%a5" class="header-mark"></a>为什么需要进程间同步</h4><ul>
+<li>对竞争资源在多进程间进行使用次序的协调</li>
+<li>使得并发执行的多个进程之间可以有效使用资源和相互合作</li>
+<li></li>
+<li>生产者-消费者问题</li>
+<li>哲学家就餐问题</li>
+</ul>
+<h4 id="进程间同步的原则" class="headerLink"><a href="#%e8%bf%9b%e7%a8%8b%e9%97%b4%e5%90%8c%e6%ad%a5%e7%9a%84%e5%8e%9f%e5%88%99" class="header-mark"></a>进程间同步的原则</h4><p>临界资源</p>
+<ul>
+<li>临界资源指的是一些虽作为共享资源却又无法同时被多个线程共同访问的共享资源。当有进程在使用临界资源时，其他进程必须依据操作系统的同步机制等待占用进程释放该共享资源才可重新竞争使用共享资源。</li>
+</ul>
+<p>同步原则：</p>
+<ul>
+<li>空闲让进：资源无占用，允许使用</li>
+<li>忙则等待：资源有占用，请求进程等待</li>
+<li>有限等待：保证有限等待时间能够使用资源</li>
+<li>让权等待：等待时，进程需要让出CPU</li>
+</ul>
+<p>进程同步方法：</p>
+<ul>
+<li>消息队列</li>
+<li>共享存储</li>
+<li>信号量</li>
+</ul>
+<h4 id="线程同步" class="headerLink"><a href="#%e7%ba%bf%e7%a8%8b%e5%90%8c%e6%ad%a5" class="header-mark"></a>线程同步</h4><p>进程内多线程也需要同步</p>
+<p>线程同步方法：</p>
+<ul>
+<li>互斥量</li>
+<li>读写锁</li>
+<li>自旋锁</li>
+<li>条件变量</li>
+</ul>
+<h3 id="linux的进程管理" class="headerLink"><a href="#linux%e7%9a%84%e8%bf%9b%e7%a8%8b%e7%ae%a1%e7%90%86" class="header-mark"></a>Linux的进程管理</h3><p>Linux进程的相关概念</p>
+<ul>
+<li>进程的类型
+<ul>
+<li>前台进程
+<ul>
+<li>具有终端，可以和用户交互的进程</li>
+</ul>
+</li>
+<li>后台进程
+<ul>
+<li>与前台进程相对，没有占用终端的就是后台进程</li>
+<li>后台程序基本上不和用户交互，优先级比前台进程低</li>
+<li>将需要执行的命令以“&amp;”符号结束</li>
+</ul>
+</li>
+<li>守护进程
+<ul>
+<li>守护(daemon)进程是特殊的后台进程</li>
+<li>很多守护进程在系统引导的时候启动，一直运行到系认关闭</li>
+<li>Linux有很多典型的守护进程</li>
+<li>进程名字以&quot;d&quot;结尾的一般都是守护进程
+<ul>
+<li>crond、sshd、httpd、mysqld</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>进程的标记
+<ul>
+<li>进程ID
+<ul>
+<li>进程ID是进程的唯一标记，每个进程拥有不同的ID</li>
+<li>进程ID表现为一个非负整数，最大值由操作系统限定</li>
+<li>父子进程关系可以通过<code>pstree</code>命令查看</li>
+<li>ID为0的进程为idle进程，是系统创建的第一个进程</li>
+<li>ID为1的进程为init进程，是0号进程的子进程，完成系统初始化</li>
+<li>Init进程是所有用户进程的祖先进程</li>
+</ul>
+</li>
+<li>进程的状态标记
+<ul>
+<li><code>man ps</code>查看进程各种状态的含义</li>
+<li>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210510212907.png"
+         alt="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210510212907.png"
+         title="20210510212907.png"
+    /></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>操作Linux进程的相关命令</p>
+<ul>
+<li>ps命令
+<ul>
+<li>ps -u root 查看root用户的进程</li>
+<li>ps -axu|grep &lsquo;python&rsquo;</li>
+<li>ps -ef &ndash;forest  查看进程树</li>
+<li>ps -aux &ndash;sort=-pcpu/pmeme   根据cpu/内存使用频率倒序</li>
+</ul>
+</li>
+<li>top命令</li>
+<li>kill命令</li>
+</ul>
+<h3 id="作业管理之进程调度" class="headerLink"><a href="#%e4%bd%9c%e4%b8%9a%e7%ae%a1%e7%90%86%e4%b9%8b%e8%bf%9b%e7%a8%8b%e8%b0%83%e5%ba%a6" class="header-mark"></a>作业管理之进程调度</h3><p>进程调度概述</p>
+<ul>
+<li>进程调度是指计算机通过决策决定哪个就绪进程可以获得CPU使用权</li>
+<li>调度过程
+<ul>
+<li>保留旧进程的运行信息，清楚旧进程（收拾包袱）</li>
+<li>选择新进程，准备运行环境并分配CPU（新进驻）</li>
+</ul>
+</li>
+<li>调度机制
+<ul>
+<li>就绪队列的排队机制
+<ul>
+<li>将就绪进程按照一定的方式排成队列，以便调度程序可以最快找到就绪进程</li>
+</ul>
+</li>
+<li>选择运行进程的委派机制
+<ul>
+<li>调度程序以一定的策略选择就绪进程，将CPU资源陪陪给他</li>
+</ul>
+</li>
+<li>新老进程的上下文切换机制
+<ul>
+<li>保存当前进程的上下文信息，装入被委派执行进程的运行上下文</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>调度方式
+<ul>
+<li>非抢占式的调度
+<ul>
+<li>处理器一旦分配给某个进程，就让该进程一直使用下去</li>
+<li>调度程序不以任何原因抢占正在被使用的处理器</li>
+<li>直到进程完成工作或因为IO阻塞才会让出处理器</li>
+</ul>
+</li>
+<li>抢占式的调度
+<ul>
+<li>允许调度程序以一定的策略暂停当前运行的进程</li>
+<li>保存好旧进程的上下文信息，分配处理器给新进程</li>
+</ul>
+</li>
+<li>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210510214847.png"
+         alt="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210510214847.png"
+         title="20210510214847.png"
+    /></li>
+</ul>
+</li>
+</ul>
+<p>进程调度算法</p>
+<ul>
+<li>先来先服务调度算法</li>
+<li>短进程优先调度算法
+<ul>
+<li>调度程序优先选择就绪队列中估计运行时间最短的进程</li>
+<li>短进程优先调度算法不利于长作业进程的执行</li>
+</ul>
+</li>
+<li>高优先权优先调度算法
+<ul>
+<li>进程附带优先权，调度程序优先选择权重很高的进程</li>
+<li>高优先权优先调度算法使得紧迫的任务可以优先处理</li>
+</ul>
+</li>
+<li>时间片轮转调度算法
+<ul>
+<li>按照先来先服务的原则排列就绪进程</li>
+<li>每次从队列头部取出待执行进程，分配一个时间片执行</li>
+<li>是相对公平的调度算法，但不能保证及时响应用户</li>
+</ul>
+</li>
+</ul>
+<h3 id="作业管理之死锁" class="headerLink"><a href="#%e4%bd%9c%e4%b8%9a%e7%ae%a1%e7%90%86%e4%b9%8b%e6%ad%bb%e9%94%81" class="header-mark"></a>作业管理之死锁</h3><p>死锁：两个或者两个以上的进程在执行过程中，由于经这个资源或者由于彼此通信而造成的一中阻塞的现象，若无外力作用，他们都将无法推进下去。此时称系统处于死锁状态或系统产生了死锁，这些永远处于互相等待的进程成为死锁进程。</p>
+<ul>
+<li>死锁的产生
+<ul>
+<li>竞争资源
+<ul>
+<li>共享资源数量不满足各个进程需求，各个进程之间发生资源竞争导致死锁</li>
+</ul>
+</li>
+<li>进程调度顺序不当</li>
+<li>死锁的四个必要条件
+<ul>
+<li>互斥条件
+<ul>
+<li>进程对资源的使用是排他性的使用</li>
+<li>某资源只能由一个进程使用，其他进程需要使用只能等待</li>
+</ul>
+</li>
+<li>请求保持条件
+<ul>
+<li>进程至少保持一个资源，又提出新的资源请求</li>
+<li>新资源被占用，请求被阻塞</li>
+<li>被阻塞的进程不释放自己保持的资源</li>
+</ul>
+</li>
+<li>不可剥夺条件
+<ul>
+<li>进程获得的资源在未完成使用前不能被剥夺</li>
+<li>获得的资源只能由进程自身释放</li>
+</ul>
+</li>
+<li>环路等待条件
+<ul>
+<li>发生死锁时，必然存在进程-资源环形链</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>死锁的处理
+<ul>
+<li>预防死锁的方法
+<ul>
+<li>摒弃请求保持条件
+<ul>
+<li>系统规定进程运行之前，一次性申请所有需要的资源，进程在运行期间不会提出资源请求，从而摒弃请求保持条件</li>
+</ul>
+</li>
+<li>摒弃不可剥夺条件
+<ul>
+<li>当一个进程请求新的资源得不到满足时，必须释放占有的资源。进程运行时占有的资源可以被释放，意味着可以剥夺</li>
+</ul>
+</li>
+<li>摒弃环路等待条件
+<ul>
+<li>可用资源线性排序，申请必须按照需要递增申请。线性申请不再形成环路，从而摒弃了环路等待条件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>银行家算法
+<ul>
+<li>简介
+<ul>
+<li>是一个可操作的著名的避免死锁的算法。以银行借贷系统分配策略为基础的算法</li>
+</ul>
+</li>
+<li>策略基础
+<ul>
+<li>客户申请的贷款是有限的，每次申请需声明最大资金量</li>
+<li>银行家在能够满足贷款时，都应该给用户贷款</li>
+<li>客户在使用贷款后，能够及时归还贷款</li>
+</ul>
+</li>
+<li>算法
+<ul>
+<li>所需资源表</li>
+<li>已分配资源变</li>
+<li>还需分配资源表 = 所需资源表 - 已分配资源变</li>
+<li>可分配资源表</li>
+<li>比较 可分配资源变 和 还需分配资源表</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="存储管理之内存分配与回收" class="headerLink"><a href="#%e5%ad%98%e5%82%a8%e7%ae%a1%e7%90%86%e4%b9%8b%e5%86%85%e5%ad%98%e5%88%86%e9%85%8d%e4%b8%8e%e5%9b%9e%e6%94%b6" class="header-mark"></a>存储管理之内存分配与回收</h3><h4 id="内存分配与回收目的" class="headerLink"><a href="#%e5%86%85%e5%ad%98%e5%88%86%e9%85%8d%e4%b8%8e%e5%9b%9e%e6%94%b6%e7%9b%ae%e7%9a%84" class="header-mark"></a>内存分配与回收目的</h4><ul>
+<li>确保计算机有足够的内存处理数据</li>
+<li>确保程序可以从可用内存中获取一部分内存使用</li>
+<li>确保程序可以归还使用后的内存一共其他程序使用</li>
+</ul>
+<h4 id="内存分配的过程" class="headerLink"><a href="#%e5%86%85%e5%ad%98%e5%88%86%e9%85%8d%e7%9a%84%e8%bf%87%e7%a8%8b" class="header-mark"></a>内存分配的过程</h4><ul>
+<li>单一连续分配
+<ul>
+<li>最简单的内存分配方式</li>
+<li>只能在单用户、单进程的操作系统中使用</li>
+</ul>
+</li>
+<li>固定分区分配
+<ul>
+<li>固定分区分配是支持多道程序的最简单存储分配方式</li>
+<li>内存空间被划分为若干固定大小的区域</li>
+<li>每个分区只提供给一个程序使用，互不干扰</li>
+</ul>
+</li>
+<li>动态分区分配
+<ul>
+<li>根据进程实际需要，动态分配内存空间</li>
+<li>相关数据结构
+<ul>
+<li>动态分区空闲表数据结构
+<ul>
+<li>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210511161444.png"
+         alt="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210511161444.png"
+         title="20210511161444.png"
+    /></li>
+</ul>
+</li>
+<li>动态分区空闲链数据结构
+<ul>
+<li>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210511161614.png"
+         alt="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210511161614.png"
+         title="20210511161614.png"
+    /></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>动态内存分配算法
+<ul>
+<li>首次适应算法（FF算法）
+<ul>
+<li>分配内存是从开始顺序查找适合内存区</li>
+<li>若没有合适的空闲区，则该次分配失败</li>
+<li>每次都从头部开始，是的头部地址空间不断被划分</li>
+<li>首次适应算法改进 &ndash; 循环适应算法
+<ul>
+<li>不从头部开始，从上一次位置继续查找</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>最佳适应算法（BF算法）
+<ul>
+<li>要求空闲区链表按照容量大小排序</li>
+<li>遍历空闲区链表找到最合适空闲区</li>
+</ul>
+</li>
+<li>快速适应算法（QF算法）
+<ul>
+<li>要求有多个空闲区链表</li>
+<li>每个空闲区链表存储一种容量的空闲区</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="内存回收的过程" class="headerLink"><a href="#%e5%86%85%e5%ad%98%e5%9b%9e%e6%94%b6%e7%9a%84%e8%bf%87%e7%a8%8b" class="header-mark"></a>内存回收的过程</h4><ul>
+<li>空闲区位于回收区前面
+<ul>
+<li>不需要新建空闲区链表节点，只需要把空闲区1的容量增大为空闲区即可</li>
+</ul>
+</li>
+<li>空闲区位于回收区后面
+<ul>
+<li>将回收区与空闲区合并</li>
+<li>新的空闲区使用回收区的地址</li>
+</ul>
+</li>
+<li>回收区位于两个空闲区之间
+<ul>
+<li>讲空闲区1、空闲区2和回收区合并，新的空闲区使用空闲区1的地址</li>
+</ul>
+</li>
+<li>回收区没有邻接空闲区
+<ul>
+<li>为回收区创建新的空闲节点</li>
+<li>插入到响应的空闲区链表中去</li>
+</ul>
+</li>
+</ul>
+<h3 id="存储管理之段页式存储管理" class="headerLink"><a href="#%e5%ad%98%e5%82%a8%e7%ae%a1%e7%90%86%e4%b9%8b%e6%ae%b5%e9%a1%b5%e5%bc%8f%e5%ad%98%e5%82%a8%e7%ae%a1%e7%90%86" class="header-mark"></a>存储管理之段页式存储管理</h3><h4 id="页式存储管理" class="headerLink"><a href="#%e9%a1%b5%e5%bc%8f%e5%ad%98%e5%82%a8%e7%ae%a1%e7%90%86" class="header-mark"></a>页式存储管理</h4><ul>
+<li>将进程逻辑空间等分成若干大小的页面</li>
+<li>响应的吧物理内存空间分成页面大小的物理块</li>
+<li>以页面为单位吧进程空间装进物理内存中分散的物理块</li>
+<li></li>
+<li>页面大小应该适中，过大难以分配，过小内存碎片过多</li>
+<li>页面大小通常是512B~8K</li>
+<li>页表记录进程逻辑空间与物理空间的映射</li>
+</ul>
+<h4 id="段式存储管理" class="headerLink"><a href="#%e6%ae%b5%e5%bc%8f%e5%ad%98%e5%82%a8%e7%ae%a1%e7%90%86" class="header-mark"></a>段式存储管理</h4><ul>
+<li>将进程逻辑空间划分为若干段（非等分）</li>
+<li>段的长度由连续逻辑的长度决定</li>
+<li>主函数MAIN、子程序段X、子函数Y等</li>
+</ul>
+<p>段式存储和页式存储都离散的管理了进程的逻辑空间</p>
+<ul>
+<li>页是物理单位，段是逻辑单位</li>
+<li>分页是为了合理利用空间，分段是满足用户要求</li>
+<li>页大小由硬件固定，段长度可动态变化</li>
+<li>页表信息是一维的，段表信息是二维的</li>
+</ul>
+<h4 id="段页式存储管理" class="headerLink"><a href="#%e6%ae%b5%e9%a1%b5%e5%bc%8f%e5%ad%98%e5%82%a8%e7%ae%a1%e7%90%86" class="header-mark"></a>段页式存储管理</h4><ul>
+<li>先将逻辑空间按段式管理分成若干段</li>
+<li>再把段内空间按页式管理等分成若干页</li>
+</ul>
+<h3 id="存储管理之虚拟内存" class="headerLink"><a href="#%e5%ad%98%e5%82%a8%e7%ae%a1%e7%90%86%e4%b9%8b%e8%99%9a%e6%8b%9f%e5%86%85%e5%ad%98" class="header-mark"></a>存储管理之虚拟内存</h3><p>虚拟内存概述</p>
+<ul>
+<li>有些进程实际需要的内存很大，超过物理内存的容量</li>
+<li>多道程序设计，使得每个进程可用物理内存更加稀缺</li>
+<li>不可能无限增加物理内存，物理内存总有不够的时候</li>
+<li>虚拟内存是操作系统内存管理的关键技术</li>
+<li>使得多道程序运行和大程序运行成为现实</li>
+<li>把程序使用内存划分，将程序暂时不使用的内存放置在辅存</li>
+</ul>
+<p>程序的局部性原理</p>
+<ul>
+<li>局部性原理是指CPU访问存储器的时候，无论是存取指令还是存取数据，所访问的存储单元都趋于聚集在一个较小的连续区域中。</li>
+<li>程序运行时，无需全部装入内存，装在部分即可</li>
+<li>如果访问页不在内存，则发出缺页中断，发起页面置换</li>
+<li>从用户层面，程序拥有很大的空间，即是虚拟内存</li>
+<li>虚拟内存实际是对物理内存的扩充，速度接近于内存，成本接近于辅存</li>
+</ul>
+<p>虚拟内存的置换算法</p>
+<ul>
+<li>先进先出算法（FIFO）</li>
+<li>最不经常使用算法（LFU）</li>
+<li>最近最少使用算法（LRU）</li>
+</ul>
+<h3 id="linux的存储管理" class="headerLink"><a href="#linux%e7%9a%84%e5%ad%98%e5%82%a8%e7%ae%a1%e7%90%86" class="header-mark"></a>Linux的存储管理</h3><h4 id="buddy内存管理算法" class="headerLink"><a href="#buddy%e5%86%85%e5%ad%98%e7%ae%a1%e7%90%86%e7%ae%97%e6%b3%95" class="header-mark"></a>Buddy内存管理算法</h4><ul>
+<li>经典的内存管理算法</li>
+<li>基于计算机处理二进制的优势具有极高的效率</li>
+<li>主要是为了解决内存碎片的问题</li>
+</ul>
+<p>页内碎片：内存碎片是已经被分配出去的内存空间大于请求所需的内存空间，不能被利用的内存空间就是内部碎片。</p>
+<p>页外碎片：外部碎片是指还没有分配出去，但是由于大小而无法分配给申请内存空间的新进程的内存空闲快。</p>
+<p>Buddy算法：</p>
+<ul>
+<li>向上取整为2的幂大小</li>
+<li>伙伴系统
+<ul>
+<li>“伙伴”指的是内存的“伙伴”</li>
+<li>一片连续内存的“伙伴”是相邻的另一片大小一样的连续内存</li>
+</ul>
+</li>
+<li>创建流程
+<ul>
+<li>创建一系列空闲快链表，每一个都是2的幂大小</li>
+<li>分配内存块时，将剩余的空间补充回空闲快链表</li>
+</ul>
+</li>
+<li>回收流程
+<ul>
+<li>判断是否存在伙伴，存在即合并</li>
+</ul>
+</li>
+</ul>
+<h4 id="linux交换空间" class="headerLink"><a href="#linux%e4%ba%a4%e6%8d%a2%e7%a9%ba%e9%97%b4" class="header-mark"></a>Linux交换空间</h4><ul>
+<li>交换空间（Swap）是磁盘的一个分区</li>
+<li>Linux物理内存满时，会把一些内存交换至Swap空间</li>
+<li>Swap空间是初始化系统时配置的</li>
+<li>冷启动内存依赖</li>
+<li>系统睡眠依赖</li>
+<li>大进程空间依赖</li>
+</ul>
+<h3 id="操作系统的文件管理" class="headerLink"><a href="#%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e6%96%87%e4%bb%b6%e7%ae%a1%e7%90%86" class="header-mark"></a>操作系统的文件管理</h3><h4 id="文件的逻辑结构" class="headerLink"><a href="#%e6%96%87%e4%bb%b6%e7%9a%84%e9%80%bb%e8%be%91%e7%bb%93%e6%9e%84" class="header-mark"></a>文件的逻辑结构</h4><ul>
+<li>逻辑结构的文件类型
+<ul>
+<li>有结构文件
+<ul>
+<li>文本文件、文档、媒体文件</li>
+<li>文件内容由定长记录和可变长记录组成</li>
+<li>定长记录存储文件格式、文件描述等结构化数据项</li>
+<li>可变长记录存储文件具体内容</li>
+</ul>
+</li>
+<li>无结构文件
+<ul>
+<li>二进制文件、链接库</li>
+<li>也称为流式文件</li>
+<li>文件内容长度以字节为单位</li>
+<li>exe文件、dll文件、so文件</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>顺序文件
+<ul>
+<li>按照顺序存放在存储介质中的文件</li>
+<li>磁带的存储特性使得磁带文件只能存储顺序文件</li>
+<li>顺序文件是所有逻辑文件当中存储效率最高的</li>
+</ul>
+</li>
+<li>索引文件
+<ul>
+<li>可变长文件不适合使用顺序文件格式存储</li>
+<li>索引文件是为了解决可变长文件存储而发明的一种文件格式</li>
+<li>索引文件需要配合索引表完成存储的操作</li>
+</ul>
+</li>
+</ul>
+<h4 id="辅存的存储空间分配" class="headerLink"><a href="#%e8%be%85%e5%ad%98%e7%9a%84%e5%ad%98%e5%82%a8%e7%a9%ba%e9%97%b4%e5%88%86%e9%85%8d" class="header-mark"></a>辅存的存储空间分配</h4><ul>
+<li>辅存的分配方式
+<ul>
+<li>连续分配
+<ul>
+<li>顺序读取文件内容非常容易，速度很快</li>
+<li>对存储要求高，要求满足容量的连续存储空间</li>
+</ul>
+</li>
+<li>链接分配
+<ul>
+<li>链接分配可以将文件存储在离散的盘块中</li>
+<li>需要额外的存储空间存储文件的盘块链接顺序
+<ul>
+<li>按照额外存储空间不同，分为：
+<ul>
+<li>隐式链接
+<ul>
+<li>隐式分配的下一个链接指向存储在当前盘块内</li>
+<li>适合顺序访问，随机访问效率很低</li>
+<li>可靠性差，任何一个链接出问题都会影响整个文件</li>
+</ul>
+</li>
+<li>显式链接
+<ul>
+<li>单独使用表记录物理块及下一盘块的地址（FAT: File Allocation Table）</li>
+<li>不支持高效的直接存储（FAT记录项多）</li>
+<li>检索式FAT表占用较大的存储空间（需要将整个FAT加载到内存）</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>索引分配
+<ul>
+<li>把文件的所有盘块集中存储（索引）</li>
+<li>读取某个文件时，将文件索引读取进内存即可</li>
+<li>优势
+<ul>
+<li>每个文件拥有一个索引快，记录所有盘块信息</li>
+<li>索引分配方式支持直接访问盘块</li>
+<li>文件较大时，索引分配方式具有明显优势</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>存储空间管理
+<ul>
+<li>空闲表
+<ul>
+<li>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210512100519.png"
+         alt="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210512100519.png"
+         title="20210512100519.png"
+    /></li>
+<li>空闲盘区的分配与内存分配类似</li>
+<li>首次适应算法、循环适应算法等</li>
+<li>回收过程也与内存回收类似</li>
+</ul>
+</li>
+<li>空闲链表
+<ul>
+<li>吧所有空闲盘区组成一个空闲链表</li>
+<li>每个链表节点存储空闲盘块和空闲的数目</li>
+</ul>
+</li>
+<li>位示图
+<ul>
+<li>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210512100833.png"
+         alt="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210512100833.png"
+         title="20210512100833.png"
+    /></li>
+<li>位示图维护成本很低</li>
+<li>位示图可以非常容易找到空闲盘块</li>
+<li>位示图使用0/1比特位，占用空间小</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="目录管理" class="headerLink"><a href="#%e7%9b%ae%e5%bd%95%e7%ae%a1%e7%90%86" class="header-mark"></a>目录管理</h4><p>目录树</p>
+<ul>
+<li>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210512101010.png"
+         alt="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210512101010.png"
+         title="20210512101010.png"
+    /></li>
+<li>任何文件或目录都只有唯一路径</li>
+</ul>
+<h3 id="linux文件基本操作" class="headerLink"><a href="#linux%e6%96%87%e4%bb%b6%e5%9f%ba%e6%9c%ac%e6%93%8d%e4%bd%9c" class="header-mark"></a>linux文件基本操作</h3><p>Linux目录</p>
+<ul>
+<li>一切皆文件</li>
+<li>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210512161131.png"
+         alt="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210512161131.png"
+         title="20210512161131.png"
+    /></li>
+<li>相对路径、绝对路径
+Linux文件常用操作</li>
+<li>目录/文件 创建、删除、读取、写入
+Linux文件类型</li>
+<li>套接字(s)</li>
+<li>普通文件(-)</li>
+<li>目录文件(d)</li>
+<li>符号链接(l)</li>
+<li>设备文件(b、c)</li>
+<li>FIFO(p)</li>
+</ul>
+<h3 id="linux的文件系统" class="headerLink"><a href="#linux%e7%9a%84%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f" class="header-mark"></a>Linux的文件系统</h3><h4 id="文件系统概览" class="headerLink"><a href="#%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f%e6%a6%82%e8%a7%88" class="header-mark"></a>文件系统概览</h4><ul>
+<li>FAT（File Allocation Table）
+<ul>
+<li>FAT16、FAT32等，微软Dos/Windows使用的文件系统</li>
+<li>使用一张表保存盘块的信息</li>
+</ul>
+</li>
+<li>NTFS（New Technology File System）
+<ul>
+<li>WindowsNT环境的文件系统</li>
+<li>NTFS对FAT进行了改进，取代了旧的文件系统</li>
+</ul>
+</li>
+<li>EXT2/3/4 （Extended file syatem）:扩展文件系统
+<ul>
+<li>Linux的文件系统</li>
+<li>EXT2/3/4数字表示第几代</li>
+</ul>
+</li>
+</ul>
+<h4 id="ext文件系统" class="headerLink"><a href="#ext%e6%96%87%e4%bb%b6%e7%b3%bb%e7%bb%9f" class="header-mark"></a>Ext文件系统</h4><ul>
+<li>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210512163034.png"
+         alt="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210512163034.png"
+         title="20210512163034.png"
+    /></li>
+<li>Inode Table
+<ul>
+<li>存放文件Inode的地方</li>
+<li>每一个文件（目录）都有一个Inode</li>
+<li>是每一个文件（目录）的索引节点</li>
+</ul>
+</li>
+<li>Inode
+<ul>
+<li>文件类型</li>
+<li>文件权限</li>
+<li>文件物理地址</li>
+<li>文件长度</li>
+<li>文件连接计数</li>
+<li>文件存取时间</li>
+<li>索引节点编号</li>
+<li>文件状态</li>
+<li>访问技术</li>
+<li>链接指针</li>
+<li>&hellip;</li>
+<li>文件名不是存放在Inode节点上的，而是存放在目录的inode节点</li>
+<li>列出目录文件的时候无需加载文件的Inode</li>
+</ul>
+</li>
+<li>Inode bitmap(位示图)
+<ul>
+<li>Inode的位示图</li>
+<li>记录已分配的Inode和未分配的Inode</li>
+<li>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210512163547.png"
+         alt="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210512163547.png"
+         title="20210512163547.png"
+    /></li>
+</ul>
+</li>
+<li>Data block
+<ul>
+<li>存放文件内容的地方</li>
+<li>每个block都有唯一的编号</li>
+<li>文件的block记录在文件的Inode上</li>
+</ul>
+</li>
+<li>Block bitmap
+<ul>
+<li>Block的位示图</li>
+<li>记录Data block的使用情况</li>
+</ul>
+</li>
+<li>superblock
+<ul>
+<li>记录整个文件系统相关信息的地方</li>
+<li>Block和Inode的使用情况</li>
+<li>时间信息、控制信息等</li>
+</ul>
+</li>
+</ul>
+<h3 id="操作系统的设备管理" class="headerLink"><a href="#%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e7%9a%84%e8%ae%be%e5%a4%87%e7%ae%a1%e7%90%86" class="header-mark"></a>操作系统的设备管理</h3><h4 id="广义的io设备" class="headerLink"><a href="#%e5%b9%bf%e4%b9%89%e7%9a%84io%e8%ae%be%e5%a4%87" class="header-mark"></a>广义的IO设备</h4><ul>
+<li>对CPU而言，凡是对CPU进行数据输入的都是输入设备</li>
+<li>对CPU而言，凡是CPU进行数据输出的都是输出设备</li>
+<li>按使用特性分类
+<ul>
+<li>存储设备：U盘、内存、磁盘</li>
+<li>交互IO设备：键盘、显示器、鼠标</li>
+</ul>
+</li>
+<li>按设备的共享属性分类
+<ul>
+<li>独占设备</li>
+<li>共享设备</li>
+<li>虚拟设备</li>
+</ul>
+</li>
+<li>按信息交换的单位分类
+<ul>
+<li>块设备：磁盘、SD卡</li>
+<li>字符设备：打印机、Shell终端</li>
+</ul>
+</li>
+<li>按传输速率分类
+<ul>
+<li>低速设备</li>
+<li>中速设备</li>
+<li>高速设备</li>
+</ul>
+</li>
+</ul>
+<h4 id="io设备的缓冲区" class="headerLink"><a href="#io%e8%ae%be%e5%a4%87%e7%9a%84%e7%bc%93%e5%86%b2%e5%8c%ba" class="header-mark"></a>IO设备的缓冲区</h4><ul>
+<li>减少CPU处理IO请求的频率</li>
+<li>提高CPU与IO设备之间的并行性</li>
+<li></li>
+<li>专用缓冲区只适用于特定的IO进程，当这样的IO进程比较多时，对内存的消耗也很大。</li>
+<li>操作系统划出可供多个进程使用的公共缓冲区，成为缓冲池</li>
+</ul>
+<h4 id="spoling技术" class="headerLink"><a href="#spoling%e6%8a%80%e6%9c%af" class="header-mark"></a>SPOLing技术</h4><ul>
+<li>是关于慢速字符设备如何与计算机主机交换信息的一种技术</li>
+<li>利用高速共享设备将低速的独享设备模拟为高速的共享设备</li>
+<li>逻辑上，系统为每一个用户都分配了一台独立的高速独享设备</li>
+<li>虚拟设备技术</li>
+</ul>
+<p>SPOOLing技术把同步调用低速设备改为异步调用
+
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210512165846.png"
+         alt="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210512165846.png"
+         title="20210512165846.png"
+    /></p>
+<ul>
+<li>在输入、输出之间增加了排队转储环节（输入井、输出井）</li>
+<li>SPOOLing负责输入（出）井与低速设备之间的调度</li>
+<li>逻辑上，进程直接与高速设备交互，减少了进程的</li>
+</ul>
+<h2 id="操作系统之提升篇" class="headerLink"><a href="#%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e4%b9%8b%e6%8f%90%e5%8d%87%e7%af%87" class="header-mark"></a>操作系统之提升篇</h2><h3 id="线程同步之互斥量" class="headerLink"><a href="#%e7%ba%bf%e7%a8%8b%e5%90%8c%e6%ad%a5%e4%b9%8b%e4%ba%92%e6%96%a5%e9%87%8f" class="header-mark"></a>线程同步之互斥量</h3><p>原子性</p>
+<ul>
+<li>原子性是指一系列操作不可被中断的特性。这一些类操作要么全部执行完成，要么全部没有执行，不存在部分执行部分未执行的情况</li>
+<li>互斥量是最简单的线程同步的方法</li>
+<li>互斥量（互斥锁），处于两态之一的变量：解锁和加锁</li>
+<li>两个状态可以保证资源访问的串行</li>
+</ul>
+<h3 id="线程同步之自旋锁" class="headerLink"><a href="#%e7%ba%bf%e7%a8%8b%e5%90%8c%e6%ad%a5%e4%b9%8b%e8%87%aa%e6%97%8b%e9%94%81" class="header-mark"></a>线程同步之自旋锁</h3><ul>
+<li>自旋锁也是一种多线程同步的变量</li>
+<li>使用自旋锁会反复检查锁变量是否可用</li>
+<li>自旋锁不会让出CPU，是一种忙等待状态</li>
+<li>死循环等待锁被释放</li>
+</ul>
+<p>特点：</p>
+<ul>
+<li>自旋锁避免了进程或线程上下文切换的开销</li>
+<li>操作系统内部很多地方使用的是自旋锁</li>
+<li>自旋锁不适合在单核CPU使用</li>
+</ul>
+<h3 id="线程同步之读写锁" class="headerLink"><a href="#%e7%ba%bf%e7%a8%8b%e5%90%8c%e6%ad%a5%e4%b9%8b%e8%af%bb%e5%86%99%e9%94%81" class="header-mark"></a>线程同步之读写锁</h3><ul>
+<li>读写锁是一种特殊的自旋锁</li>
+<li>允许多个读者同事访问资源以提高读性能</li>
+<li>对于写操作则是互斥的</li>
+</ul>
+<h3 id="线程同步之条件变量" class="headerLink"><a href="#%e7%ba%bf%e7%a8%8b%e5%90%8c%e6%ad%a5%e4%b9%8b%e6%9d%a1%e4%bb%b6%e5%8f%98%e9%87%8f" class="header-mark"></a>线程同步之条件变量</h3><ul>
+<li>条件变量是一种相对复杂的线程同步方法</li>
+<li>条件变量允许线程睡眠，知道满足某种条件</li>
+<li>当满足条件时，可以像该线程发送信号，通知唤醒</li>
+</ul>
+<h3 id="线程同步方法对比" class="headerLink"><a href="#%e7%ba%bf%e7%a8%8b%e5%90%8c%e6%ad%a5%e6%96%b9%e6%b3%95%e5%af%b9%e6%af%94" class="header-mark"></a>线程同步方法对比</h3><p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210513160338.png"
+         alt="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210513160338.png"
+         title="20210513160338.png"
+    /></p>
+<h3 id="使用fork系统调用创建进程" class="headerLink"><a href="#%e4%bd%bf%e7%94%a8fork%e7%b3%bb%e7%bb%9f%e8%b0%83%e7%94%a8%e5%88%9b%e5%bb%ba%e8%bf%9b%e7%a8%8b" class="header-mark"></a>使用fork系统调用创建进程</h3><ul>
+<li>fork系统调用是用于创建进程的</li>
+<li>fork创建的进程初始状态与父进程一样</li>
+<li>系统会为fork的进程分配新的资源</li>
+<li>fork系统调用无参数</li>
+<li>fork会返回两次，分别返回子进程id和0</li>
+<li>返回子进程id的是父进程，返回0的是子进程</li>
+</ul>
+<h3 id="进程同步之共享内存" class="headerLink"><a href="#%e8%bf%9b%e7%a8%8b%e5%90%8c%e6%ad%a5%e4%b9%8b%e5%85%b1%e4%ba%ab%e5%86%85%e5%ad%98" class="header-mark"></a>进程同步之共享内存</h3><ul>
+<li>在某种程度上，多进程是共同使用武力内存的</li>
+<li>由于操作系统的进程管理，进程间的内存空间是独立的</li>
+<li>进程默认是不能访问进程空间之外的内存空间的</li>
+<li>共享存储允许不相关的进程访问同一片物理内存</li>
+<li>共享内存是两个进程之间共享和传递数据最快的方式</li>
+<li>共享内存未提供同步机制，需要借助其他机制管理访问</li>
+</ul>
+<p>使用步骤：</p>
+<ul>
+<li>申请共享内存</li>
+<li>连接到进程空间</li>
+<li>使用共享内存</li>
+<li>脱离进程空间&amp;删除</li>
+</ul>
+<h3 id="进程同步之unix域套接字" class="headerLink"><a href="#%e8%bf%9b%e7%a8%8b%e5%90%8c%e6%ad%a5%e4%b9%8bunix%e5%9f%9f%e5%a5%97%e6%8e%a5%e5%ad%97" class="header-mark"></a>进程同步之Unix域套接字</h3><ul>
+<li>域套接字是一种高级的进程间通信的方法</li>
+<li>Unix域套接字可以用于同一机器的进程间通信</li>
+<li>套接字（socket）原是网络通信中使用的术语</li>
+<li>Unix系统提供的域套接字提供了网络套接字类似的功能</li>
+</ul>
+<p>服务端流程：</p>
+<ul>
+<li>创建套接字</li>
+<li>绑定(bind)套接字</li>
+<li>监听(listen)套接字</li>
+<li>接收&amp;处理信息</li>
+</ul>
+<p>客户端流程：</p>
+<ul>
+<li>创建套接字</li>
+<li>连接套接字</li>
+<li>发送信息</li>
+</ul>
+<p>优势：</p>
+<ul>
+<li>提供了单机简单可靠的进程通信同步服务</li>
+<li>只能在单机使用，不能跨机器使用</li>
+</ul>
+<h2 id="操作系统实践" class="headerLink"><a href="#%e6%93%8d%e4%bd%9c%e7%b3%bb%e7%bb%9f%e5%ae%9e%e8%b7%b5" class="header-mark"></a>操作系统实践</h2><ul>
+<li>实现支持异步任务的线程池</li>
+</ul>
+<h3 id="python同步原语" class="headerLink"><a href="#python%e5%90%8c%e6%ad%a5%e5%8e%9f%e8%af%ad" class="header-mark"></a>Python同步原语</h3><ul>
+<li>互斥锁</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
+<span class="n">lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
+<span class="n">lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>条件变量</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">condition</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Condition</span><span class="p">()</span>
+<span class="n">condition</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
+<span class="n">condition</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+
+<span class="n">condition</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span> <span class="c1"># 等待</span>
+<span class="n">condition</span><span class="o">.</span><span class="n">notify</span><span class="p">()</span> <span class="c1"># 通知</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="实现线程安全的队列queue" class="headerLink"><a href="#%e5%ae%9e%e7%8e%b0%e7%ba%bf%e7%a8%8b%e5%ae%89%e5%85%a8%e7%9a%84%e9%98%9f%e5%88%97queue" class="header-mark"></a>实现线程安全的队列Queue</h3><ul>
+<li>队列用于存放多个元素，是存放各种元素的“池”</li>
+<li>队列可能有多个线程同时操作，因此需要保证线程安全</li>
+</ul>
+<h3 id="实现基本任务对象task" class="headerLink"><a href="#%e5%ae%9e%e7%8e%b0%e5%9f%ba%e6%9c%ac%e4%bb%bb%e5%8a%a1%e5%af%b9%e8%b1%a1task" class="header-mark"></a>实现基本任务对象Task</h3><p>任务处理逻辑</p>
+<ul>
+<li>实现基本对象
+<ul>
+<li>任务参数</li>
+<li>任务唯一标记uuid</li>
+<li>任务具体的执行逻辑</li>
+</ul>
+</li>
+</ul>
+<h3 id="线程池简介" class="headerLink"><a href="#%e7%ba%bf%e7%a8%8b%e6%b1%a0%e7%ae%80%e4%bb%8b" class="header-mark"></a>线程池简介</h3><h4 id="什么是线程池" class="headerLink"><a href="#%e4%bb%80%e4%b9%88%e6%98%af%e7%ba%bf%e7%a8%8b%e6%b1%a0" class="header-mark"></a>什么是线程池</h4><ul>
+<li>线程池是存放多个线程的容器</li>
+<li>CPU调度线程执行后不会销毁线程</li>
+<li>将线程放回线程池重复利用</li>
+</ul>
+<h4 id="为什么使用线程池" class="headerLink"><a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e4%bd%bf%e7%94%a8%e7%ba%bf%e7%a8%8b%e6%b1%a0" class="header-mark"></a>为什么使用线程池</h4><ul>
+<li>线程是稀缺资源，不应该频繁创建和销毁</li>
+<li>架构解耦，线程创建和业务处理解耦，更加优雅</li>
+<li>线程池是使用线程的最佳实践</li>
+</ul>
+<h3 id="实现任务处理线程processthread" class="headerLink"><a href="#%e5%ae%9e%e7%8e%b0%e4%bb%bb%e5%8a%a1%e5%a4%84%e7%90%86%e7%ba%bf%e7%a8%8bprocessthread" class="header-mark"></a>实现任务处理线程ProcessThread</h3><ul>
+<li>任务处理线程需要不断的从任务队列里取任务执行</li>
+<li>任务处理线程需要有一个标记，标记线程什么时候应该停止</li>
+</ul>
+<p>实现任务处理线程</p>
+<ul>
+<li>基本属性（任务队列、标记）</li>
+<li>线程执行的逻辑（run）</li>
+<li>线程停止（stop）</li>
+</ul>
+<h3 id="实现任务处理线程池pool" class="headerLink"><a href="#%e5%ae%9e%e7%8e%b0%e4%bb%bb%e5%8a%a1%e5%a4%84%e7%90%86%e7%ba%bf%e7%a8%8b%e6%b1%a0pool" class="header-mark"></a>实现任务处理线程池Pool</h3><h3 id="编写测试用例" class="headerLink"><a href="#%e7%bc%96%e5%86%99%e6%b5%8b%e8%af%95%e7%94%a8%e4%be%8b" class="header-mark"></a>编写测试用例</h3><h3 id="实现异步任务处理asynctask" class="headerLink"><a href="#%e5%ae%9e%e7%8e%b0%e5%bc%82%e6%ad%a5%e4%bb%bb%e5%8a%a1%e5%a4%84%e7%90%86asynctask" class="header-mark"></a>实现异步任务处理AsyncTask</h3><ul>
+<li>不知道任务什么时候执行</li>
+<li>不知道任务什么时候执行完成</li>
+</ul>
+<p>操作</p>
+<ul>
+<li>给任务添加一个标记，任务完成后，则标记为已完成</li>
+<li>任务完成时，可直接获取任务运行结果</li>
+<li>任务未完成时，获取任务结果，会阻塞获取线程</li>
+</ul>
+<p>实现AsyncTask</p>
+<ul>
+<li>设置运行结果（set_result）</li>
+<li>获取运行结果（get_result）</li>
+</ul>
+<p>代码：https://github.com/Cuiks/review</p></div><footer>
+                        <div class="post">
+
+
+<div class="post-share"></div>
+
+
+
+
+
+
+<div class="post-tags"><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" class="tag">计算机操作系统</a></div></div>
+                </footer></div>
+
+        <div id="toc-final"></div>
+        </div>
+
+    
+    </article>
+    <section class="page single comments content-block-position">
+        <h1 class="display-hidden">Комментарии</h1><div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></section></div>
+
+</main></div>
+
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </aside><link rel="stylesheet" href="/lib/valine/valine.min.css"><script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"valine":{"appId":"qawpEGaIhzxE9qCJm9hisTxW-gzGzoHsz","appKey":"FkncojWQwaOzzkHjlvW0vH3b","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://qawpegai.lc-cn-n1-shared.com","visitor":true}},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body>
+</html>

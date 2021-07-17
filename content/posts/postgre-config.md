@@ -5,6 +5,9 @@ tags: ["database", "postgresql"]
 draft: false
 ---
 
+- postgre远程访问
+- postgre账号授权
+
 <!--more-->
 
 ## 前言

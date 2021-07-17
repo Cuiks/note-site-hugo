@@ -5,6 +5,9 @@ tags: ["django", "quill"]
 draft: false
 ---
 
+- 介绍了`django-quill-editor`在Django中的使用
+- 在[django-quill-editor](https://github.com/LeeHanYeong/django-quill-editor)基础上添加了`imageResize`调整图片大小功能
+
 <!--more-->
 
 ## 前言
@@ -217,7 +220,7 @@ demo projec: [Cuiks/django-quill-editor](https://github.com/Cuiks/django-quill-e
 
    
 
-## 3、遇到的问题
+### 3、遇到的问题
 
 上面已经强调过，Quill的Modules必须要在Quill之后引入，否则就会报找不到的错误，如下：
 

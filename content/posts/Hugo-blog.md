@@ -5,6 +5,9 @@ tags: ["hugo", "CloudBase", "blog"]
 draft: false
 ---
 
+- Hugo安装及使用
+- 腾讯云`CloudBase`部署
+
 <!--more-->
 
 ### 前言

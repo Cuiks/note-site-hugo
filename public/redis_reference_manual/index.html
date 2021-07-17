@@ -1,0 +1,2896 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>Redis使用手册 | </title><meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content=""/>
+<meta name="twitter:title" content="Redis使用手册"/>
+<meta name="twitter:description" content=""/><meta name="Description" content="cuiks&#39;s Note"><meta property="og:title" content="Redis使用手册" />
+<meta property="og:description" content="
+字符串、散列、列表、集合、有序集合
+hyperloglog、位图、地理坐标、流
+数据库自动过期、流水线与事物、LUA脚本、持久化、发布与订阅、模块
+复制、Sentinel、集群
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cuiks.top/redis_reference_manual/" /><meta property="og:image" content="https://cuiks.top/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2021-07-06T17:56:38+08:00" />
+<meta property="article:modified_time" content="2021-07-06T17:56:38+08:00" />
+
+<meta name="application-name" content="Note Site">
+<meta name="apple-mobile-web-app-title" content="Note Site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png">
+        <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cuiks.top/redis_reference_manual/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Redis使用手册",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/cuiks.top\/redis_reference_manual\/"
+        },"genre": "posts","keywords": "redis, 读书笔记","wordCount":  2418 ,
+        "url": "https:\/\/cuiks.top\/redis_reference_manual\/","datePublished": "2021-07-06T17:56:38+08:00","dateModified": "2021-07-06T17:56:38+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Note Site" class="header-logo logo-svg"><span class="header-title-pre"><i class='fas fa-pencil-alt fa-fw'></i></span>Note Site</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"> Tags </a>
+                        </li><li>
+                            <a class="menu-item" href="/about/about"> About </a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/cuiks" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Note Site" class="header-logo"><span class="header-title-pre"><i class='fas fa-pencil-alt fa-fw'></i></span>Note Site</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            Cancel
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title="">Tags</a>
+                        </li><li>
+                            <a class="menu-item" href="/about/about" title="">About</a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/cuiks" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+<div class="container content-article page-toc theme-classic"><div class="toc" id="toc-auto">
+            <div class="toc-title">Contents</div>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div>
+
+    
+    
+    <article>
+    
+
+        <header class="header-post">
+
+            
+
+            
+            <div class="post-title">
+
+                    <div class="post-all-meta">
+                        <nav class="breadcrumbs">
+    <ol>
+        <li><a href="/">Home </a></li><li>Redis使用手册</li>
+    </ol>
+</nav>
+                        <h1 class="single-title flipInX">Redis使用手册</h1><div class="post-meta summary-post-meta"><span class="post-meta-date meta-item">
+                                <span class="svg-icon icon-clock"></span><time class="timeago" datetime="2021-07-06">2021-07-06</time>
+                            </span><span class="post-meta-words meta-item">
+                                <span class="svg-icon icon-pencil"></span>2418 words
+                            </span>
+                            <span class="post-meta-reading meta-item">
+                                <span class="svg-icon icon-stopwatch"></span>12 minutes
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                </header>
+
+        <div class="article-post toc-start">
+
+            <div class="content-block content-block-first content-block-position">
+
+                <div class="post single"><div class="details toc" id="toc-static"  data-kept="">
+                        <div class="details-summary toc-title">
+                            <span>Contents</span>
+                        </div>
+                        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#字符串">字符串</a>
+          <ul>
+            <li><a href="#1set">1、SET</a></li>
+            <li><a href="#2get">2、GET</a></li>
+            <li><a href="#3getset">3、GETSET</a></li>
+            <li><a href="#4mset">4、MSET</a></li>
+            <li><a href="#5mget">5、MGET</a></li>
+            <li><a href="#6msetnx">6、MSETNX</a></li>
+            <li><a href="#7strlen">7、STRLEN</a></li>
+            <li><a href="#8">8、</a></li>
+            <li><a href="#9getrange">9、GETRANGE</a></li>
+            <li><a href="#10setrange">10、SETRANGE</a></li>
+            <li><a href="#11append">11、APPEND</a></li>
+            <li><a href="#12">12、</a></li>
+            <li><a href="#13incrbydecrby">13、INCRBY、DECRBY</a></li>
+            <li><a href="#14incrdecr">14、INCR、DECR</a></li>
+            <li><a href="#15incrbyfloat">15、INCRBYFLOAT</a></li>
+          </ul>
+        </li>
+        <li><a href="#散列">散列</a>
+          <ul>
+            <li><a href="#1散列简介">1、散列简介</a></li>
+            <li><a href="#2hset">2、HSET</a></li>
+            <li><a href="#3hsetnx">3、HSETNX</a></li>
+            <li><a href="#4hget">4、HGET</a></li>
+            <li><a href="#5hincrby">5、HINCRBY</a></li>
+            <li><a href="#6hincrbyfloat">6、HINCRBYFLOAT</a></li>
+            <li><a href="#7hstrlen">7、HSTRLEN</a></li>
+            <li><a href="#8hexists">8、HEXISTS</a></li>
+            <li><a href="#9hdel">9、HDEL</a></li>
+            <li><a href="#10hlen">10、HLEN</a></li>
+            <li><a href="#11hmset">11、HMSET</a></li>
+            <li><a href="#12hmget">12、HMGET</a></li>
+            <li><a href="#13hkeyshvalshgetall">13、HKEYS、HVALS、HGETALL</a></li>
+            <li><a href="#14">14、</a></li>
+          </ul>
+        </li>
+        <li><a href="#列表">列表</a>
+          <ul>
+            <li><a href="#1-lpush">1、 LPUSH</a></li>
+            <li><a href="#2rpush">2、RPUSH</a></li>
+            <li><a href="#3lpushxrpushx">3、LPUSHX、RPUSHX</a></li>
+            <li><a href="#4lpop">4、LPOP</a></li>
+            <li><a href="#5rpop">5、RPOP</a></li>
+            <li><a href="#6rpoplpsh">6、RPOPLPSH</a></li>
+            <li><a href="#7llen">7、LLEN</a></li>
+            <li><a href="#8lindex">8、LINDEX</a></li>
+            <li><a href="#9lrange">9、LRANGE</a></li>
+            <li><a href="#10lset">10、LSET</a></li>
+            <li><a href="#11linsert">11、LINSERT</a></li>
+            <li><a href="#12ltrim">12、LTRIM</a></li>
+            <li><a href="#13lrem">13、LREM</a></li>
+            <li><a href="#14blpop">14、BLPOP</a></li>
+            <li><a href="#15brpop">15、BRPOP</a></li>
+            <li><a href="#16brpoplpush">16、BRPOPLPUSH</a></li>
+          </ul>
+        </li>
+        <li><a href="#集合">集合</a>
+          <ul>
+            <li><a href="#1sadd">1、SADD</a></li>
+            <li><a href="#2srem">2、SREM</a></li>
+            <li><a href="#3smove">3、SMOVE</a></li>
+            <li><a href="#4smembers">4、SMEMBERS</a></li>
+            <li><a href="#5scard">5、SCARD</a></li>
+            <li><a href="#6sismember">6、SISMEMBER</a></li>
+            <li><a href="#7srandmember">7、SRANDMEMBER</a></li>
+            <li><a href="#8spop">8、SPOP</a></li>
+            <li><a href="#9sintersinterstore">9、SINTER、SINTERSTORE</a></li>
+            <li><a href="#10sunionsunionstore">10、SUNION、SUNIONSTORE</a></li>
+            <li><a href="#11sdiffsdiffstore">11、SDIFF、SDIFFSTORE</a></li>
+          </ul>
+        </li>
+        <li><a href="#有序集合">有序集合</a>
+          <ul>
+            <li><a href="#1zadd">1、ZADD</a></li>
+            <li><a href="#2zrem">2、ZREM</a></li>
+            <li><a href="#3zscore">3、ZSCORE</a></li>
+            <li><a href="#4zincrby">4、ZINCRBY</a></li>
+            <li><a href="#5zcard">5、ZCARD</a></li>
+            <li><a href="#6zrankzrevrank">6、ZRANK、ZREVRANK</a></li>
+            <li><a href="#7zrangezrevrange">7、ZRANGE、ZREVRANGE</a></li>
+            <li><a href="#8zrangebyscorezrevrangebyscore">8、ZRANGEBYSCORE、ZREVRANGEBYSCORE</a></li>
+            <li><a href="#9zcount">9、ZCOUNT</a></li>
+            <li><a href="#10zremrangebyrank">10、ZREMRANGEBYRANK</a></li>
+            <li><a href="#11zremrangebyscore">11、ZREMRANGEBYSCORE</a></li>
+            <li><a href="#12zunionstorezinterstore">12、ZUNIONSTORE、ZINTERSTORE</a></li>
+            <li><a href="#13zrangebylexzrevrangebylex">13、ZRANGEBYLEX、ZREVRANGEBYLEX</a></li>
+            <li><a href="#14zlexcount">14、ZLEXCOUNT</a></li>
+            <li><a href="#15zremrangebylex">15、ZREMRANGEBYLEX</a></li>
+            <li><a href="#16zpopmaxzpopmin">16、ZPOPMAX、ZPOPMIN</a></li>
+            <li><a href="#17bzpopmaxbzpopmin">17、BZPOPMAX、BZPOPMIN</a></li>
+          </ul>
+        </li>
+        <li><a href="#hyperloglog">hyperloglog</a>
+          <ul>
+            <li><a href="#1">1、</a></li>
+            <li><a href="#2pfadd">2、PFADD</a></li>
+            <li><a href="#3pfcount">3、PFCOUNT</a></li>
+            <li><a href="#4pfmerge">4、PFMERGE</a></li>
+          </ul>
+        </li>
+        <li><a href="#位图">位图</a>
+          <ul>
+            <li><a href="#1setbit">1、SETBIT</a></li>
+            <li><a href="#2getbit">2、GETBIT</a></li>
+            <li><a href="#3bitcount">3、BITCOUNT</a></li>
+            <li><a href="#4bitpos">4、BITPOS</a></li>
+            <li><a href="#5bitop">5、BITOP</a></li>
+            <li><a href="#6bitfield">6、BITFIELD</a></li>
+            <li><a href="#7">7、</a></li>
+          </ul>
+        </li>
+        <li><a href="#地理坐标">地理坐标</a>
+          <ul>
+            <li><a href="#1geoadd">1、GEOADD</a></li>
+            <li><a href="#2geopos">2、GEOPOS</a></li>
+            <li><a href="#3geodist">3、GEODIST</a></li>
+            <li><a href="#4georadius">4、GEORADIUS</a></li>
+            <li><a href="#5georadiusbymember">5、GEORADIUSBYMEMBER</a></li>
+            <li><a href="#6geohash">6、GEOHASH</a></li>
+            <li><a href="#7-1">7、</a></li>
+          </ul>
+        </li>
+        <li><a href="#流">流</a>
+          <ul>
+            <li><a href="#1xadd">1、XADD</a></li>
+            <li><a href="#2xtrim">2、XTRIM</a></li>
+            <li><a href="#3sdel">3、SDEL</a></li>
+            <li><a href="#4xlen">4、XLEN</a></li>
+            <li><a href="#5xrangexrevrange">5、XRANGE、XREVRANGE</a></li>
+            <li><a href="#6xread">6、XREAD</a></li>
+            <li><a href="#7xgroupxreadgroupxack">7、XGROUP、XREADGROUP、XACK</a></li>
+            <li><a href="#8xgroup">8、XGROUP</a></li>
+            <li><a href="#9xreadgroup">9、XREADGROUP</a></li>
+            <li><a href="#10xpending">10、XPENDING</a></li>
+            <li><a href="#11xack">11、XACK</a></li>
+            <li><a href="#12xclaim">12、XCLAIM</a></li>
+            <li><a href="#13xinfo">13、XINFO</a></li>
+          </ul>
+        </li>
+        <li><a href="#数据库">数据库</a>
+          <ul>
+            <li><a href="#1select">1、SELECT</a></li>
+            <li><a href="#2keys">2、KEYS</a></li>
+            <li><a href="#3scan">3、SCAN</a></li>
+            <li><a href="#4randomkey">4、RANDOMKEY</a></li>
+            <li><a href="#5sort">5、SORT</a></li>
+            <li><a href="#6exists">6、EXISTS</a></li>
+            <li><a href="#7dbsize">7、DBSIZE</a></li>
+            <li><a href="#8type">8、TYPE</a></li>
+            <li><a href="#9renamerenamenx">9、RENAME、RENAMENX</a></li>
+            <li><a href="#10move">10、MOVE</a></li>
+            <li><a href="#11del">11、DEL</a></li>
+            <li><a href="#12unlink">12、UNLINK</a></li>
+            <li><a href="#13flushdb">13、FLUSHDB</a></li>
+            <li><a href="#14flushall">14、FLUSHALL</a></li>
+            <li><a href="#15swapdb">15、SWAPDB</a></li>
+          </ul>
+        </li>
+        <li><a href="#自动过期">自动过期</a>
+          <ul>
+            <li><a href="#1expirepexpire">1、EXPIRE、PEXPIRE</a></li>
+            <li><a href="#2set-expx">2、SET-EX、PX</a></li>
+            <li><a href="#3expireatpexpireat">3、EXPIREAT、PEXPIREAT</a></li>
+            <li><a href="#4ttlpttl">4、TTL、PTTL</a></li>
+          </ul>
+        </li>
+        <li><a href="#流水线与事物">流水线与事物</a>
+          <ul>
+            <li><a href="#1流水线">1、流水线</a></li>
+            <li><a href="#2事务">2、事务</a></li>
+            <li><a href="#3带有乐观锁的事务">3、带有乐观锁的事务</a></li>
+          </ul>
+        </li>
+        <li><a href="#lua脚本">LUA脚本</a>
+          <ul>
+            <li><a href="#1eval">1、EVAL</a></li>
+            <li><a href="#2script-load和evalsha">2、SCRIPT LOAD和EVALSHA</a></li>
+            <li><a href="#3脚本管理">3、脚本管理</a></li>
+            <li><a href="#4内置函数库">4、内置函数库</a></li>
+          </ul>
+        </li>
+        <li><a href="#持久化">持久化</a>
+          <ul>
+            <li><a href="#1rdb持久化">1、RDB持久化</a></li>
+            <li><a href="#2aof持久化">2、AOF持久化</a></li>
+            <li><a href="#3rdb-aop混合持久化">3、RDB-AOP混合持久化</a></li>
+            <li><a href="#4">4、</a></li>
+            <li><a href="#5无持久化">5、无持久化</a></li>
+            <li><a href="#6关闭服务器">6、关闭服务器</a></li>
+          </ul>
+        </li>
+        <li><a href="#发布与订阅">发布与订阅</a>
+          <ul>
+            <li><a href="#1publish">1、PUBLISH</a></li>
+            <li><a href="#2subscribe">2、SUBSCRIBE</a></li>
+            <li><a href="#3unsubscribe">3、UNSUBSCRIBE</a></li>
+            <li><a href="#4psubscribe">4、PSUBSCRIBE</a></li>
+            <li><a href="#5punsubscribe">5、PUNSUBSCRIBE</a></li>
+            <li><a href="#6pubsub">6、PUBSUB</a></li>
+          </ul>
+        </li>
+        <li><a href="#模块">模块</a>
+          <ul>
+            <li><a href="#1模块的管理">1、模块的管理</a></li>
+            <li><a href="#2rejson模块">2、ReJSON模块</a></li>
+            <li><a href="#3redisql模块">3、RediSQL模块</a></li>
+            <li><a href="#4redisearch模块">4、RediSearch模块</a></li>
+          </ul>
+        </li>
+        <li><a href="#复制">复制</a>
+          <ul>
+            <li><a href="#1replicaof">1、REPLICAOF</a></li>
+            <li><a href="#2role">2、ROLE</a></li>
+            <li><a href="#3数据同步">3、数据同步</a></li>
+            <li><a href="#4无需硬盘的复制">4、无需硬盘的复制</a></li>
+            <li><a href="#5降低数据不一致情况出现的概率">5、降低数据不一致情况出现的概率</a></li>
+            <li><a href="#6可写的从服务器">6、可写的从服务器</a></li>
+            <li><a href="#7脚本复制">7、脚本复制</a></li>
+          </ul>
+        </li>
+        <li><a href="#sentinel">Sentinel</a>
+          <ul>
+            <li><a href="#1启动sentinel">1、启动Sentinel</a></li>
+            <li><a href="#2sentinel网络">2、Sentinel网络</a></li>
+            <li><a href="#3sentinel管理命令">3、Sentinel管理命令</a></li>
+            <li><a href="#4在线配置sentinel">4、在线配置Sentinel</a></li>
+          </ul>
+        </li>
+        <li><a href="#集群">集群</a>
+          <ul>
+            <li><a href="#1基本特性">1、基本特性</a></li>
+            <li><a href="#2搭建集群">2、搭建集群</a></li>
+            <li><a href="#3散列标签">3、散列标签</a></li>
+            <li><a href="#4打开关闭从节点的读命令执行权限">4、打开/关闭从节点的读命令执行权限</a></li>
+            <li><a href="#5集群管理工具redis-cli">5、集群管理工具redis-cli</a></li>
+            <li><a href="#6集群管理命令">6、集群管理命令</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                    </div><ul>
+<li>字符串、散列、列表、集合、有序集合</li>
+<li>hyperloglog、位图、地理坐标、流</li>
+<li>数据库自动过期、流水线与事物、LUA脚本、持久化、发布与订阅、模块</li>
+<li>复制、Sentinel、集群</li>
+</ul>
+<h3 id="字符串" class="headerLink"><a href="#%e5%ad%97%e7%ac%a6%e4%b8%b2" class="header-mark"></a>字符串</h3><h4 id="1set" class="headerLink"><a href="#1set" class="header-mark"></a>1、SET</h4><ul>
+<li>
+<p>为字符串键设置值</p>
+</li>
+<li>
+<p>SET key value</p>
+<ul>
+<li>SET number &ldquo;10086&rdquo;</li>
+<li>返回ok</li>
+</ul>
+</li>
+<li>
+<p>SET key value [NX|XX]</p>
+<ul>
+<li>NX表示对存在的key不能覆盖，对于不存在的可以设置
+<ul>
+<li>成功返回ok  失败返回nil</li>
+</ul>
+</li>
+<li>XX表示对不存的key不能设置值，对于存在的可以覆盖
+<ul>
+<li>成功返回OK 失败返回nil</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>O(1)</p>
+</li>
+</ul>
+<h4 id="2get" class="headerLink"><a href="#2get" class="header-mark"></a>2、GET</h4><ul>
+<li>
+<p>获取字符串键的值</p>
+</li>
+<li>
+<p>GET key</p>
+<ul>
+<li>GET number</li>
+<li>返回键的值 或者 nil</li>
+</ul>
+</li>
+<li>
+<p>O(1)</p>
+</li>
+</ul>
+<h4 id="3getset" class="headerLink"><a href="#3getset" class="header-mark"></a>3、GETSET</h4><ul>
+<li>
+<p>获取旧值并设置新值</p>
+</li>
+<li>
+<p>GETSET key new_value</p>
+</li>
+<li>
+<p>O(1)</p>
+</li>
+</ul>
+<h4 id="4mset" class="headerLink"><a href="#4mset" class="header-mark"></a>4、MSET</h4><ul>
+<li>
+<p>一次为多个字符串键设置值</p>
+</li>
+<li>
+<p>MSET key value [key value &hellip; ]</p>
+<ul>
+<li>MSET message &ldquo;hello&rdquo; number &ldquo;10086&rdquo;</li>
+<li>成功返回ok</li>
+</ul>
+</li>
+<li>
+<p>O(n)</p>
+</li>
+</ul>
+<h4 id="5mget" class="headerLink"><a href="#5mget" class="header-mark"></a>5、MGET</h4><ul>
+<li>
+<p>一次获取多个字符串键的值</p>
+</li>
+<li>
+<p>MGET key [key &hellip; ]</p>
+<ul>
+<li>MGET messgae number page</li>
+<li>返回
+<ul>
+<li>
+<ol>
+<li>&ldquo;hello&rdquo;</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>&ldquo;10086&rdquo;</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>nil</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>O(n)</p>
+</li>
+</ul>
+<h4 id="6msetnx" class="headerLink"><a href="#6msetnx" class="header-mark"></a>6、MSETNX</h4><ul>
+<li>
+<p>只有在键不存在的情况下，一次为多个字符串设置值</p>
+</li>
+<li>
+<p>MSET key value [key value &hellip; ]</p>
+<ul>
+<li>MSET k1 &ldquo;one&rdquo; k2 &ldquo;two&rdquo; k3 &ldquo;three&rdquo;</li>
+<li>只有在所有键都不存在的情况下才会设置</li>
+<li>成功返回1。失败返回0</li>
+</ul>
+</li>
+<li>
+<p>O(n)</p>
+</li>
+</ul>
+<h4 id="7strlen" class="headerLink"><a href="#7strlen" class="header-mark"></a>7、STRLEN</h4><ul>
+<li>
+<p>获取字符串值的字节长度</p>
+</li>
+<li>
+<p>STRLEN key</p>
+<ul>
+<li>STRLEN number</li>
+<li>返回key的长度。不存在的key返回0</li>
+</ul>
+</li>
+<li>
+<p>0(1)</p>
+</li>
+</ul>
+<h4 id="8" class="headerLink"><a href="#8" class="header-mark"></a>8、</h4><ul>
+<li>字符串值的索引</li>
+</ul>
+<h4 id="9getrange" class="headerLink"><a href="#9getrange" class="header-mark"></a>9、GETRANGE</h4><ul>
+<li>
+<p>获取字符串值指定索引范围上的内容</p>
+</li>
+<li>
+<p>GETRANGE key start end</p>
+<ul>
+<li>GET message
+<ul>
+<li>&ldquo;hello world&rdquo;</li>
+</ul>
+</li>
+<li>GETRANGE message 0 3
+<ul>
+<li>&ldquo;hell&rdquo;</li>
+</ul>
+</li>
+<li>GETRANGE message -11 -7
+<ul>
+<li>&ldquo;hello&rdquo;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>O(n)</p>
+</li>
+</ul>
+<h4 id="10setrange" class="headerLink"><a href="#10setrange" class="header-mark"></a>10、SETRANGE</h4><ul>
+<li>
+<p>对字符串值的指定索引范围进行设置</p>
+</li>
+<li>
+<p>SETRANGE key index substitute</p>
+<ul>
+<li>GET message
+<ul>
+<li>&ldquo;hello world&rdquo;</li>
+</ul>
+</li>
+<li>SETRANGE message 6 &ldquo;Redis&rdquo;
+<ul>
+<li>11  (返回字符串当前长度)</li>
+</ul>
+</li>
+<li>GET message
+<ul>
+<li>&ldquo;hello Redis&rdquo;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>SETRANGE命令会自动扩展被修改的字符串值，从而保证新内容可以顺利写入</p>
+</li>
+<li>
+<p>SETRANGE命令会在值里面填充空字节</p>
+</li>
+<li>
+<p>O(n)</p>
+</li>
+</ul>
+<h4 id="11append" class="headerLink"><a href="#11append" class="header-mark"></a>11、APPEND</h4><ul>
+<li>
+<p>追加新内容到值的末尾</p>
+</li>
+<li>
+<p>APPEND key suffix</p>
+<ul>
+<li>GET desc
+<ul>
+<li>&ldquo;Redis&rdquo;</li>
+</ul>
+</li>
+<li>APPEND desc &quot; is a database&quot;
+<ul>
+<li>19</li>
+</ul>
+</li>
+<li>GET desc
+<ul>
+<li>&ldquo;Redis is a database&rdquo;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>对于不存的key执行设置操作</p>
+</li>
+<li>
+<p>O(n) n为新追加内容的长度</p>
+</li>
+</ul>
+<h4 id="12" class="headerLink"><a href="#12" class="header-mark"></a>12、</h4><ul>
+<li>使用字符串键存储数字值</li>
+</ul>
+<h4 id="13incrbydecrby" class="headerLink"><a href="#13incrbydecrby" class="header-mark"></a>13、INCRBY、DECRBY</h4><ul>
+<li>
+<p>对整数值执行加法操作和减法操作</p>
+</li>
+<li>
+<p>INCRBY key increment</p>
+<ul>
+<li>SET number 100
+<ul>
+<li>OK</li>
+</ul>
+</li>
+<li>INCRBY number 100
+<ul>
+<li>400</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>DECRBY key increment</p>
+<ul>
+<li>SET number 100
+<ul>
+<li>OK</li>
+</ul>
+</li>
+<li>DECRBY number 10
+<ul>
+<li>90</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>类型限制</p>
+<ul>
+<li>当键的值不能被Redis解释为整数时,会返回错误</li>
+<li>不能使用除整数外的数据类型作为增量</li>
+</ul>
+</li>
+<li>
+<p>处理不存在的键</p>
+<ul>
+<li>对于不存在的键,会先把该键初始化为0,然后操作</li>
+</ul>
+</li>
+<li>
+<p>O(1)</p>
+</li>
+</ul>
+<h4 id="14incrdecr" class="headerLink"><a href="#14incrdecr" class="header-mark"></a>14、INCR、DECR</h4><ul>
+<li>
+<p>对整数值执行加1操作和减1操作</p>
+</li>
+<li>
+<p>INCR key</p>
+</li>
+<li>
+<p>类似INCRBY、DECRBY。只是增量固定为1</p>
+</li>
+<li>
+<p>O(1)</p>
+</li>
+</ul>
+<h4 id="15incrbyfloat" class="headerLink"><a href="#15incrbyfloat" class="header-mark"></a>15、INCRBYFLOAT</h4><ul>
+<li>
+<p>对数字值执行浮点数加法操作</p>
+</li>
+<li>
+<p>对于浮点数减法操作，增量使用负数</p>
+<ul>
+<li>INCRBYFLOAT key -1.1</li>
+</ul>
+</li>
+<li>
+<p>INCRBYFLOAT可以操作设置为整数的key</p>
+</li>
+<li>
+<p>INCRBYFLOAT可以设置增量为整数</p>
+</li>
+<li>
+<p>小数位长度限制</p>
+<ul>
+<li>最多保留小数点后17位</li>
+</ul>
+</li>
+<li>
+<p>O(1)</p>
+</li>
+</ul>
+<h3 id="散列" class="headerLink"><a href="#%e6%95%a3%e5%88%97" class="header-mark"></a>散列</h3><h4 id="1散列简介" class="headerLink"><a href="#1%e6%95%a3%e5%88%97%e7%ae%80%e4%bb%8b" class="header-mark"></a>1、散列简介</h4><h4 id="2hset" class="headerLink"><a href="#2hset" class="header-mark"></a>2、HSET</h4><ul>
+<li>为字段设置值</li>
+<li>HSET hash field value
+<ul>
+<li>如果字段不在散列中，执行创建操作，返回1</li>
+<li>如果字段存在散列中，执行更新操作，返回0</li>
+<li>HSET article title &ldquo;greeting&rdquo;
+<ul>
+<li>1</li>
+</ul>
+</li>
+<li>HSET article content &ldquo;hello world&rdquo;
+<ul>
+<li>1</li>
+</ul>
+</li>
+<li>HSET article count 100
+<ul>
+<li>1</li>
+</ul>
+</li>
+<li>HSET article title &ldquo;redis&rdquo;
+<ul>
+<li>0</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>O(1)</li>
+</ul>
+<h4 id="3hsetnx" class="headerLink"><a href="#3hsetnx" class="header-mark"></a>3、HSETNX</h4><ul>
+<li>只在字段不存在的情况下为他设置值</li>
+<li>HSETNX hash field value
+<ul>
+<li>成功返回1</li>
+<li>失败返回0</li>
+</ul>
+</li>
+<li>O(1)</li>
+</ul>
+<h4 id="4hget" class="headerLink"><a href="#4hget" class="header-mark"></a>4、HGET</h4><ul>
+<li>获取字段值</li>
+<li>HGET hash field
+<ul>
+<li>HGET article title
+<ul>
+<li>&ldquo;redis&rdquo;</li>
+</ul>
+</li>
+<li>不存在返回nil</li>
+</ul>
+</li>
+<li>O(1)</li>
+</ul>
+<h4 id="5hincrby" class="headerLink"><a href="#5hincrby" class="header-mark"></a>5、HINCRBY</h4><ul>
+<li>对字段存储的整数值执行加法或减法操作</li>
+<li>HINCRBY hash field increment
+<ul>
+<li>HINCRBY article count 1
+<ul>
+<li>101</li>
+</ul>
+</li>
+<li>HINCRBY article count -6
+<ul>
+<li>95</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>O(1)</li>
+</ul>
+<h4 id="6hincrbyfloat" class="headerLink"><a href="#6hincrbyfloat" class="header-mark"></a>6、HINCRBYFLOAT</h4><ul>
+<li>对字段存储的数字值执行浮点数加法或减法</li>
+<li>O(1)</li>
+</ul>
+<h4 id="7hstrlen" class="headerLink"><a href="#7hstrlen" class="header-mark"></a>7、HSTRLEN</h4><ul>
+<li>获取字段值的字节长度</li>
+<li>HSTRLEN hash field
+<ul>
+<li>HSTRLEN article title
+<ul>
+<li>5  &ndash; redis</li>
+</ul>
+</li>
+<li>字段不存在返回0</li>
+<li>散列不存在返回0</li>
+</ul>
+</li>
+<li>O(1)</li>
+</ul>
+<h4 id="8hexists" class="headerLink"><a href="#8hexists" class="header-mark"></a>8、HEXISTS</h4><ul>
+<li>检查字段是否存在</li>
+<li>HEXISTS hash field
+<ul>
+<li>存在返回1</li>
+<li>不存在返回0</li>
+</ul>
+</li>
+<li>O(1)</li>
+</ul>
+<h4 id="9hdel" class="headerLink"><a href="#9hdel" class="header-mark"></a>9、HDEL</h4><ul>
+<li>删除字段</li>
+<li>HDEL hash field
+<ul>
+<li>成功返回1</li>
+<li>hash不存在或者字段不存在返回0</li>
+</ul>
+</li>
+<li>O(1)</li>
+</ul>
+<h4 id="10hlen" class="headerLink"><a href="#10hlen" class="header-mark"></a>10、HLEN</h4><ul>
+<li>获取散列包含的字段数量</li>
+<li>HLEN hash
+<ul>
+<li>HLEN article
+<ul>
+<li>4</li>
+</ul>
+</li>
+<li>散列不存在返回0</li>
+</ul>
+</li>
+<li>O(1)</li>
+</ul>
+<h4 id="11hmset" class="headerLink"><a href="#11hmset" class="header-mark"></a>11、HMSET</h4><ul>
+<li>一次为多个字段设置值</li>
+<li>HMSET hash field value [field value &hellip; ]</li>
+<li>O(n)</li>
+</ul>
+<h4 id="12hmget" class="headerLink"><a href="#12hmget" class="header-mark"></a>12、HMGET</h4><ul>
+<li>一次获取多个字段的值</li>
+<li>HMGET hash field [field &hellip; ]
+<ul>
+<li>存在返回值</li>
+<li>不存在返回nil</li>
+</ul>
+</li>
+<li>O(n)</li>
+</ul>
+<h4 id="13hkeyshvalshgetall" class="headerLink"><a href="#13hkeyshvalshgetall" class="header-mark"></a>13、HKEYS、HVALS、HGETALL</h4><ul>
+<li>获取所有字段、所有值、所有字段和值</li>
+<li>HKEYS hash</li>
+<li>HVALS hash</li>
+<li>HGETALL hash
+<ul>
+<li>HGETALL article
+<ul>
+<li>&ldquo;title&rdquo;  &ndash; key</li>
+<li>&ldquo;greeting&rdquo;  &ndash; value</li>
+<li>&ldquo;content&rdquo;</li>
+<li>&ldquo;hello world&rdquo;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>散列不存在
+<ul>
+<li>返回空列表</li>
+</ul>
+</li>
+<li>字段在散列中存放是无序的</li>
+<li>O(n)  n为散列包含的字段数量</li>
+</ul>
+<h4 id="14" class="headerLink"><a href="#14" class="header-mark"></a>14、</h4><ul>
+<li>散列与字符串</li>
+</ul>
+<h3 id="列表" class="headerLink"><a href="#%e5%88%97%e8%a1%a8" class="header-mark"></a>列表</h3><ul>
+<li>线性有序</li>
+<li>文字数据或二进制数据</li>
+<li>元素可重复</li>
+</ul>
+<h4 id="1-lpush" class="headerLink"><a href="#1-lpush" class="header-mark"></a>1、 LPUSH</h4><ul>
+<li>将元素推入列表左端</li>
+<li>LPUSH list item [item item &hellip; ]</li>
+<li>返回列表包含元素数量</li>
+<li>一次推入多个元素
+<ul>
+<li>LPUSH todo key1 key2 key3
+<ul>
+<li>先推入key1，然后是key2，然后是key3</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>O(n)  n为推入元素数量</li>
+</ul>
+<h4 id="2rpush" class="headerLink"><a href="#2rpush" class="header-mark"></a>2、RPUSH</h4><ul>
+<li>将元素推入列表右端</li>
+<li>RPUSH list item [item item &hellip; ]</li>
+<li>返回列表包含元素数量</li>
+<li>O(n)</li>
+</ul>
+<h4 id="3lpushxrpushx" class="headerLink"><a href="#3lpushxrpushx" class="header-mark"></a>3、LPUSHX、RPUSHX</h4><ul>
+<li>只对已存在的列表执行推入操作</li>
+<li>LPUSHX list item</li>
+<li>RPUSHX list item</li>
+<li>成功返回列表包含元素数量。失败返回0</li>
+<li>每次只能推入单个元素</li>
+<li>O(1)</li>
+</ul>
+<h4 id="4lpop" class="headerLink"><a href="#4lpop" class="header-mark"></a>4、LPOP</h4><ul>
+<li>弹出列表最左端元素</li>
+<li>LPOP list</li>
+<li>列表不存在返回nil</li>
+<li>O(1)</li>
+</ul>
+<h4 id="5rpop" class="headerLink"><a href="#5rpop" class="header-mark"></a>5、RPOP</h4><ul>
+<li>弹出列表最右端的元素</li>
+<li>RPOP list</li>
+<li>O(1)</li>
+</ul>
+<h4 id="6rpoplpsh" class="headerLink"><a href="#6rpoplpsh" class="header-mark"></a>6、RPOPLPSH</h4><ul>
+<li>将右端弹出的元素推入左端</li>
+<li>RPOPLPUSH source traget</li>
+<li>RPOPLPUSH list1 list2
+<ul>
+<li>将列表list1的最右端元素弹出，然后推入list2的左端</li>
+</ul>
+</li>
+<li>源列表为空则返回nil</li>
+<li>O(1)</li>
+</ul>
+<h4 id="7llen" class="headerLink"><a href="#7llen" class="header-mark"></a>7、LLEN</h4><ul>
+<li>获取列表的长度</li>
+<li>LLEN list</li>
+<li>O(1)</li>
+</ul>
+<h4 id="8lindex" class="headerLink"><a href="#8lindex" class="header-mark"></a>8、LINDEX</h4><ul>
+<li>获取指定索引上的元素</li>
+<li>LINDEX list index</li>
+<li>超出list返回返回nil</li>
+<li>O(n)</li>
+</ul>
+<h4 id="9lrange" class="headerLink"><a href="#9lrange" class="header-mark"></a>9、LRANGE</h4><ul>
+<li>获取指定索引范围上的元素</li>
+<li>LRANGE list start end
+<ul>
+<li>返回列表</li>
+</ul>
+</li>
+<li>获取列表包含的所有元素
+<ul>
+<li>LRANGE list 0 -1</li>
+</ul>
+</li>
+<li>超出索引范围返回空列表，存在部分则返回部分</li>
+<li>O(n)</li>
+</ul>
+<h4 id="10lset" class="headerLink"><a href="#10lset" class="header-mark"></a>10、LSET</h4><ul>
+<li>为指定索引设置新元素</li>
+<li>LSET list index new_element
+<ul>
+<li>成功返回1</li>
+</ul>
+</li>
+<li>超出索引范围返回错误
+<ul>
+<li>(error) ERR index out of range</li>
+</ul>
+</li>
+<li>O(n)</li>
+</ul>
+<h4 id="11linsert" class="headerLink"><a href="#11linsert" class="header-mark"></a>11、LINSERT</h4><ul>
+<li>将元素插入列表某个指定元素的前面或者后面</li>
+<li>LINSERT list BEFORE|AFTER target_element new_element
+<ul>
+<li>返回插入后列表长度</li>
+<li>LINSERT lst BEFORE &ldquo;b&rdquo; &ldquo;10086&rdquo;
+<ul>
+<li>4</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>不存在的元素
+<ul>
+<li>返回-1</li>
+</ul>
+</li>
+<li>O(n)</li>
+</ul>
+<h4 id="12ltrim" class="headerLink"><a href="#12ltrim" class="header-mark"></a>12、LTRIM</h4><ul>
+<li>修剪列表。移除列表中位于给定索引外的元素</li>
+<li>LTRIM list start end
+<ul>
+<li>成功返回ok</li>
+</ul>
+</li>
+<li>O(n)</li>
+</ul>
+<h4 id="13lrem" class="headerLink"><a href="#13lrem" class="header-mark"></a>13、LREM</h4><ul>
+<li>从列表中删除指定元素</li>
+<li>LREM list count element
+<ul>
+<li>count=0，删除所有指定元素</li>
+<li>count&gt;0，从左开始检查，删除count个指定元素</li>
+<li>count&lt;0，从右向左检查，删除count个指定元素</li>
+</ul>
+</li>
+<li>O(n)</li>
+</ul>
+<h4 id="14blpop" class="headerLink"><a href="#14blpop" class="header-mark"></a>14、BLPOP</h4><ul>
+<li>阻塞式左端弹出操作。
+<ul>
+<li>从左到右依次检查是否有非空列表，没有即阻塞指定时间，直到某个列表不为空或超出等待时间</li>
+</ul>
+</li>
+<li>BLPOP list [list &hellip; ] timeout
+<ul>
+<li>返回两个元素
+<ul>
+<li>被弹出元素的来源列表</li>
+<li>被弹出元素</li>
+</ul>
+</li>
+<li>如果阻塞过，客户端也会打印阻塞时间</li>
+</ul>
+</li>
+<li>阻塞只会阻塞客户端 不影响服务端</li>
+<li>O(n)</li>
+</ul>
+<h4 id="15brpop" class="headerLink"><a href="#15brpop" class="header-mark"></a>15、BRPOP</h4><ul>
+<li>阻塞式右端弹出</li>
+<li>O(n)</li>
+</ul>
+<h4 id="16brpoplpush" class="headerLink"><a href="#16brpoplpush" class="header-mark"></a>16、BRPOPLPUSH</h4><ul>
+<li>阻塞式弹出并推入</li>
+<li>BRPOPLPUSH source target timeout</li>
+<li>O(1)</li>
+</ul>
+<h3 id="集合" class="headerLink"><a href="#%e9%9b%86%e5%90%88" class="header-mark"></a>集合</h3><ul>
+<li>可以存储任意多个元素</li>
+<li>可以存储文本或者二进制数据</li>
+<li>只存储非重复元素</li>
+<li>以无序方式存储元素</li>
+</ul>
+<h4 id="1sadd" class="headerLink"><a href="#1sadd" class="header-mark"></a>1、SADD</h4><ul>
+<li>将元素添加到集合</li>
+<li>SADD set element [element &hellip; ]
+<ul>
+<li>返回成功添加元素的数量</li>
+</ul>
+</li>
+<li>对于已存在的元素，不会添加到集合中，返回0</li>
+<li>O(n)  n为添加元素的数量</li>
+</ul>
+<h4 id="2srem" class="headerLink"><a href="#2srem" class="header-mark"></a>2、SREM</h4><ul>
+<li>从集合中移除元素</li>
+<li>SREM set element [element &hellip; ]
+<ul>
+<li>返回被移除元素数量</li>
+</ul>
+</li>
+<li>O(n) n为元素给定元素数量</li>
+</ul>
+<h4 id="3smove" class="headerLink"><a href="#3smove" class="header-mark"></a>3、SMOVE</h4><ul>
+<li>将元素从一个集合移动到另一个集合</li>
+<li>SMOVE source target element
+<ul>
+<li>成功返回1</li>
+<li>元素不存在返回0</li>
+</ul>
+</li>
+<li>O(1)</li>
+</ul>
+<h4 id="4smembers" class="headerLink"><a href="#4smembers" class="header-mark"></a>4、SMEMBERS</h4><ul>
+<li>获取集合包含的所有元素</li>
+<li>SMEMBERS set</li>
+<li>返回元素无序</li>
+<li>O(n)</li>
+</ul>
+<h4 id="5scard" class="headerLink"><a href="#5scard" class="header-mark"></a>5、SCARD</h4><ul>
+<li>获取集合包含的元素数量</li>
+<li>SCARD set</li>
+<li>O(1)</li>
+</ul>
+<h4 id="6sismember" class="headerLink"><a href="#6sismember" class="header-mark"></a>6、SISMEMBER</h4><ul>
+<li>检查给定元素是否存在于集合中</li>
+<li>SISMEMBER set element
+<ul>
+<li>存在返回1</li>
+<li>不存在返回0</li>
+</ul>
+</li>
+<li>O(1)</li>
+</ul>
+<h4 id="7srandmember" class="headerLink"><a href="#7srandmember" class="header-mark"></a>7、SRANDMEMBER</h4><ul>
+<li>随机获取集合中的元素</li>
+<li>SRANDMEMBER set [count]
+<ul>
+<li>count默认为1</li>
+<li>随机返回count个元素</li>
+</ul>
+</li>
+<li>O(n) n为count的数量</li>
+</ul>
+<h4 id="8spop" class="headerLink"><a href="#8spop" class="header-mark"></a>8、SPOP</h4><ul>
+<li>随机地从集合中移除指定数量的元素</li>
+<li>SPOP set [count]
+<ul>
+<li>count 默认为1</li>
+<li>返回count个元素</li>
+</ul>
+</li>
+<li>O(n)  n为count的数量</li>
+</ul>
+<h4 id="9sintersinterstore" class="headerLink"><a href="#9sintersinterstore" class="header-mark"></a>9、SINTER、SINTERSTORE</h4><ul>
+<li>对集合执行交集计算</li>
+<li>SINTER set [set &hellip; ]
+<ul>
+<li>返回n个集合的交集</li>
+<li>O(m*n)</li>
+</ul>
+</li>
+<li>SINTERSTORE destination_key set [set &hellip; ]
+<ul>
+<li>把n个集合的交集存储到destination_key中</li>
+<li>返回交集长度</li>
+<li>O(m*n)</li>
+</ul>
+</li>
+</ul>
+<h4 id="10sunionsunionstore" class="headerLink"><a href="#10sunionsunionstore" class="header-mark"></a>10、SUNION、SUNIONSTORE</h4><ul>
+<li>对集合执行并集运算</li>
+<li>SUNION set [set &hellip; ]
+<ul>
+<li>返回n个集合的并集</li>
+<li>O(n) n为所有集合元素的总数</li>
+</ul>
+</li>
+<li>SUNION destination_key set [set &hellip; ]
+<ul>
+<li>把n个集合的并集存储到destination_key中</li>
+<li>返回并集长度</li>
+<li>O(n) n为所有集合元素的总数</li>
+</ul>
+</li>
+</ul>
+<h4 id="11sdiffsdiffstore" class="headerLink"><a href="#11sdiffsdiffstore" class="header-mark"></a>11、SDIFF、SDIFFSTORE</h4><ul>
+<li>对集合执行差集运算</li>
+<li>SDIFF set [set &hellip; ]
+<ul>
+<li>返回n个集合的差集</li>
+<li>O(n)</li>
+</ul>
+</li>
+<li>SDIFFSTORE destination_key set [set &hellip; ]
+<ul>
+<li>把n个集合的差集保存到destination_key中</li>
+<li>返回差集的长度</li>
+<li>O(n)</li>
+</ul>
+</li>
+</ul>
+<h3 id="有序集合" class="headerLink"><a href="#%e6%9c%89%e5%ba%8f%e9%9b%86%e5%90%88" class="header-mark"></a>有序集合</h3><ul>
+<li>有序</li>
+<li>集合</li>
+<li>每一个元素由成员和成员分值组成</li>
+</ul>
+<h4 id="1zadd" class="headerLink"><a href="#1zadd" class="header-mark"></a>1、ZADD</h4><ul>
+<li>添加或更新成员</li>
+<li>ZADD sorted_set score member [socre member &hellip; ]
+<ul>
+<li>返回新成员数量</li>
+<li>ZADD salary 3500 &ldquo;peter&rdquo; 4000 &ldquo;jack&rdquo; 2000 &ldquo;tom&rdquo; 5500 &ldquo;mary&rdquo;
+<ul>
+<li>返回 4</li>
+</ul>
+</li>
+<li>ZADD salary 5000 &ldquo;tom&rdquo;
+<ul>
+<li>返回0  因为没有添加新成员</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ZADD sorted_set [XX|NX] score member [socre member &hellip; ]
+<ul>
+<li>XX：只对已存在的成员更新，不会添加</li>
+<li>NX：只对不存在的成员添加，不会更新</li>
+</ul>
+</li>
+<li>ZADD sorted_set [CH] score member [socre member &hellip; ]
+<ul>
+<li>返回被修改的成员数量（包括新增和被更新）</li>
+</ul>
+</li>
+<li>O(m*log(n)) m为给定成员的数量。n为有序集合包含的成员数量</li>
+</ul>
+<h4 id="2zrem" class="headerLink"><a href="#2zrem" class="header-mark"></a>2、ZREM</h4><ul>
+<li>移除指定的成员</li>
+<li>ZREM sorted_set member [member &hellip; ]
+<ul>
+<li>返回被移除成员的数量</li>
+</ul>
+</li>
+<li>O(M*log(n))  m为给定成员数量，n为有序集合包含的成员数量</li>
+</ul>
+<h4 id="3zscore" class="headerLink"><a href="#3zscore" class="header-mark"></a>3、ZSCORE</h4><ul>
+<li>获取成员的分值</li>
+<li>ZSCORE sorted_set member</li>
+<li>O(1)</li>
+</ul>
+<h4 id="4zincrby" class="headerLink"><a href="#4zincrby" class="header-mark"></a>4、ZINCRBY</h4><ul>
+<li>对成员的分值执行自增或自减操作</li>
+<li>ZINCRBY sorted_set increment member
+<ul>
+<li>返回修改后的分值</li>
+<li>ZINCRBY salary 1000 &ldquo;tom&rdquo;
+<ul>
+<li>&ldquo;3000&rdquo;</li>
+</ul>
+</li>
+<li>ZINCRBY salary -1000 &ldquo;tom&rdquo;
+<ul>
+<li>&ldquo;2000&rdquo;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>对于不存在的成员
+<ul>
+<li>添加成员并设置分值</li>
+</ul>
+</li>
+<li>对于不存在的集合
+<ul>
+<li>自动创建集合</li>
+</ul>
+</li>
+<li>O(log(n))</li>
+</ul>
+<h4 id="5zcard" class="headerLink"><a href="#5zcard" class="header-mark"></a>5、ZCARD</h4><ul>
+<li>获取有序集合的大小</li>
+<li>ZCARD sorted_set
+<ul>
+<li>返回长度</li>
+</ul>
+</li>
+<li>O(1)</li>
+</ul>
+<h4 id="6zrankzrevrank" class="headerLink"><a href="#6zrankzrevrank" class="header-mark"></a>6、ZRANK、ZREVRANK</h4><ul>
+<li>获取成员在有序集合中的排名</li>
+<li>ZRANK sorted_set member
+<ul>
+<li>按照分值从小到大排序返回排名</li>
+<li>从0开始</li>
+</ul>
+</li>
+<li>ZREVRANK sorted_set member
+<ul>
+<li>按照分值从大到小排序返回排名</li>
+<li>从0开始</li>
+</ul>
+</li>
+<li>对于不存在的键和或者不存在的成员
+<ul>
+<li>返回nil</li>
+</ul>
+</li>
+<li>O(log(n))</li>
+</ul>
+<h4 id="7zrangezrevrange" class="headerLink"><a href="#7zrangezrevrange" class="header-mark"></a>7、ZRANGE、ZREVRANGE</h4><ul>
+<li>获取指定索引范围内的成员</li>
+<li>ZRANGE sorted_set start end
+<ul>
+<li>分值升序返回</li>
+</ul>
+</li>
+<li>ZREVRANGE sorted_set start end
+<ul>
+<li>分值降序返回</li>
+</ul>
+</li>
+<li>ZRANGE sorted_set start end [WITHSOCRES]
+<ul>
+<li>返回成员和分值</li>
+</ul>
+</li>
+<li>不存在的有序集合，返回空列表或集合</li>
+<li>O(log(n) + m)</li>
+</ul>
+<h4 id="8zrangebyscorezrevrangebyscore" class="headerLink"><a href="#8zrangebyscorezrevrangebyscore" class="header-mark"></a>8、ZRANGEBYSCORE、ZREVRANGEBYSCORE</h4><ul>
+<li>获取指定分值范围内的成员</li>
+<li>ZRANGEBYSCORE sorted_set min max
+<ul>
+<li>升序排列方式返回</li>
+<li>[min, max]闭区间</li>
+</ul>
+</li>
+<li>ZREVRANGEBYSCORE sorted_set max min
+<ul>
+<li>降序排列方式返回</li>
+</ul>
+</li>
+<li>ZRANGEBYSCORE sorted_set min max [WITHSCORES]
+<ul>
+<li>带分值返回</li>
+</ul>
+</li>
+<li>ZRANGEBYSCORE sorted_set min max [LIMIT offset count]
+<ul>
+<li>offser指定跳过成员数量。count只是返回成员个数</li>
+<li>ZRANGEBYSCORE salary 3000 5000 0 1
+<ul>
+<li>&ldquo;peter&rdquo;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>使用开区间取值 &ldquo;(&rdquo;
+<ul>
+<li>ZRANGEBYSCORE salary (3500 (5000 WITHSCORES
+<ul>
+<li>&ldquo;bob&rdquo;</li>
+<li>&ldquo;3800&rdquo;</li>
+<li>&ldquo;jack&rdquo;</li>
+<li>&ldquo;4500&rdquo;</li>
+</ul>
+</li>
+<li>ZRANGEBYSCORE salary 3500 (5000 WITHSCORES
+<ul>
+<li>&ldquo;peter&rdquo;</li>
+<li>&ldquo;3500&rdquo;</li>
+<li>&ldquo;bob&rdquo;</li>
+<li>&ldquo;3800&rdquo;</li>
+<li>&ldquo;jack&rdquo;</li>
+<li>&ldquo;4500&rdquo;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>使用无限制作为范围
+<ul>
+<li>ZRANGEBYSCORE salary -inf (5000 WITHSCORES</li>
+</ul>
+</li>
+<li>O(log(n) + m)</li>
+</ul>
+<h4 id="9zcount" class="headerLink"><a href="#9zcount" class="header-mark"></a>9、ZCOUNT</h4><ul>
+<li>统计指定分值范围内的成员数量</li>
+<li>ZCOUNT sorted_set min max
+<ul>
+<li>[min, max]闭区间</li>
+<li>返回成员个数</li>
+</ul>
+</li>
+<li>&ldquo;+inf&quot;表示无穷大</li>
+<li>&ldquo;-inf&quot;表示无穷小</li>
+<li>&ldquo;(&ldquo;表示开区间</li>
+<li>O(log(n))</li>
+</ul>
+<h4 id="10zremrangebyrank" class="headerLink"><a href="#10zremrangebyrank" class="header-mark"></a>10、ZREMRANGEBYRANK</h4><ul>
+<li>移除指定排名范围内的成员</li>
+<li>ZREMRANGEBYRANK sorted_set start end
+<ul>
+<li>[start, end]闭区间</li>
+<li>返回移除成员数量</li>
+</ul>
+</li>
+<li>O(log(n) + m)</li>
+</ul>
+<h4 id="11zremrangebyscore" class="headerLink"><a href="#11zremrangebyscore" class="header-mark"></a>11、ZREMRANGEBYSCORE</h4><ul>
+<li>移除指定分值范围内的成员</li>
+<li>ZREMRANGEBYSCORE sorted_set min max
+<ul>
+<li>[min, max]闭区间</li>
+<li>返回移除成员个数</li>
+</ul>
+</li>
+<li>O(log(n) + m)</li>
+</ul>
+<h4 id="12zunionstorezinterstore" class="headerLink"><a href="#12zunionstorezinterstore" class="header-mark"></a>12、ZUNIONSTORE、ZINTERSTORE</h4><ul>
+<li>有序集合的并集运算和交集运算</li>
+<li>ZUNIONSTORE destination number sorted_set [sorted_set &hellip; ]
+<ul>
+<li>number参数用于指定参与计算的有序集合数量</li>
+<li>计算并集存储至destination</li>
+<li>返回并集长度</li>
+<li>O(n*log(n))</li>
+</ul>
+</li>
+<li>ZINTERSTORE destination number sorted_set [sorted_set &hellip; ]
+<ul>
+<li>number参数用于指定参与计算的有序集合数量</li>
+<li>计算交集存储至destination</li>
+<li>返回交集长度</li>
+<li>O(n*log(n)*m)</li>
+</ul>
+</li>
+<li>指定分数的聚合函数
+<ul>
+<li>ZUNIONSTORE destination number sorted_set [sorted_set &hellip; ] [AGGREGATE SUM|MIN|MAX]
+<ul>
+<li>SUM：所有集合的分值的和</li>
+<li>MIN：所有集合中分值最小的值</li>
+<li>MAX：所有集合中分值最大的值</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>为每个有序集合设置权重
+<ul>
+<li>权重会与分值相乘，然后执行聚合运算</li>
+<li>ZUNIONSTORE destination number sorted_set [sorted_set &hellip; ] [WEIGHTS weight [weight &hellip; ]]</li>
+</ul>
+</li>
+<li>使用集合作为输入
+<ul>
+<li>这两个命令也可以操作集合。默认分值为1</li>
+</ul>
+</li>
+</ul>
+<h4 id="13zrangebylexzrevrangebylex" class="headerLink"><a href="#13zrangebylexzrevrangebylex" class="header-mark"></a>13、ZRANGEBYLEX、ZREVRANGEBYLEX</h4><ul>
+<li>返回指定字典序范围内的成员</li>
+<li>ZRANGEBYLEX sorted_set min max
+<ul>
+<li>&ldquo;[&ldquo;表示包含</li>
+<li>&ldquo;(&ldquo;表示不包含</li>
+<li>&ldquo;+&ldquo;表示无穷大</li>
+<li>&ldquo;-&ldquo;表示无穷小</li>
+<li>ZRANGEBYLEX words - +
+<ul>
+<li>返回所有</li>
+</ul>
+</li>
+<li>ZRANGEBYLEX words [a (b
+<ul>
+<li>返回a开头的所有  不返回b开头的</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>ZREVRANGEBYLEX sorted_set max min
+<ul>
+<li>倒序返回</li>
+</ul>
+</li>
+<li>ZRANGEBYLEX sorted_set min max [LIMIT offset count]
+<ul>
+<li>限制返回数量</li>
+</ul>
+</li>
+<li>O(log(n) + n)</li>
+</ul>
+<h4 id="14zlexcount" class="headerLink"><a href="#14zlexcount" class="header-mark"></a>14、ZLEXCOUNT</h4><ul>
+<li>统计位于字典序指定范围内的成员数量</li>
+<li>ZLEXCOUNT sorted_set min max
+<ul>
+<li>&ldquo;[&rdquo; &ldquo;(&rdquo; &ldquo;+&rdquo; &ldquo;-&rdquo;</li>
+</ul>
+</li>
+<li>O(nlog(n))</li>
+</ul>
+<h4 id="15zremrangebylex" class="headerLink"><a href="#15zremrangebylex" class="header-mark"></a>15、ZREMRANGEBYLEX</h4><ul>
+<li>移除位于字典序指定范围内的成员</li>
+<li>ZREMRANGEBYLEX sorted_set min max
+<ul>
+<li>返回移除元素数量</li>
+</ul>
+</li>
+<li>O(log(n) + m)</li>
+</ul>
+<h4 id="16zpopmaxzpopmin" class="headerLink"><a href="#16zpopmaxzpopmin" class="header-mark"></a>16、ZPOPMAX、ZPOPMIN</h4><ul>
+<li>弹出分值最高和最低的成员</li>
+<li>ZPOPMAX sorted_set [count]
+<ul>
+<li>count默认为1</li>
+<li>返回被移除的成员和分值</li>
+</ul>
+</li>
+<li>ZPOPMIN sorted_set [count]
+<ul>
+<li>count默认为1</li>
+<li>返回被移除的成员和分值</li>
+</ul>
+</li>
+<li>O(n) n为移除元素数量</li>
+</ul>
+<h4 id="17bzpopmaxbzpopmin" class="headerLink"><a href="#17bzpopmaxbzpopmin" class="header-mark"></a>17、BZPOPMAX、BZPOPMIN</h4><ul>
+<li>阻塞式最大/最小元素弹出操作</li>
+<li>BZPOPMAX sorted_set [sorted_set &hellip; ] timeout
+<ul>
+<li>返回被弹出元素所在集合。成员。分值</li>
+</ul>
+</li>
+<li>BZPOPMIN sorted_set [sorted_set &hellip; ] timeout</li>
+<li>O(n)</li>
+</ul>
+<h3 id="hyperloglog" class="headerLink"><a href="#hyperloglog" class="header-mark"></a>hyperloglog</h3><h4 id="1" class="headerLink"><a href="#1" class="header-mark"></a>1、</h4><p>hyperloglog是专门为了计算集合的基数而创建的概率算法</p>
+<ul>
+<li>对集合的元素进行基数</li>
+<li>获取集合当前的近似基数</li>
+<li>合并多个HyperLogLog</li>
+</ul>
+<h4 id="2pfadd" class="headerLink"><a href="#2pfadd" class="header-mark"></a>2、PFADD</h4><ul>
+<li>对集合元素进行计数</li>
+<li>PFADD hyperloglog element [element &hellip; ]
+<ul>
+<li>若基数没变返回0</li>
+<li>若基数变化返回1</li>
+</ul>
+</li>
+<li>O(n)</li>
+</ul>
+<h4 id="3pfcount" class="headerLink"><a href="#3pfcount" class="header-mark"></a>3、PFCOUNT</h4><ul>
+<li>返回集合的近似基数</li>
+<li>PFCOUNT hyperloglog [hyperloglog &hellip; ]
+<ul>
+<li>返回近似基数</li>
+<li>不存在返回0</li>
+</ul>
+</li>
+<li>返回并集的近似基数
+<ul>
+<li>传入多个HyperLogLog时，将进行并集运算，返回并集的近似基数</li>
+</ul>
+</li>
+<li>O(n)</li>
+</ul>
+<h4 id="4pfmerge" class="headerLink"><a href="#4pfmerge" class="header-mark"></a>4、PFMERGE</h4><ul>
+<li>计算多个HyperLogLog的并集</li>
+<li>PFMERGE destination hyperloglog [hyperloglog &hellip; ]
+<ul>
+<li>并集保存到destination</li>
+<li>如果指定的键已存在则覆盖</li>
+<li>成功返回ok</li>
+</ul>
+</li>
+<li>PFCOUNT命令会调用PFMERGE获取临时HyperLogLog，然后计算近似基数，删除临时HyperLogLog</li>
+<li>O(n)</li>
+</ul>
+<h3 id="位图" class="headerLink"><a href="#%e4%bd%8d%e5%9b%be" class="header-mark"></a>位图</h3><h4 id="1setbit" class="headerLink"><a href="#1setbit" class="header-mark"></a>1、SETBIT</h4><ul>
+<li>设置二进制的值</li>
+<li>SETBIT bitmap offset value
+<ul>
+<li>返回二进制位被设置前的旧值</li>
+<li>偏移量只能为正数</li>
+</ul>
+</li>
+<li>位图不存在将被创建</li>
+<li>位图长度不够将被扩展</li>
+<li>O(1)</li>
+</ul>
+<h4 id="2getbit" class="headerLink"><a href="#2getbit" class="header-mark"></a>2、GETBIT</h4><ul>
+<li>获取二进制位的值</li>
+<li>GETBIT bitmap offset
+<ul>
+<li>返回偏移量上的二进制值</li>
+<li>偏移量只能为整数</li>
+<li>对于偏移量范围外的返回0</li>
+</ul>
+</li>
+<li>O(1)</li>
+</ul>
+<h4 id="3bitcount" class="headerLink"><a href="#3bitcount" class="header-mark"></a>3、BITCOUNT</h4><ul>
+<li>统计被设置的二进制位数量</li>
+<li>BITCOUNT key
+<ul>
+<li>返回被设置为1的位数</li>
+</ul>
+</li>
+<li>BITCOUNT key [start end]
+<ul>
+<li>在指定字节范围统计</li>
+<li>start，end为字节偏移量</li>
+<li>1字节 = 8bit</li>
+<li>1字节偏移量 = 8bit位偏移量</li>
+</ul>
+</li>
+<li>O(n)</li>
+</ul>
+<h4 id="4bitpos" class="headerLink"><a href="#4bitpos" class="header-mark"></a>4、BITPOS</h4><ul>
+<li>查找第一个指定的二进制位值</li>
+<li>BITPOS bitmap value
+<ul>
+<li>返回第一个被设置为value的位置偏移量</li>
+</ul>
+</li>
+<li>BITPOS bitmap value [start end]
+<ul>
+<li>在指定字节范围搜索第一个被设置value的位置</li>
+</ul>
+</li>
+<li>O(n)</li>
+</ul>
+<h4 id="5bitop" class="headerLink"><a href="#5bitop" class="header-mark"></a>5、BITOP</h4><ul>
+<li>执行二进制位运算</li>
+<li>BITOP operation result_key bitmap [bitmap &hellip; ]
+<ul>
+<li>opetration: AND、OR、XOR、NOT</li>
+<li>NOT只允许输入一个位图，其他允许多个</li>
+<li>返回被存储位图的字节长度</li>
+</ul>
+</li>
+<li>两个不同长度的位图，较短的会在前补0</li>
+<li>O(n)</li>
+</ul>
+<h4 id="6bitfield" class="headerLink"><a href="#6bitfield" class="header-mark"></a>6、BITFIELD</h4><ul>
+<li>在位图中存储整数值</li>
+<li>BITFIELD支持SET、GET、INCRBY、OVERFLOW四个子命令</li>
+<li>BITFIELD bitmap SET type offset value
+<ul>
+<li>type：i8(有符号8位整数) u16(无符号16位整数)</li>
+<li>BITFIELD bitmap SET u8 0 198
+<ul>
+<li>0</li>
+</ul>
+</li>
+<li>BITFIELD bitmap SET u8 0 123 SET i32 20 10086 SET i64 188 123456789
+<ul>
+<li>198</li>
+<li>0</li>
+<li>0</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>O(n)</li>
+</ul>
+<h4 id="7" class="headerLink"><a href="#7" class="header-mark"></a>7、</h4><ul>
+<li>TYPE bitmap
+<ul>
+<li>string</li>
+</ul>
+</li>
+</ul>
+<h3 id="地理坐标" class="headerLink"><a href="#%e5%9c%b0%e7%90%86%e5%9d%90%e6%a0%87" class="header-mark"></a>地理坐标</h3><h4 id="1geoadd" class="headerLink"><a href="#1geoadd" class="header-mark"></a>1、GEOADD</h4><ul>
+<li>存储坐标</li>
+<li>GEOADD location_set longitude latitude name [ longitude latitude name &hellip; ]
+<ul>
+<li>返回添加个数</li>
+</ul>
+</li>
+<li>GEOADD可以更新已存在的地理位置
+<ul>
+<li>更新返回0</li>
+</ul>
+</li>
+<li>O(log(n)*m)</li>
+</ul>
+<h4 id="2geopos" class="headerLink"><a href="#2geopos" class="header-mark"></a>2、GEOPOS</h4><ul>
+<li>获取指定位置坐标</li>
+<li>GEOPOS location_set name [name &hellip; ]
+<ul>
+<li>返回n组数组</li>
+<li>GEOPOS guangdong qingyuan guangzhou
+<ul>
+<li>
+<ol>
+<li>
+<ol>
+<li>&ldquo;113&rdquo;  &ndash; 清远市经度</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>​    2) &ldquo;23&rdquo;   &ndash; 清远市纬度</li>
+<li>
+<ol start="2">
+<li>
+<ol>
+<li>&ldquo;113&rdquo;  &ndash; 广州市经度</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>​    2)  &ldquo;23&rdquo;   &ndash; 广州市纬度</li>
+<li>不存在返回nil</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>O(log(n)*m)</li>
+</ul>
+<h4 id="3geodist" class="headerLink"><a href="#3geodist" class="header-mark"></a>3、GEODIST</h4><ul>
+<li>计算两个位置之间的直线距离</li>
+<li>GEODIST location_set name1 name2
+<ul>
+<li>返回name1和name2的距离</li>
+</ul>
+</li>
+<li>GEODIST location_set name1 name2 [unit]
+<ul>
+<li>unit可选：m(米),km(千米),mi(英里),ft(英尺)</li>
+</ul>
+</li>
+<li>不存在的位置返回nil</li>
+<li>O(log(n))</li>
+</ul>
+<h4 id="4georadius" class="headerLink"><a href="#4georadius" class="header-mark"></a>4、GEORADIUS</h4><ul>
+<li>查找指定坐标半径范围内的其他位置</li>
+<li>GEORADIUS location_set longitude latitude radius unit
+<ul>
+<li>GEORADIUS guangdong 112 23 100 km
+<ul>
+<li>&ldquo;foshan&rdquo;</li>
+<li>&ldquo;guangzhou&rdquo;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>GEORADIUS location_set longitude latitude radius unit [WITHDIST]
+<ul>
+<li>WITHDIST: 返回携带距离</li>
+</ul>
+</li>
+<li>GEORADIUS location_set longitude latitude radius unit [WITHCOORD]
+<ul>
+<li>WITHCOORD：返回携带经纬度</li>
+</ul>
+</li>
+<li>GEORADIUS location_set longitude latitude radius unit [ASC|DESC]
+<ul>
+<li>排序查找</li>
+</ul>
+</li>
+<li>GEORADIUS location_set longitude latitude radius unit [COUNT n]
+<ul>
+<li>限制返回的数量</li>
+</ul>
+</li>
+<li>O(n)</li>
+</ul>
+<h4 id="5georadiusbymember" class="headerLink"><a href="#5georadiusbymember" class="header-mark"></a>5、GEORADIUSBYMEMBER</h4><ul>
+<li>查找指定位置半径范围内的其他位置</li>
+<li>GEORADIUSBYMEMBER location_set name radius unit [WITHDIST] [WITHCOORD] [ASC|DESC] [COUNT n]</li>
+<li>O(n)</li>
+</ul>
+<h4 id="6geohash" class="headerLink"><a href="#6geohash" class="header-mark"></a>6、GEOHASH</h4><ul>
+<li>获取指定位置的Geohash值</li>
+<li>GEOHASH guangdong qingyuan guangzhou</li>
+<li>GEORADIUS、GEORADIUSBYMEMBER可以添加[WITHHASH]参数返回Geohash</li>
+<li>O(n)</li>
+</ul>
+<h4 id="7-1" class="headerLink"><a href="#7-1" class="header-mark"></a>7、</h4><ul>
+<li>可以使用ZREM对location中位置进行删除</li>
+</ul>
+<h3 id="流" class="headerLink"><a href="#%e6%b5%81" class="header-mark"></a>流</h3><ul>
+<li>redis5.0新增</li>
+</ul>
+<h4 id="1xadd" class="headerLink"><a href="#1xadd" class="header-mark"></a>1、XADD</h4><ul>
+<li>追加新元素到流的末尾</li>
+<li>XADD stream id field value [field value &hellip; ]
+<ul>
+<li>流不存在则创建</li>
+<li>id由&quot;毫秒时间-编号&quot;两部分组成
+<ul>
+<li>XADD stream 1000000-123 k1 v1</li>
+</ul>
+</li>
+<li>返回编号id</li>
+<li>id不可以重复</li>
+<li>新id必须大于旧id</li>
+<li>XADD s1 * k1 v1
+<ul>
+<li>自动生成id</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>限制流的长度
+<ul>
+<li>XADD stream [MAXLEN len] id field value [field value &hellip; ]</li>
+<li>按照先进先出移除超过长度的元素</li>
+</ul>
+</li>
+<li>O(log(n))</li>
+</ul>
+<h4 id="2xtrim" class="headerLink"><a href="#2xtrim" class="header-mark"></a>2、XTRIM</h4><ul>
+<li>对流进行修剪。将流修剪为指定长度</li>
+<li>XTRIM stream MAXLEN len
+<ul>
+<li>返回被移除元素数量</li>
+</ul>
+</li>
+<li>O(log(n)+m) n为修剪操作前元素数量。m为被修剪元素数量</li>
+</ul>
+<h4 id="3sdel" class="headerLink"><a href="#3sdel" class="header-mark"></a>3、SDEL</h4><ul>
+<li>移除指定元素</li>
+<li>XDEL stream [id id &hellip; ]
+<ul>
+<li>返回被移除元素数量</li>
+</ul>
+</li>
+<li>O(log(n)*m)</li>
+</ul>
+<h4 id="4xlen" class="headerLink"><a href="#4xlen" class="header-mark"></a>4、XLEN</h4><ul>
+<li>获取流包含的元素数量</li>
+<li>XLEN stream</li>
+<li>O(1)</li>
+</ul>
+<h4 id="5xrangexrevrange" class="headerLink"><a href="#5xrangexrevrange" class="header-mark"></a>5、XRANGE、XREVRANGE</h4><ul>
+<li>访问流中元素</li>
+<li>XRANGE stram start-id end-id [COUNT n]
+<ul>
+<li>返回ID1
+<ul>
+<li>k1</li>
+<li>v1</li>
+</ul>
+</li>
+<li>&hellip;</li>
+</ul>
+</li>
+<li>XRANGE temp 4000000000000 +
+<ul>
+<li>获取所有大于4000000000000的</li>
+</ul>
+</li>
+<li>XRANGE temp - 4000000000000
+<ul>
+<li>获取所有小于4000000000000的</li>
+</ul>
+</li>
+<li>COUNT 限制获取的数量</li>
+<li>XREVRANGE stram start-id end-id [COUNT n]
+<ul>
+<li>逆序访问</li>
+</ul>
+</li>
+<li>O(log(n)+m)</li>
+</ul>
+<h4 id="6xread" class="headerLink"><a href="#6xread" class="header-mark"></a>6、XREAD</h4><ul>
+<li>以阻塞或非阻塞方式获取流元素</li>
+<li>XREAD [BLOCK ms] [count n] STREAMS stream1 stream2 stream3 &hellip; id1 id2 id3 &hellip;
+<ul>
+<li>从给定的流中取出大于指定ID的多个元素</li>
+<li>XREAD COUNT 3 STREAMS s1 10000000</li>
+</ul>
+</li>
+<li>XREAD BLOCK ms STREAMS stream1 stream2 &hellip; $ $ $ &hellip;
+<ul>
+<li>只获取新元素</li>
+<li>XREAD BLOCK 10000 STREAMS bs1 $
+<ul>
+<li>只获取bs1后续出现的新元素</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>O((log(n)+m)*I) 流包含n个元素。m为被获取元素数量。I个流</li>
+</ul>
+<h4 id="7xgroupxreadgroupxack" class="headerLink"><a href="#7xgroupxreadgroupxack" class="header-mark"></a>7、XGROUP、XREADGROUP、XACK</h4><ul>
+<li>消费者组</li>
+<li>XGROUP CREATE stream group start_id
+<ul>
+<li>创建消费者组</li>
+<li>group为组名</li>
+<li>start_id为消费者开始读取的id</li>
+</ul>
+</li>
+<li>XREADGROUP GROUP consumer [COUNT n] [BLOCK ms] STREAMS stream [stream &hellip; ] id [id &hellip; ]
+<ul>
+<li>读取消费者组</li>
+<li>XREADGROUP GROUP g1 c1 STREAMS msgs 0</li>
+</ul>
+</li>
+<li>XACK stream group id [id id &hellip;]
+<ul>
+<li>消息的状态转换</li>
+</ul>
+</li>
+</ul>
+<h4 id="8xgroup" class="headerLink"><a href="#8xgroup" class="header-mark"></a>8、XGROUP</h4><ul>
+<li>管理消费者组</li>
+<li>XGROUP CREATE stream group id
+<ul>
+<li>创建消费者组</li>
+<li>如果stream不存在返回错误</li>
+<li>XGROUP CREATE cgs all-message 0-0</li>
+<li>XINFO GROUP cgs</li>
+<li>O(1)</li>
+</ul>
+</li>
+<li>XGROUP SETID stream group id
+<ul>
+<li>修改消费者组最后递送消息ID</li>
+<li>O(1)</li>
+</ul>
+</li>
+<li>XGROUP DELCONSUMER stream group consumer
+<ul>
+<li>删除消费者</li>
+<li>O(n) n为被删除消费者正在处理的消息数量</li>
+</ul>
+</li>
+<li>XGROUP DESTORY stream group
+<ul>
+<li>删除消费者组</li>
+<li>O(n+m) n为消费者组被删除时，待处理的消息数量。m为消费者数量</li>
+</ul>
+</li>
+</ul>
+<h4 id="9xreadgroup" class="headerLink"><a href="#9xreadgroup" class="header-mark"></a>9、XREADGROUP</h4><ul>
+<li>读取消费者组中的消息</li>
+<li>XREADGROUP GROUP group consumer [COUNT n] [BLOCK ms] STREAMS stream [stream &hellip;] id [id &hellip;]</li>
+<li>XREADGROUP GROUP all-message worker1 COUNT 1 STREAMS cgs &gt;
+<ul>
+<li>读取未递送过的新消息</li>
+</ul>
+</li>
+<li>O((log(n)+m)*i)</li>
+</ul>
+<h4 id="10xpending" class="headerLink"><a href="#10xpending" class="header-mark"></a>10、XPENDING</h4><ul>
+<li>显示待处理消息的相关信息</li>
+<li>XPENDING stream group [start stop count] [consumer]</li>
+<li>O(log(n)+m)</li>
+</ul>
+<h4 id="11xack" class="headerLink"><a href="#11xack" class="header-mark"></a>11、XACK</h4><ul>
+<li>将消息标记为“已处理”</li>
+<li>XACK stream group id [id id &hellip;]</li>
+<li>O(n)</li>
+</ul>
+<h4 id="12xclaim" class="headerLink"><a href="#12xclaim" class="header-mark"></a>12、XCLAIM</h4><ul>
+<li>转移消息的归属权</li>
+<li>XCLAIM stream group new_consumer max_pending_time id [id id &hellip;]</li>
+<li>只转移消息ID
+<ul>
+<li>XCLAIM stream group new_consumer max_pending_time id [id id &hellip;] [JUSTID]</li>
+</ul>
+</li>
+<li>O(n)</li>
+</ul>
+<h4 id="13xinfo" class="headerLink"><a href="#13xinfo" class="header-mark"></a>13、XINFO</h4><ul>
+<li>查看流和消费者组的相关信息</li>
+<li>XINFO CONSUERS stream group-name
+<ul>
+<li>打印消费者信息</li>
+<li>O(n) n为消费者数量</li>
+</ul>
+</li>
+<li>XINFO GROUPS stream
+<ul>
+<li>打印消费者组的信息</li>
+<li>O(m) m为消费者组数量</li>
+</ul>
+</li>
+<li>XINFO STREAM stream
+<ul>
+<li>打印流信息</li>
+<li>O(1)</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据库" class="headerLink"><a href="#%e6%95%b0%e6%8d%ae%e5%ba%93" class="header-mark"></a>数据库</h3><h4 id="1select" class="headerLink"><a href="#1select" class="header-mark"></a>1、SELECT</h4><ul>
+<li>切换至指定的数据库</li>
+<li>SELECT db
+<ul>
+<li>SELECT 0</li>
+</ul>
+</li>
+<li>O(1)</li>
+</ul>
+<h4 id="2keys" class="headerLink"><a href="#2keys" class="header-mark"></a>2、KEYS</h4><ul>
+<li>获取所有与给定匹配符相匹配的键</li>
+<li>KEYS pattern
+<ul>
+<li>KEYS *（阻塞服务器）</li>
+</ul>
+</li>
+<li>O(n)</li>
+</ul>
+<h4 id="3scan" class="headerLink"><a href="#3scan" class="header-mark"></a>3、SCAN</h4><ul>
+<li>以渐进方式迭代数据库中的键</li>
+<li>SCAN cursor
+<ul>
+<li>SCAN 0</li>
+</ul>
+</li>
+<li>SCAN命令不需要申请也不需要释放，不占用任何资源</li>
+<li>SCAN cursor [MATCH pattern]
+<ul>
+<li>迭代与给定匹配符相匹配的键</li>
+</ul>
+</li>
+<li>SCAN cursor [COUNT n]
+<ul>
+<li>返回指定数量</li>
+</ul>
+</li>
+<li>Redis中可能导致阻塞的命令
+<ul>
+<li>KEYS</li>
+<li>HKEYS、HVALS、HGETALL</li>
+<li>SMEMBERS</li>
+<li>ZRANGE</li>
+<li>为解决以上问题提供了SSCAN、HSCAN、ZSCAN</li>
+</ul>
+</li>
+<li>HSCAN hash cursor [MATCH pattern] [COUNT n]</li>
+<li>SSCAN set cursor [MATCH pattern] [COUNT n]</li>
+<li>ZSCAN sorted_set cursor [MATCH pattern] [COUNT n]</li>
+<li>单次调用O(1)。迭代一次O(n)</li>
+</ul>
+<h4 id="4randomkey" class="headerLink"><a href="#4randomkey" class="header-mark"></a>4、RANDOMKEY</h4><ul>
+<li>随机返回一个键</li>
+<li>RANDOMKEY</li>
+<li>O(1)</li>
+</ul>
+<h4 id="5sort" class="headerLink"><a href="#5sort" class="header-mark"></a>5、SORT</h4><ul>
+<li>对键的值进行排序</li>
+<li>SORT key</li>
+<li>指定排序方式
+<ul>
+<li>SORT key [ASC|DESC]</li>
+</ul>
+</li>
+<li>对字符串进行排序
+<ul>
+<li>SORT key [ALPHA]</li>
+</ul>
+</li>
+<li>只获取部分排序结果
+<ul>
+<li>SORT key [LIMIT offset count]</li>
+</ul>
+</li>
+<li>获取外部键的值作为结果
+<ul>
+<li>SORT key [[GET pattern] [GET pattern] &hellip;]</li>
+</ul>
+</li>
+<li>使用外部键的值作为排序权重
+<ul>
+<li>SORT key [BY pattern]</li>
+</ul>
+</li>
+<li>保存排序结果
+<ul>
+<li>SORT key [STORE destination]</li>
+</ul>
+</li>
+<li>O(n*log(n)+m)</li>
+</ul>
+<h4 id="6exists" class="headerLink"><a href="#6exists" class="header-mark"></a>6、EXISTS</h4><ul>
+<li>检查给定键是否存在</li>
+<li>EXISTS key [key &hellip;]
+<ul>
+<li>返回存在的key的数量</li>
+</ul>
+</li>
+<li>O(n)</li>
+</ul>
+<h4 id="7dbsize" class="headerLink"><a href="#7dbsize" class="header-mark"></a>7、DBSIZE</h4><ul>
+<li>获取数据库中包含的键值对数量</li>
+<li>DBSIZE</li>
+<li>O(1)</li>
+</ul>
+<h4 id="8type" class="headerLink"><a href="#8type" class="header-mark"></a>8、TYPE</h4><ul>
+<li>
+<p>查看键类型</p>
+</li>
+<li>
+<p>TYPE key</p>
+</li>
+<li>
+<table>
+<thead>
+<tr>
+<th>键类型</th>
+<th>TYPE返回值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>字符串键</td>
+<td>string</td>
+</tr>
+<tr>
+<td>散列键</td>
+<td>hash</td>
+</tr>
+<tr>
+<td>列表键</td>
+<td>list</td>
+</tr>
+<tr>
+<td>集合键</td>
+<td>set</td>
+</tr>
+<tr>
+<td>有序集合键</td>
+<td>zset</td>
+</tr>
+<tr>
+<td>HyperLogLog</td>
+<td>string</td>
+</tr>
+<tr>
+<td>位图</td>
+<td>string</td>
+</tr>
+<tr>
+<td>地理位置</td>
+<td>zset</td>
+</tr>
+<tr>
+<td>流</td>
+<td>stream</td>
+</tr>
+</tbody>
+</table>
+<p>O(1)</p>
+</li>
+</ul>
+<h4 id="9renamerenamenx" class="headerLink"><a href="#9renamerenamenx" class="header-mark"></a>9、RENAME、RENAMENX</h4><ul>
+<li>修改键名</li>
+<li>RENAME origin new
+<ul>
+<li>new已存在则会覆盖</li>
+</ul>
+</li>
+<li>RENAMENX origin new
+<ul>
+<li>new已存在则不覆盖</li>
+</ul>
+</li>
+<li>O(1)</li>
+</ul>
+<h4 id="10move" class="headerLink"><a href="#10move" class="header-mark"></a>10、MOVE</h4><ul>
+<li>将给定的键移动到另一个数据库</li>
+<li>MOVE key db</li>
+<li>源数据库不存在key或者目标数据库存在key该操作都会失败</li>
+<li>O(1)</li>
+</ul>
+<h4 id="11del" class="headerLink"><a href="#11del" class="header-mark"></a>11、DEL</h4><ul>
+<li>移除指定的键</li>
+<li>DEL key [key &hellip;]
+<ul>
+<li>返回被移除的键的数量</li>
+</ul>
+</li>
+<li>O(n)</li>
+</ul>
+<h4 id="12unlink" class="headerLink"><a href="#12unlink" class="header-mark"></a>12、UNLINK</h4><ul>
+<li>以异步方式移除指定的键（防止阻塞）</li>
+<li>UNLINK key [key &hellip;]
+<ul>
+<li>返回成功移除的键的数量</li>
+</ul>
+</li>
+</ul>
+<h4 id="13flushdb" class="headerLink"><a href="#13flushdb" class="header-mark"></a>13、FLUSHDB</h4><ul>
+<li>清空当前数据库</li>
+<li>FLUSHDB
+<ul>
+<li>ok</li>
+</ul>
+</li>
+<li>FLUSHDB async
+<ul>
+<li>异步方式清除数据库</li>
+</ul>
+</li>
+<li>O(n)</li>
+</ul>
+<h4 id="14flushall" class="headerLink"><a href="#14flushall" class="header-mark"></a>14、FLUSHALL</h4><ul>
+<li>清空所有数据库</li>
+<li>FLUSHALL
+<ul>
+<li>ok</li>
+</ul>
+</li>
+<li>FLUSHALL async
+<ul>
+<li>异步方式</li>
+</ul>
+</li>
+<li>O(n)</li>
+</ul>
+<h4 id="15swapdb" class="headerLink"><a href="#15swapdb" class="header-mark"></a>15、SWAPDB</h4><ul>
+<li>互换数据库</li>
+<li>SWAPDB x y</li>
+<li>O(1)</li>
+</ul>
+<h3 id="自动过期" class="headerLink"><a href="#%e8%87%aa%e5%8a%a8%e8%bf%87%e6%9c%9f" class="header-mark"></a>自动过期</h3><h4 id="1expirepexpire" class="headerLink"><a href="#1expirepexpire" class="header-mark"></a>1、EXPIRE、PEXPIRE</h4><ul>
+<li>设置生存时间</li>
+<li>EXPIRE key seconds
+<ul>
+<li>秒级过期时间</li>
+</ul>
+</li>
+<li>PEXPIRE key milliseconds
+<ul>
+<li>毫秒级过期时间</li>
+</ul>
+</li>
+<li>O(1)</li>
+</ul>
+<h4 id="2set-expx" class="headerLink"><a href="#2set-expx" class="header-mark"></a>2、SET-EX、PX</h4><ul>
+<li>SET key value [EX seconds] [PX milliseconds]</li>
+<li>O(1)</li>
+</ul>
+<h4 id="3expireatpexpireat" class="headerLink"><a href="#3expireatpexpireat" class="header-mark"></a>3、EXPIREAT、PEXPIREAT</h4><ul>
+<li>设置(更新)过期时间</li>
+<li>EXPIREAT key seconds_timestamp
+<ul>
+<li>超过给定的秒级时间戳，key被删除</li>
+</ul>
+</li>
+<li>PEXPIRAET key milliseconds_timestamp
+<ul>
+<li>超过给定的毫秒级时间戳，key被删除</li>
+</ul>
+</li>
+<li>O(1)</li>
+</ul>
+<h4 id="4ttlpttl" class="headerLink"><a href="#4ttlpttl" class="header-mark"></a>4、TTL、PTTL</h4><ul>
+<li>获取键的剩余生存时间</li>
+<li>TTL key</li>
+<li>PTTL key</li>
+<li>没有过期时间的key返回-1</li>
+<li>不存在的key返回-2</li>
+<li>O(1)</li>
+</ul>
+<h3 id="流水线与事物" class="headerLink"><a href="#%e6%b5%81%e6%b0%b4%e7%ba%bf%e4%b8%8e%e4%ba%8b%e7%89%a9" class="header-mark"></a>流水线与事物</h3><h4 id="1流水线" class="headerLink"><a href="#1%e6%b5%81%e6%b0%b4%e7%ba%bf" class="header-mark"></a>1、流水线</h4><ul>
+<li>允许客户端打包多条redis请求一次性发送给服务器，处理完毕后一次性返回全部处理结果</li>
+</ul>
+<h4 id="2事务" class="headerLink"><a href="#2%e4%ba%8b%e5%8a%a1" class="header-mark"></a>2、事务</h4><ul>
+<li>MULTI
+<ul>
+<li>开启事务</li>
+<li>O(1)</li>
+</ul>
+</li>
+<li>EXEC
+<ul>
+<li>执行事务</li>
+</ul>
+</li>
+<li>DISCARD
+<ul>
+<li>放弃事务</li>
+<li>O(n)</li>
+</ul>
+</li>
+<li>事务会独占服务器。避免事务执行过多命令造成服务器阻塞。</li>
+</ul>
+<h4 id="3带有乐观锁的事务" class="headerLink"><a href="#3%e5%b8%a6%e6%9c%89%e4%b9%90%e8%a7%82%e9%94%81%e7%9a%84%e4%ba%8b%e5%8a%a1" class="header-mark"></a>3、带有乐观锁的事务</h4><ul>
+<li>WATCH
+<ul>
+<li>对键进行监视</li>
+<li>WATCH key [key &hellip;]</li>
+<li>确保事务只会在被监视键没有发生变化的情况下执行，从而保证事务对被监视键的所有修改都是安全、正确和有效的。</li>
+<li>O(n)</li>
+</ul>
+</li>
+<li>UNWATCH
+<ul>
+<li>取消对键的监视</li>
+<li>UNWATCH key [key &hellip;]</li>
+<li>O(n)</li>
+</ul>
+</li>
+</ul>
+<h3 id="lua脚本" class="headerLink"><a href="#lua%e8%84%9a%e6%9c%ac" class="header-mark"></a>LUA脚本</h3><ul>
+<li>lua脚本执行具有原子性</li>
+</ul>
+<h4 id="1eval" class="headerLink"><a href="#1eval" class="header-mark"></a>1、EVAL</h4><ul>
+<li>执行脚本</li>
+<li>EVAL script numkeys key [key &hellip;] arg [arg &hellip;]</li>
+<li>使用脚本执行redis命令
+<ul>
+<li>redis.call(command, &hellip;)
+<ul>
+<li>redis.call(&lsquo;SET&rsquo;, KEYS[1], ARGV[1])</li>
+</ul>
+</li>
+<li>redis.pcall(command, &hellip;)</li>
+</ul>
+</li>
+</ul>
+<h4 id="2script-load和evalsha" class="headerLink"><a href="#2script-load%e5%92%8cevalsha" class="header-mark"></a>2、SCRIPT LOAD和EVALSHA</h4><ul>
+<li>缓存并执行脚本</li>
+<li>ACRIPT LOAD script
+<ul>
+<li>缓存脚本</li>
+</ul>
+</li>
+<li>EVALSHA sha1 numkeys key [key &hellip;] arg [arg &hellip;]
+<ul>
+<li>执行脚本</li>
+</ul>
+</li>
+</ul>
+<h4 id="3脚本管理" class="headerLink"><a href="#3%e8%84%9a%e6%9c%ac%e7%ae%a1%e7%90%86" class="header-mark"></a>3、脚本管理</h4><ul>
+<li>SCRIPT EXISTS sha1 [sha1 &hellip;]
+<ul>
+<li>脚本是否已存在。存在返回1，不存在返回0</li>
+</ul>
+</li>
+<li>SCRIPT FLUSH
+<ul>
+<li>移除所有已缓存脚本</li>
+</ul>
+</li>
+<li>SCRIPT KILL
+<ul>
+<li>强制停止正在运行的脚本</li>
+<li>kill失败只能 &ldquo;SHUTDOWN nosave&quot;关闭服务器</li>
+</ul>
+</li>
+<li>O(1)</li>
+</ul>
+<h4 id="4内置函数库" class="headerLink"><a href="#4%e5%86%85%e7%bd%ae%e5%87%bd%e6%95%b0%e5%ba%93" class="header-mark"></a>4、内置函数库</h4><ul>
+<li>redis包</li>
+<li>bit包</li>
+<li>struct包</li>
+<li>cjson包</li>
+<li>cmsgpack包</li>
+</ul>
+<h3 id="持久化" class="headerLink"><a href="#%e6%8c%81%e4%b9%85%e5%8c%96" class="header-mark"></a>持久化</h3><ul>
+<li>RDB持久化</li>
+<li>AOF持久化</li>
+<li>RDB-AOF混合持久化</li>
+</ul>
+<h4 id="1rdb持久化" class="headerLink"><a href="#1rdb%e6%8c%81%e4%b9%85%e5%8c%96" class="header-mark"></a>1、RDB持久化</h4><ul>
+<li>Redis默认</li>
+<li>全量式持久化</li>
+<li>生成.rdb结尾文件(Redis DataBase)</li>
+<li>SAVE
+<ul>
+<li>阻塞服务器并创建RDB文件</li>
+<li>返回OK</li>
+<li>如果已经存在RDB文件 SAVE会移除就文件，只保留新的RDB文件</li>
+<li>O(n)  n为键值对总数量</li>
+</ul>
+</li>
+<li>BGSAVE
+<ul>
+<li>以非阻塞方式创建RDB文件</li>
+<li>使用子进程创建RDB文件</li>
+<li>O(n)  n为键值对总数量</li>
+</ul>
+</li>
+<li>通过配置自动创建RDB文件
+<ul>
+<li>save <seconds> <changes>
+<ul>
+<li>服务器在seconds秒内执行了changes次自改，自动BGSAVE。</li>
+</ul>
+</li>
+<li>Redis默认
+<ul>
+<li>save 60 10000</li>
+<li>save 300 100</li>
+<li>save 3600 1</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>RDB持久化缺陷
+<ul>
+<li>间隔越长，停机时丢失数据越多</li>
+<li>全量持久化操纵消耗大量计算资源和内存资源</li>
+</ul>
+</li>
+</ul>
+<h4 id="2aof持久化" class="headerLink"><a href="#2aof%e6%8c%81%e4%b9%85%e5%8c%96" class="header-mark"></a>2、AOF持久化</h4><ul>
+<li>增量式持久化</li>
+<li>服务器每次执行完写命令之后，都会以协议文本方式将被执行命令最佳到AOF文件末尾</li>
+<li>打开AOF持久化功能
+<ul>
+<li>appendbonly [yes | no]
+<ul>
+<li>appendonly yes  # 开启</li>
+<li>appendonly no  # 关闭</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>设置AOF文件的冲洗频率(把内存缓冲区数据写入文件)
+<ul>
+<li>appendfsync [always | everysec | no]
+<ul>
+<li>always：每次执行写命令</li>
+<li>everysec：每隔1s  （默认选项）</li>
+<li>no：不主动冲洗</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>AOF重写（优化AOF历史命令，只保存恢复当前数据库所需的尽可能少的命令）
+<ul>
+<li>BGRERITEAOF
+<ul>
+<li>显式触发AOF重写操作</li>
+<li>异步命令</li>
+<li>如果正在创建RDB文件，将会等待。避免两个写磁盘造成性能下降</li>
+<li>执行中，重复收到该命令将返回错误</li>
+<li>O(n)</li>
+</ul>
+</li>
+<li>auto-aof-rewrite-min-size <value>
+<ul>
+<li>auto-aof-rewrite-min-size 64m</li>
+<li>当AOF文件大于value时，将会自动执行重写</li>
+</ul>
+</li>
+<li>auto-aof-rewrite-percentage <value>
+<ul>
+<li>auto-aof-rewrite-percentage 100</li>
+<li>当前AOF文件体积比最后一次AOF重写之后打了一倍(100%)后重写</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>AOF持久化优点
+<ul>
+<li>比RDB安全性高得多(丢失数据少)</li>
+</ul>
+</li>
+<li>AOF持久化缺点
+<ul>
+<li>存储协议文本比RDB二进制大得多。生成时间也更长</li>
+<li>AOF需要执行命令来恢复。恢复速度更慢</li>
+<li>AOF重写会占用大量资源。创建子进程会造成短暂阻塞</li>
+</ul>
+</li>
+</ul>
+<h4 id="3rdb-aop混合持久化" class="headerLink"><a href="#3rdb-aop%e6%b7%b7%e5%90%88%e6%8c%81%e4%b9%85%e5%8c%96" class="header-mark"></a>3、RDB-AOP混合持久化</h4><ul>
+<li>AOF文件有RDB数据和生成RDB之后的命令组成</li>
+<li>aof-use-rdb-preamble <value>
+<ul>
+<li>yes: Redis在执行AOF重写操作时，会像执行BGSAVE，同事生成RDB数据写入AOF文件。对于新执行命令继续以协议文本方式写入AOF文件。</li>
+<li>no：redis默认</li>
+</ul>
+</li>
+</ul>
+<h4 id="4" class="headerLink"><a href="#4" class="header-mark"></a>4、</h4><h4 id="5无持久化" class="headerLink"><a href="#5%e6%97%a0%e6%8c%81%e4%b9%85%e5%8c%96" class="header-mark"></a>5、无持久化</h4><ul>
+<li>关闭系统默认持久化
+<ul>
+<li>save '' ''</li>
+</ul>
+</li>
+</ul>
+<h4 id="6关闭服务器" class="headerLink"><a href="#6%e5%85%b3%e9%97%ad%e6%9c%8d%e5%8a%a1%e5%99%a8" class="header-mark"></a>6、关闭服务器</h4><ul>
+<li>SHUTDOWN</li>
+<li>SHUTDOWN [save | nosave]
+<ul>
+<li>关闭前进行一次持久化操作</li>
+<li>开启RDB会执行SAVE命令。</li>
+<li>开启AOF会冲洗AOF文件。</li>
+</ul>
+</li>
+<li>O(n)  n为需要持久化的键值对数量</li>
+</ul>
+<h3 id="发布与订阅" class="headerLink"><a href="#%e5%8f%91%e5%b8%83%e4%b8%8e%e8%ae%a2%e9%98%85" class="header-mark"></a>发布与订阅</h3><h4 id="1publish" class="headerLink"><a href="#1publish" class="header-mark"></a>1、PUBLISH</h4><ul>
+<li>向频道发送消息</li>
+<li>PUBLISH channel message
+<ul>
+<li>PUBLISH &ldquo;news.it&rdquo; &ldquo;hello&rdquo;</li>
+</ul>
+</li>
+<li>O(n+m) n=订阅者数量。m=被订阅的模式总数量</li>
+</ul>
+<h4 id="2subscribe" class="headerLink"><a href="#2subscribe" class="header-mark"></a>2、SUBSCRIBE</h4><ul>
+<li>订阅频道</li>
+<li>SUBSCRIBE channel [channel &hellip; ]
+<ul>
+<li>SUBSCRIBE &ldquo;new.it&rdquo;</li>
+</ul>
+</li>
+<li>O(n)  n为订阅频道数量</li>
+</ul>
+<h4 id="3unsubscribe" class="headerLink"><a href="#3unsubscribe" class="header-mark"></a>3、UNSUBSCRIBE</h4><ul>
+<li>UNSUBSCRIBE [channel channel &hellip; ]</li>
+<li>O(n)</li>
+</ul>
+<h4 id="4psubscribe" class="headerLink"><a href="#4psubscribe" class="header-mark"></a>4、PSUBSCRIBE</h4><ul>
+<li>订阅模式</li>
+<li>PSUBSCRIBE pattern [pattern &hellip; ]
+<ul>
+<li>PSUBSCRIBE &ldquo;news.*&rdquo;</li>
+</ul>
+</li>
+<li>O(n)  n为给定模式数量</li>
+</ul>
+<h4 id="5punsubscribe" class="headerLink"><a href="#5punsubscribe" class="header-mark"></a>5、PUNSUBSCRIBE</h4><ul>
+<li>退订模式</li>
+<li>O(n*m) n=给定模式数量 m=被订阅模式数量</li>
+</ul>
+<h4 id="6pubsub" class="headerLink"><a href="#6pubsub" class="header-mark"></a>6、PUBSUB</h4><ul>
+<li>查看发布与订阅的相关信息</li>
+<li>PUBSUB CHANNELS
+<ul>
+<li>查看被订阅的频道</li>
+</ul>
+</li>
+<li>PUBSUB NUMSUB [channel channel &hellip;]
+<ul>
+<li>查看频道的订阅者数量</li>
+</ul>
+</li>
+<li>PUBSUB NUMPAT
+<ul>
+<li>查看被订阅模式的总数量</li>
+</ul>
+</li>
+<li>O(1)</li>
+</ul>
+<h3 id="模块" class="headerLink"><a href="#%e6%a8%a1%e5%9d%97" class="header-mark"></a>模块</h3><p>通常由C语言或其他能够与C语言交互的语言实现</p>
+<h4 id="1模块的管理" class="headerLink"><a href="#1%e6%a8%a1%e5%9d%97%e7%9a%84%e7%ae%a1%e7%90%86" class="header-mark"></a>1、模块的管理</h4><ul>
+<li>编译模块</li>
+<li>载入模块
+<ul>
+<li>在服务启动时
+<ul>
+<li>loadmoule &lt;module_path&gt;</li>
+</ul>
+</li>
+<li>在服务运行期间
+<ul>
+<li>module load module_path</li>
+</ul>
+</li>
+<li>O(1)</li>
+</ul>
+</li>
+<li>列出已载入的模块
+<ul>
+<li>MODULE LIST</li>
+<li>O(n) n为模块数量</li>
+</ul>
+</li>
+<li>卸载模块
+<ul>
+<li>MODULE UNLOAD module_name</li>
+<li>O(1)</li>
+</ul>
+</li>
+</ul>
+<h4 id="2rejson模块" class="headerLink"><a href="#2rejson%e6%a8%a1%e5%9d%97" class="header-mark"></a>2、ReJSON模块</h4><ul>
+<li>MODULE LOAD ~/src/rejson.so</li>
+<li>JSON.SET <key> <path> <json> [NX|XX]</li>
+<li>JSON.GET <key> [path path &hellip;]</li>
+<li>JSON.DEL <key> [path]</li>
+<li>JSON.MGET <key> [key &hellip;] <path></li>
+<li>JSON.TYPE <key> [path]</li>
+</ul>
+<h4 id="3redisql模块" class="headerLink"><a href="#3redisql%e6%a8%a1%e5%9d%97" class="header-mark"></a>3、RediSQL模块</h4><ul>
+<li>REDISQL CREATE_DB name [path]
+<ul>
+<li>创建数据库</li>
+<li>O(1)</li>
+</ul>
+</li>
+<li>DEL db [db &hellip; ]
+<ul>
+<li>删除数据库</li>
+</ul>
+</li>
+<li>REDISQL.EXEC db &ldquo;statement&rdquo;
+<ul>
+<li>执行语句</li>
+<li>REDISQL.EXEC MYDB &ldquo;INSERT INTO user VALUES(&lsquo;peter&rsquo;)&rdquo;</li>
+</ul>
+</li>
+<li>REDISQL.QUERY db &ldquo;statement&rdquo;
+<ul>
+<li>执行查询</li>
+</ul>
+</li>
+<li>REDISQL.COPY source destination
+<ul>
+<li>复制数据库</li>
+</ul>
+</li>
+</ul>
+<h4 id="4redisearch模块" class="headerLink"><a href="#4redisearch%e6%a8%a1%e5%9d%97" class="header-mark"></a>4、RediSearch模块</h4><ul>
+<li>FT.CREATE name SCHEMA [field [WEIGHT n] [TEXT | NUMERIC | GEO |TAG] [SORTABLE] ] [FIELD &hellip;]
+<ul>
+<li>创建索引</li>
+</ul>
+</li>
+<li>FT.ADD index docId score FIELDS field value [field value]
+<ul>
+<li>添加文档至索引</li>
+</ul>
+</li>
+<li>FT.ADDHASH index hash score [LANGUAGE lang] [REPLACE]
+<ul>
+<li>添加散列至索引</li>
+</ul>
+</li>
+<li>FT.INFO index
+<ul>
+<li>查看索引信息</li>
+</ul>
+</li>
+<li>FT.SEARCH index query [LANGUAGE lang]
+<ul>
+<li>检索文档</li>
+</ul>
+</li>
+<li>FT.GET index docId
+<ul>
+<li>FT.MGET index docId [docId &hellip;]</li>
+<li>从索引中获取文档</li>
+</ul>
+</li>
+<li>FT.DEL index docID
+<ul>
+<li>从索引中删除文档</li>
+</ul>
+</li>
+<li>FT.DROP index [KEEPDOCS]
+<ul>
+<li>移除索引</li>
+</ul>
+</li>
+</ul>
+<h3 id="复制" class="headerLink"><a href="#%e5%a4%8d%e5%88%b6" class="header-mark"></a>复制</h3><ul>
+<li>主从复制</li>
+</ul>
+<h4 id="1replicaof" class="headerLink"><a href="#1replicaof" class="header-mark"></a>1、REPLICAOF</h4><ul>
+<li>将服务器设置为从服务器</li>
+<li>REPLICAOF host port
+<ul>
+<li>成为host:port 服务的从服务器</li>
+</ul>
+</li>
+<li>在启动的同时设置为从服务器
+<ul>
+<li>replicaof <host> <port>
+<ul>
+<li>redis-server &ndash;port 10086 &ndash;replicaof 127.0.0.1 6379</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>取消复制
+<ul>
+<li>REPLICAOF no one</li>
+<li>不会清空数据，继续保留复制产生的所有数据</li>
+</ul>
+</li>
+</ul>
+<h4 id="2role" class="headerLink"><a href="#2role" class="header-mark"></a>2、ROLE</h4><ul>
+<li>查看服务器的角色</li>
+<li>ROLE
+<ul>
+<li>master  # 主服务器</li>
+<li>slave  # 从服务器</li>
+</ul>
+</li>
+<li>O(1)</li>
+</ul>
+<h4 id="3数据同步" class="headerLink"><a href="#3%e6%95%b0%e6%8d%ae%e5%90%8c%e6%ad%a5" class="header-mark"></a>3、数据同步</h4><ul>
+<li>执行REPLICAOF后：
+<ul>
+<li>主服务器执行BGSAVE生成RDB文件，并使用缓冲区存储之后执行的所有写命令</li>
+<li>通过套接字吧RDB传送给从服务器</li>
+<li>从服务器接受RDB文件，载入</li>
+<li>接受主服务器缓存区所有写命令</li>
+</ul>
+</li>
+<li>在线更新
+<ul>
+<li>主服务器执行完写命令后会把相同写命令或具有相同效果的写命令发给从服务器执行</li>
+</ul>
+</li>
+<li>部分同步
+<ul>
+<li>因故障下线的从服务器重新上线时</li>
+<li>主服务维护命令队列。如果从服务器上线时缺失的命令存在于队列则执行队列中的命令更新，否则执行完整同步</li>
+<li>通过repl-backlog-size 修改队列大小</li>
+</ul>
+</li>
+</ul>
+<h4 id="4无需硬盘的复制" class="headerLink"><a href="#4%e6%97%a0%e9%9c%80%e7%a1%ac%e7%9b%98%e7%9a%84%e5%a4%8d%e5%88%b6" class="header-mark"></a>4、无需硬盘的复制</h4><ul>
+<li>创建RDB文件导致复制变慢</li>
+<li>repl-diskless-sync &lt;yes|no&gt;
+<ul>
+<li>redis-server repl-diskless-sync yes</li>
+<li>不在本地创建RDB文件。创建子进程直接通过套接字将RDB文件写入从服务器</li>
+</ul>
+</li>
+</ul>
+<h4 id="5降低数据不一致情况出现的概率" class="headerLink"><a href="#5%e9%99%8d%e4%bd%8e%e6%95%b0%e6%8d%ae%e4%b8%8d%e4%b8%80%e8%87%b4%e6%83%85%e5%86%b5%e5%87%ba%e7%8e%b0%e7%9a%84%e6%a6%82%e7%8e%87" class="header-mark"></a>5、降低数据不一致情况出现的概率</h4><ul>
+<li>min-replicas-max-lag <seconds></li>
+<li>min-relicas-to-write <numbers>
+<ul>
+<li>主服务器只会在从服务器数量大于min-relicas-to-write且从服务器与主服务器最后一次成功通信的间隔不超过min-replicas-max-lag时才会执行写命令</li>
+</ul>
+</li>
+</ul>
+<h4 id="6可写的从服务器" class="headerLink"><a href="#6%e5%8f%af%e5%86%99%e7%9a%84%e4%bb%8e%e6%9c%8d%e5%8a%a1%e5%99%a8" class="header-mark"></a>6、可写的从服务器</h4><ul>
+<li>从服务器默认只允许读</li>
+<li>replica-read-only &lt;yes|no&gt;
+<ul>
+<li>设置no，表示可写</li>
+</ul>
+</li>
+</ul>
+<h4 id="7脚本复制" class="headerLink"><a href="#7%e8%84%9a%e6%9c%ac%e5%a4%8d%e5%88%b6" class="header-mark"></a>7、脚本复制</h4><ul>
+<li>脚本传播模式</li>
+<li>命令传播模式</li>
+<li>选择性命令传播</li>
+</ul>
+<h3 id="sentinel" class="headerLink"><a href="#sentinel" class="header-mark"></a>Sentinel</h3><ul>
+<li>故障转移：使用正常服务器替换下线服务器以维持系统正常运行</li>
+<li>Redis Sentinel通过心跳检测的方式监视多个主服务器以及它们属下从服务器，并在某个主服务器下线时自动对其实施故障转移</li>
+</ul>
+<h4 id="1启动sentinel" class="headerLink"><a href="#1%e5%90%af%e5%8a%a8sentinel" class="header-mark"></a>1、启动Sentinel</h4><ul>
+<li>redis-sentinel /etc/sentinel.conf
+<ul>
+<li>sentinel monitor <master-name> <ip> <port> <quorum>  # 配置</li>
+<li>&hellip;</li>
+</ul>
+</li>
+<li>对于重新上线的旧主服务器会被转换为当前主服务器的从服务器</li>
+<li>replica-priority配置选项可以设置从服务器优先级</li>
+<li>选主规则
+<ul>
+<li>优先级高</li>
+<li>偏移量大</li>
+<li>运行ID小</li>
+</ul>
+</li>
+</ul>
+<h4 id="2sentinel网络" class="headerLink"><a href="#2sentinel%e7%bd%91%e7%bb%9c" class="header-mark"></a>2、Sentinel网络</h4><h4 id="3sentinel管理命令" class="headerLink"><a href="#3sentinel%e7%ae%a1%e7%90%86%e5%91%bd%e4%bb%a4" class="header-mark"></a>3、Sentinel管理命令</h4><ul>
+<li>SENTINEL masters
+<ul>
+<li>获取所有被监视主服务器的信息</li>
+</ul>
+</li>
+<li>SENTINEL master <master-name>
+<ul>
+<li>获取指定主服务器的信息</li>
+</ul>
+</li>
+<li>SENTINEL slaves
+<ul>
+<li>获取所有被监视主服务器的从服务器信息</li>
+</ul>
+</li>
+<li>SENTINEL sentinels
+<ul>
+<li>获取其他Sentinel的相关信息</li>
+</ul>
+</li>
+<li>SENTINEL get-master-addr-by-name <master-name>
+<ul>
+<li>获取给定主服务器的IP地址和端口号</li>
+</ul>
+</li>
+<li>SENTINEL reset <pattern>
+<ul>
+<li>重置主服务器状态</li>
+</ul>
+</li>
+<li>SENTINEL failover <master-name>
+<ul>
+<li>强制执行故障转移</li>
+</ul>
+</li>
+<li>SENTINEL ckquorum <master-name>
+<ul>
+<li>检查可用Sentinel数量</li>
+</ul>
+</li>
+<li>SENTINEL flushconfig
+<ul>
+<li>强制写入配置文件</li>
+</ul>
+</li>
+</ul>
+<h4 id="4在线配置sentinel" class="headerLink"><a href="#4%e5%9c%a8%e7%ba%bf%e9%85%8d%e7%bd%aesentinel" class="header-mark"></a>4、在线配置Sentinel</h4><ul>
+<li>SENTINEL monitor <master-name> <ip> <port> <quorum>
+<ul>
+<li>监视给定主服务器</li>
+</ul>
+</li>
+<li>SENTINEL remove <master-name>
+<ul>
+<li>取消对给定主服务器的监视</li>
+</ul>
+</li>
+<li>SENTINEL set <master-name> <option> <value>
+<ul>
+<li>修改Sentinel配置选项的值</li>
+</ul>
+</li>
+</ul>
+<h3 id="集群" class="headerLink"><a href="#%e9%9b%86%e7%be%a4" class="header-mark"></a>集群</h3><h4 id="1基本特性" class="headerLink"><a href="#1%e5%9f%ba%e6%9c%ac%e7%89%b9%e6%80%a7" class="header-mark"></a>1、基本特性</h4><ul>
+<li>复制与高可用</li>
+<li>分片与重分片</li>
+<li>高性能</li>
+<li>简单易用</li>
+</ul>
+<h4 id="2搭建集群" class="headerLink"><a href="#2%e6%90%ad%e5%bb%ba%e9%9b%86%e7%be%a4" class="header-mark"></a>2、搭建集群</h4><ul>
+<li>快速搭建集群
+<ul>
+<li>create-cluster</li>
+</ul>
+</li>
+<li>手动搭建集群</li>
+</ul>
+<h4 id="3散列标签" class="headerLink"><a href="#3%e6%95%a3%e5%88%97%e6%a0%87%e7%ad%be" class="header-mark"></a>3、散列标签</h4><h4 id="4打开关闭从节点的读命令执行权限" class="headerLink"><a href="#4%e6%89%93%e5%bc%80%e5%85%b3%e9%97%ad%e4%bb%8e%e8%8a%82%e7%82%b9%e7%9a%84%e8%af%bb%e5%91%bd%e4%bb%a4%e6%89%a7%e8%a1%8c%e6%9d%83%e9%99%90" class="header-mark"></a>4、打开/关闭从节点的读命令执行权限</h4><ul>
+<li>READONLY
+<ul>
+<li>打开读命令执行权限</li>
+</ul>
+</li>
+<li>READWRITE
+<ul>
+<li>关闭读命令执行权限</li>
+</ul>
+</li>
+<li>O(1)</li>
+</ul>
+<h4 id="5集群管理工具redis-cli" class="headerLink"><a href="#5%e9%9b%86%e7%be%a4%e7%ae%a1%e7%90%86%e5%b7%a5%e5%85%b7redis-cli" class="header-mark"></a>5、集群管理工具redis-cli</h4><ul>
+<li>redis-cli &ndash;cluster help</li>
+</ul>
+<h4 id="6集群管理命令" class="headerLink"><a href="#6%e9%9b%86%e7%be%a4%e7%ae%a1%e7%90%86%e5%91%bd%e4%bb%a4" class="header-mark"></a>6、集群管理命令</h4></div><footer>
+                        <div class="post">
+
+
+<div class="post-share"></div>
+
+
+
+
+
+
+<div class="post-tags"><a href="/tags/redis/" class="tag">redis</a><a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" class="tag">读书笔记</a></div></div>
+                </footer></div>
+
+        <div id="toc-final"></div>
+        </div>
+
+    
+    </article>
+    <section class="page single comments content-block-position">
+        <h1 class="display-hidden">Комментарии</h1><div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></section></div>
+
+</main></div>
+
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </aside><link rel="stylesheet" href="/lib/valine/valine.min.css"><script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"valine":{"appId":"qawpEGaIhzxE9qCJm9hisTxW-gzGzoHsz","appKey":"FkncojWQwaOzzkHjlvW0vH3b","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://qawpegai.lc-cn-n1-shared.com","visitor":true}},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body>
+</html>

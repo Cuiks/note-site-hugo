@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>计算机组成原理 on Note Site</title>
-    <link>https://www.cuiks.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</link>
-    <description>Recent content in 计算机组成原理 on Note Site</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 27 May 2021 15:21:04 +0800</lastBuildDate><atom:link href="https://www.cuiks.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>计算机组成原理</title>
-      <link>https://www.cuiks.top/posts/computer_basic/</link>
-      <pubDate>Thu, 27 May 2021 15:21:04 +0800</pubDate>
-      
-      <guid>https://www.cuiks.top/posts/computer_basic/</guid>
-      <description></description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>计算机组成原理 - Tag - Note Site</title>
+        <link>https://cuiks.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</link>
+        <description>计算机组成原理 - Tag - Note Site</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 27 May 2021 15:21:04 &#43;0800</lastBuildDate><atom:link href="https://cuiks.top/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" rel="self" type="application/rss+xml" /><item>
+    <title>计算机组成原理</title>
+    <link>https://cuiks.top/computer_basic/</link>
+    <pubDate>Thu, 27 May 2021 15:21:04 &#43;0800</pubDate>
+    <author>cuiks.top</author>
+    <guid>https://cuiks.top/computer_basic/</guid>
+    <description><![CDATA[<ul>
+<li>计算机原理之概述</li>
+<li>计算机原理之组成</li>
+<li>计算机组成原理之计算</li>
+<li>计算机组成原理实践</li>
+</ul>]]></description>
+</item></channel>
 </rss>
