@@ -101,7 +101,7 @@ enableEmoji = true
         # whether to omit favicon resource links
         noFavicon = false
         # modern SVG favicon to use in place of older style .png and .ico files
-        svgFavicon = ""
+        svgFavicon = "https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/favicon.ico"
         # Android browser theme color
         themeColor = "#ffffff"
         # Safari mask icon color
