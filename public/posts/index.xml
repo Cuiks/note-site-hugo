@@ -3,7 +3,18 @@
         <title>All Posts - Note Site</title>
         <link>https://cuiks.top/posts/</link>
         <description>All Posts | Note Site</description>
-        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 14 Jul 2021 17:40:56 &#43;0800</lastBuildDate><atom:link href="https://cuiks.top/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 18 Jul 2021 20:50:46 &#43;0800</lastBuildDate><atom:link href="https://cuiks.top/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>分布式系统基础</title>
+    <link>https://cuiks.top/distributed-system/</link>
+    <pubDate>Sun, 18 Jul 2021 20:50:46 &#43;0800</pubDate>
+    <author>cuiks.top</author>
+    <guid>https://cuiks.top/distributed-system/</guid>
+    <description><![CDATA[<ul>
+<li>分布式系统中出现哪些故障会导致数据不一致</li>
+<li>分布式理论基础</li>
+<li>常见的分布式解决方案</li>
+</ul>]]></description>
+</item><item>
     <title>Redis设计与实现</title>
     <link>https://cuiks.top/redis_design_and_implement/</link>
     <pubDate>Wed, 14 Jul 2021 17:40:56 &#43;0800</pubDate>
