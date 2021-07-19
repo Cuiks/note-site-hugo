@@ -26,7 +26,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/cuiks.top\/operate_system\/"
-        },"genre": "posts","keywords": "计算机操作系统","wordCount":  620 ,
+        },"genre": "posts","keywords": "计算机操作系统","wordCount":  611 ,
         "url": "https:\/\/cuiks.top\/operate_system\/","datePublished": "2021-05-27T15:22:39+08:00","dateModified": "2021-05-27T15:22:39+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": ""
     }
     </script></head>
@@ -140,7 +140,7 @@
                         <h1 class="single-title flipInX">计算机操作系统</h1><div class="post-meta summary-post-meta"><span class="post-meta-date meta-item">
                                 <span class="svg-icon icon-clock"></span><time class="timeago" datetime="2021-05-27">2021-05-27</time>
                             </span><span class="post-meta-words meta-item">
-                                <span class="svg-icon icon-pencil"></span>620 words
+                                <span class="svg-icon icon-pencil"></span>611 words
                             </span>
                             <span class="post-meta-reading meta-item">
                                 <span class="svg-icon icon-stopwatch"></span>3 minutes
@@ -1372,40 +1372,19 @@ Linux文件类型</li>
 <h3 id="python同步原语" class="headerLink"><a href="#python%e5%90%8c%e6%ad%a5%e5%8e%9f%e8%af%ad" class="header-mark"></a>Python同步原语</h3><ul>
 <li>互斥锁</li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">lock</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Lock</span><span class="p">()</span>
-<span class="n">lock</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
-<span class="n">lock</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
-</code></pre></td></tr></table>
-</div>
-</div><ul>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000">lock</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">threading</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">Lock</span><span style="color:#000;font-weight:bold">()</span>
+<span style="color:#000">lock</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">acquire</span><span style="color:#000;font-weight:bold">()</span>
+<span style="color:#000">lock</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">release</span><span style="color:#000;font-weight:bold">()</span>
+</code></pre></div><ul>
 <li>条件变量</li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="n">condition</span> <span class="o">=</span> <span class="n">threading</span><span class="o">.</span><span class="n">Condition</span><span class="p">()</span>
-<span class="n">condition</span><span class="o">.</span><span class="n">acquire</span><span class="p">()</span>
-<span class="n">condition</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#000">condition</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">threading</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">Condition</span><span style="color:#000;font-weight:bold">()</span>
+<span style="color:#000">condition</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">acquire</span><span style="color:#000;font-weight:bold">()</span>
+<span style="color:#000">condition</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">release</span><span style="color:#000;font-weight:bold">()</span>
 
-<span class="n">condition</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span> <span class="c1"># 等待</span>
-<span class="n">condition</span><span class="o">.</span><span class="n">notify</span><span class="p">()</span> <span class="c1"># 通知</span>
-</code></pre></td></tr></table>
-</div>
-</div><h3 id="实现线程安全的队列queue" class="headerLink"><a href="#%e5%ae%9e%e7%8e%b0%e7%ba%bf%e7%a8%8b%e5%ae%89%e5%85%a8%e7%9a%84%e9%98%9f%e5%88%97queue" class="header-mark"></a>实现线程安全的队列Queue</h3><ul>
+<span style="color:#000">condition</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">wait</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#8f5902;font-style:italic"># 等待</span>
+<span style="color:#000">condition</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">notify</span><span style="color:#000;font-weight:bold">()</span> <span style="color:#8f5902;font-style:italic"># 通知</span>
+</code></pre></div><h3 id="实现线程安全的队列queue" class="headerLink"><a href="#%e5%ae%9e%e7%8e%b0%e7%ba%bf%e7%a8%8b%e5%ae%89%e5%85%a8%e7%9a%84%e9%98%9f%e5%88%97queue" class="header-mark"></a>实现线程安全的队列Queue</h3><ul>
 <li>队列用于存放多个元素，是存放各种元素的“池”</li>
 <li>队列可能有多个线程同时操作，因此需要保证线程安全</li>
 </ul>

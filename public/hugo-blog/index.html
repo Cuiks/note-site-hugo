@@ -25,7 +25,7 @@ Hugo安装及使用
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/cuiks.top\/hugo-blog\/"
-        },"genre": "posts","keywords": "hugo, CloudBase, blog","wordCount":  211 ,
+        },"genre": "posts","keywords": "hugo, CloudBase, blog","wordCount":  195 ,
         "url": "https:\/\/cuiks.top\/hugo-blog\/","datePublished": "2021-03-30T20:50:09+08:00","dateModified": "2021-03-30T20:50:09+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": ""
     }
     </script></head>
@@ -139,7 +139,7 @@ Hugo安装及使用
                         <h1 class="single-title flipInX">Hugo &#43; 腾讯云CloudBase 搭建个人博客</h1><div class="post-meta summary-post-meta"><span class="post-meta-date meta-item">
                                 <span class="svg-icon icon-clock"></span><time class="timeago" datetime="2021-03-30">2021-03-30</time>
                             </span><span class="post-meta-words meta-item">
-                                <span class="svg-icon icon-pencil"></span>211 words
+                                <span class="svg-icon icon-pencil"></span>195 words
                             </span>
                             <span class="post-meta-reading meta-item">
                                 <span class="svg-icon icon-stopwatch"></span>One minute
@@ -214,35 +214,18 @@ Hugo安装及使用
 <p>Hugo <a href="https://gohugo.io/getting-started/installing/" target="_blank" rel="noopener noreffer">安装教程</a></p>
 <ul>
 <li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># windows 直接下载releases安装。然后设置环境变量添加hugo</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#8f5902;font-style:italic"># windows 直接下载releases安装。然后设置环境变量添加hugo</span>
 https://github.com/gohugoio/hugo/releases
 
-<span class="c1"># mac。先安装homebrew 然后brew安装hugo</span>
-/usr/bin/ruby -e <span class="s2">&#34;</span><span class="k">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">&#34;</span>
+<span style="color:#8f5902;font-style:italic"># mac。先安装homebrew 然后brew安装hugo</span>
+/usr/bin/ruby -e <span style="color:#4e9a06">&#34;</span><span style="color:#204a87;font-weight:bold">$(</span>curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install<span style="color:#204a87;font-weight:bold">)</span><span style="color:#4e9a06">&#34;</span>
 brew install hugo
 
-<span class="c1"># linux。github releases下载安装 或 使用包管理工具</span>
+<span style="color:#8f5902;font-style:italic"># linux。github releases下载安装 或 使用包管理工具</span>
 sudo apt-get install hugo
 sudo pacman -Sy hugo
 sudo dnf install hugo
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 </ul>
 </li>
 <li>
@@ -289,23 +272,12 @@ sudo dnf install hugo
 <p>Hugo官方提供了多种[主题][https://themes.gohugo.io/]。下载到站点下的themes目录下</p>
 </li>
 <li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> quickstart
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#204a87">cd</span> quickstart
 git init
 git submodule add https://github.com/theNewDynamic/gohugo-theme-ananke.git themes/ananke
-<span class="c1"># 使用主题</span>
-<span class="nb">echo</span> <span class="nv">theme</span> <span class="o">=</span> <span class="se">\&#34;</span>ananke<span class="se">\&#34;</span> &gt;&gt; config.toml
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<span style="color:#8f5902;font-style:italic"># 使用主题</span>
+<span style="color:#204a87">echo</span> <span style="color:#000">theme</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">\&#34;</span>ananke<span style="color:#4e9a06">\&#34;</span> &gt;&gt; config.toml
+</code></pre></div></li>
 </ul>
 <p><a href="https://gohugo.io/getting-started/quick-start/#step-4-add-some-content" target="_blank" rel="noopener noreffer">新建文章</a></p>
 <ul>

@@ -637,11 +637,16 @@ enableEmoji = true
   # Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
   # 语法高亮设置 (https://gohugo.io/content-management/syntax-highlighting)
   [markup.highlight]
+    anchorLineNos = false
     codeFences = true
-    guessSyntax = true
-    lineNos = true
+    guessSyntax = false
+    hl_Lines = ""
+    lineAnchors = ""
+    lineNoStart = 1
+    lineNos = false
     lineNumbersInTable = true
-    noClasses = false
+    noClasses = true
+    style = "tango"
   # Goldmark is from Hugo 0.60 the default library used for Markdown
   # Goldmark 是 Hugo 0.60 以来的默认 Markdown 解析库
   [markup.goldmark]

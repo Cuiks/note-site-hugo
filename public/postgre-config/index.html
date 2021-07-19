@@ -25,7 +25,7 @@ postgre账号授权
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/cuiks.top\/postgre-config\/"
-        },"genre": "posts","keywords": "database, postgresql","wordCount":  104 ,
+        },"genre": "posts","keywords": "database, postgresql","wordCount":  91 ,
         "url": "https:\/\/cuiks.top\/postgre-config\/","datePublished": "2021-04-06T10:31:03+08:00","dateModified": "2021-04-06T10:31:03+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": ""
     }
     </script></head>
@@ -139,7 +139,7 @@ postgre账号授权
                         <h1 class="single-title flipInX">postgresql配置远程访问、账号授权</h1><div class="post-meta summary-post-meta"><span class="post-meta-date meta-item">
                                 <span class="svg-icon icon-clock"></span><time class="timeago" datetime="2021-04-06">2021-04-06</time>
                             </span><span class="post-meta-words meta-item">
-                                <span class="svg-icon icon-pencil"></span>104 words
+                                <span class="svg-icon icon-pencil"></span>91 words
                             </span>
                             <span class="post-meta-reading meta-item">
                                 <span class="svg-icon icon-stopwatch"></span>One minute
@@ -176,57 +176,26 @@ postgre账号授权
 <h2 id="远程访问" class="headerLink"><a href="#%e8%bf%9c%e7%a8%8b%e8%ae%bf%e9%97%ae" class="header-mark"></a>远程访问</h2><ol>
 <li>
 <p>查看配置文件位置</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 连接pgsql</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#8f5902;font-style:italic"># 连接pgsql</span>
 psql -U &lt;用户名&gt;
-<span class="c1"># 查看配置文件位置</span>
-<span class="k">select</span> name,setting from pg_settings where <span class="nv">category</span><span class="o">=</span><span class="s1">&#39;File Locations&#39;</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<span style="color:#8f5902;font-style:italic"># 查看配置文件位置</span>
+<span style="color:#204a87;font-weight:bold">select</span> name,setting from pg_settings where <span style="color:#000">category</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#39;File Locations&#39;</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></li>
 <li>
 <p>修改服务监听地址</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 修改配置文件postgresql.conf。上述步骤获取</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#8f5902;font-style:italic"># 修改配置文件postgresql.conf。上述步骤获取</span>
 vim &lt;config_file 配置文件地址&gt;
-<span class="c1"># 修改监听地址。打开配置项  listen_addresses</span>
-<span class="nv">listen_addresses</span> <span class="o">=</span> <span class="s1">&#39;*&#39;</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<span style="color:#8f5902;font-style:italic"># 修改监听地址。打开配置项  listen_addresses</span>
+<span style="color:#000">listen_addresses</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#4e9a06">&#39;*&#39;</span>
+</code></pre></div></li>
 <li>
 <p>修改<code>Client Authentication</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># 修改配置文件pg_hba.conf。第一步获取</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#8f5902;font-style:italic"># 修改配置文件pg_hba.conf。第一步获取</span>
 vim &lt;hba_file 配置文件地址&gt;
-<span class="c1"># 修改`IPv4 local connections:`行配置。允许所有用户所有IP以MD5加密方式访问。</span>
-IPv4 <span class="nb">local</span> connections:
+<span style="color:#8f5902;font-style:italic"># 修改`IPv4 local connections:`行配置。允许所有用户所有IP以MD5加密方式访问。</span>
+IPv4 <span style="color:#204a87">local</span> connections:
 host    all             all             0.0.0.0/0               md5
-</code></pre></td></tr></table>
-</div>
-</div></li>
+</code></pre></div></li>
 <li>
 <p>重启pgsql服务</p>
 <p><code>sudo systemctl restart postgresql.service</code></p>

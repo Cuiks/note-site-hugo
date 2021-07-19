@@ -28,7 +28,7 @@ Redis数据类型
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/cuiks.top\/redis_design_and_implement\/"
-        },"genre": "posts","keywords": "redis, 读书笔记","wordCount":  2075 ,
+        },"genre": "posts","keywords": "redis, 读书笔记","wordCount":  1916 ,
         "url": "https:\/\/cuiks.top\/redis_design_and_implement\/","datePublished": "2021-07-14T17:40:56+08:00","dateModified": "2021-07-14T17:40:56+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": ""
     }
     </script></head>
@@ -142,10 +142,10 @@ Redis数据类型
                         <h1 class="single-title flipInX">Redis设计与实现</h1><div class="post-meta summary-post-meta"><span class="post-meta-date meta-item">
                                 <span class="svg-icon icon-clock"></span><time class="timeago" datetime="2021-07-14">2021-07-14</time>
                             </span><span class="post-meta-words meta-item">
-                                <span class="svg-icon icon-pencil"></span>2075 words
+                                <span class="svg-icon icon-pencil"></span>1916 words
                             </span>
                             <span class="post-meta-reading meta-item">
-                                <span class="svg-icon icon-stopwatch"></span>10 minutes
+                                <span class="svg-icon icon-stopwatch"></span>9 minutes
                             </span>
                         </div>
 
@@ -443,27 +443,14 @@ Redis数据类型
 <p><code>sds</code>的实现</p>
 <ul>
 <li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">typedef</span> <span class="kt">char</span> <span class="o">*</span><span class="n">sds</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#204a87;font-weight:bold">typedef</span> <span style="color:#204a87;font-weight:bold">char</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">sds</span>
 
- <span class="k">struct</span> <span class="n">sdshdr</span> <span class="p">{</span>
-   <span class="kt">int</span> <span class="n">len</span><span class="p">;</span> <span class="c1">// buf已占用长度
-</span><span class="c1"></span>   <span class="kt">int</span> <span class="n">free</span><span class="p">;</span> <span class="c1">// bug剩余可用长度
-</span><span class="c1"></span>   <span class="kt">char</span> <span class="n">buf</span><span class="p">[];</span> <span class="c1">//实际保存字符串数据的地方
-</span><span class="c1"></span> <span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+ <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">sdshdr</span> <span style="color:#000;font-weight:bold">{</span>
+   <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">len</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// buf已占用长度
+</span><span style="color:#8f5902;font-style:italic"></span>   <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">free</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// bug剩余可用长度
+</span><span style="color:#8f5902;font-style:italic"></span>   <span style="color:#204a87;font-weight:bold">char</span> <span style="color:#000">buf</span><span style="color:#000;font-weight:bold">[];</span> <span style="color:#8f5902;font-style:italic">//实际保存字符串数据的地方
+</span><span style="color:#8f5902;font-style:italic"></span> <span style="color:#000;font-weight:bold">}</span>
+</code></pre></div></li>
 </ul>
 </li>
 </ul>
@@ -532,23 +519,12 @@ Redis数据类型
 <p>listNode是双端链表的节点</p>
 <ul>
 <li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">listNode</span><span class="p">{</span>
-  <span class="k">struct</span> <span class="n">listNode</span> <span class="o">*</span><span class="n">prev</span><span class="p">;</span> <span class="c1">// 前驱结点
-</span><span class="c1"></span>  <span class="k">struct</span> <span class="n">listNode</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span> <span class="c1">// 后继节点
-</span><span class="c1"></span>  <span class="kt">void</span> <span class="o">*</span><span class="n">value</span><span class="p">;</span> <span class="c1">// 值
-</span><span class="c1"></span><span class="p">}</span> <span class="n">listNode</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#204a87;font-weight:bold">typedef</span> <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">listNode</span><span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">listNode</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">prev</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 前驱结点
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">listNode</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">next</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 后继节点
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">value</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 值
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span> <span style="color:#000">listNode</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></li>
 <li>
 <p><code>value</code>的属性是<code>void *</code>，说明对保存的值的类型不做限制</p>
 </li>
@@ -559,29 +535,15 @@ Redis数据类型
 <p>list是双端链表本身</p>
 <ul>
 <li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">list</span><span class="p">{</span>
-  <span class="n">listNode</span> <span class="o">*</span><span class="n">head</span><span class="p">;</span> <span class="c1">//表头指针
-</span><span class="c1"></span>  <span class="n">listNode</span> <span class="o">*</span><span class="n">tail</span><span class="p">;</span> <span class="c1">//表尾指针
-</span><span class="c1"></span>  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">len</span><span class="p">;</span> <span class="c1">// 节点数量
-</span><span class="c1"></span>  <span class="kt">void</span> <span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="n">dup</span><span class="p">)(</span><span class="kt">void</span> <span class="o">*</span><span class="n">ptr</span><span class="p">);</span> <span class="c1">// 复制函数
-</span><span class="c1"></span>  <span class="kt">void</span> <span class="p">(</span><span class="o">*</span><span class="n">free</span><span class="p">)(</span><span class="kt">void</span> <span class="o">*</span><span class="n">ptr</span><span class="p">);</span> <span class="c1">// 释放函数
-</span><span class="c1"></span>  <span class="kt">int</span> <span class="p">(</span><span class="o">*</span><span class="n">match</span><span class="p">)(</span><span class="kt">void</span> <span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">key</span><span class="p">);</span> <span class="c1">// 比对函数
-</span><span class="c1"></span><span class="p">}</span> <span class="n">list</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#204a87;font-weight:bold">typedef</span> <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">list</span><span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#000">listNode</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">head</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">//表头指针
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#000">listNode</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">tail</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">//表尾指针
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">unsigned</span> <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">len</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 节点数量
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">dup</span><span style="color:#000;font-weight:bold">)(</span><span style="color:#204a87;font-weight:bold">void</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">ptr</span><span style="color:#000;font-weight:bold">);</span> <span style="color:#8f5902;font-style:italic">// 复制函数
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">free</span><span style="color:#000;font-weight:bold">)(</span><span style="color:#204a87;font-weight:bold">void</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">ptr</span><span style="color:#000;font-weight:bold">);</span> <span style="color:#8f5902;font-style:italic">// 释放函数
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">match</span><span style="color:#000;font-weight:bold">)(</span><span style="color:#204a87;font-weight:bold">void</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">ptr</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">key</span><span style="color:#000;font-weight:bold">);</span> <span style="color:#8f5902;font-style:italic">// 比对函数
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span> <span style="color:#000">list</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></li>
 </ul>
 </li>
 <li>
@@ -607,21 +569,11 @@ Redis数据类型
 <li>沿着prev指针从表尾向表头</li>
 </ul>
 <p>结构定义：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">listIter</span> <span class="p">{</span>
-  <span class="n">listNode</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span> <span class="c1">//下一节点
-</span><span class="c1"></span>  <span class="kt">int</span> <span class="n">direction</span><span class="p">;</span> <span class="c1">// 迭代方向
-</span><span class="c1"></span><span class="p">}</span> <span class="n">listIter</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div><ul>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#204a87;font-weight:bold">typedef</span> <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">listIter</span> <span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#000">listNode</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">next</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">//下一节点
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">direction</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 迭代方向
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span> <span style="color:#000">listIter</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div><ul>
 <li>direction选项
 <ul>
 <li><code>adlist.h/AL_START_HEAD</code>  从表头到表尾</li>
@@ -678,27 +630,14 @@ Redis数据类型
 <p>Redis选择了高效且简繁的哈希表作为字典的底层实现。</p>
 <ul>
 <li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">dict</span> <span class="p">{</span>
-  <span class="n">dictType</span> <span class="o">*</span><span class="n">type</span><span class="p">;</span> <span class="c1">// 特定于类型的处理函数
-</span><span class="c1"></span>  <span class="kt">void</span> <span class="o">*</span><span class="n">privdata</span><span class="p">;</span> <span class="c1">// 类型处理函数的私有数据
-</span><span class="c1"></span>  <span class="n">dictht</span> <span class="n">ht</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span> <span class="c1">// 哈希表(2个)
-</span><span class="c1"></span>  <span class="kt">int</span> <span class="n">rehashidx</span><span class="p">;</span> <span class="c1">// 记录rehash进度的标志，值为-1表示rehash未进行
-</span><span class="c1"></span>  <span class="kt">int</span> <span class="n">iterators</span><span class="p">;</span> <span class="c1">// 当前正在运作的安全迭代器数量
-</span><span class="c1"></span><span class="p">}</span> <span class="n">dict</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#204a87;font-weight:bold">typedef</span> <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">dict</span> <span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#000">dictType</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">type</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 特定于类型的处理函数
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">privdata</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 类型处理函数的私有数据
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#000">dictht</span> <span style="color:#000">ht</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">];</span> <span style="color:#8f5902;font-style:italic">// 哈希表(2个)
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">rehashidx</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 记录rehash进度的标志，值为-1表示rehash未进行
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">iterators</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 当前正在运作的安全迭代器数量
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span> <span style="color:#000">dict</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></li>
 <li>
 <p>dict的API</p>
 <ul>
@@ -719,27 +658,14 @@ Redis数据类型
 <p>哈希表的实现</p>
 <ul>
 <li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">// dict.h/dicht
-</span><span class="c1"></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">dictht</span> <span class="p">{</span>
-  <span class="n">dictEntry</span> <span class="o">**</span><span class="n">table</span><span class="p">;</span> <span class="c1">// 哈希表节点指针数组（俗称桶，bucket）
-</span><span class="c1"></span>  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">size</span><span class="p">;</span> <span class="c1">// 指针数组的大小
-</span><span class="c1"></span>  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">sizemask</span><span class="p">;</span> <span class="c1">// 指针数组的长度掩码，用于计算索引值
-</span><span class="c1"></span>  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">used</span><span class="p">;</span> <span class="c1">// 哈希表现有的节点数量
-</span><span class="c1"></span><span class="p">}</span> <span class="n">dictht</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#8f5902;font-style:italic">// dict.h/dicht
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">typedef</span> <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">dictht</span> <span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#000">dictEntry</span> <span style="color:#ce5c00;font-weight:bold">**</span><span style="color:#000">table</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 哈希表节点指针数组（俗称桶，bucket）
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">unsigned</span> <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">size</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 指针数组的大小
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">unsigned</span> <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">sizemask</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 指针数组的长度掩码，用于计算索引值
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">unsigned</span> <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">used</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 哈希表现有的节点数量
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span> <span style="color:#000">dictht</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></li>
 <li>
 <p><code>table</code>属性是一个数组，数组每个元素都是一个指向<code>dictEntry</code>结构的指针。</p>
 </li>
@@ -747,31 +673,16 @@ Redis数据类型
 <p>每个<code>dictEntry</code>都保存着一个键值对，以及一个指向另一个<code>dictEntry</code>结构的指针：</p>
 </li>
 <li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">dictEntry</span> <span class="p">{</span>
-  <span class="kt">void</span> <span class="o">*</span><span class="n">key</span><span class="p">;</span> <span class="c1">// 键
-</span><span class="c1"></span>  <span class="k">union</span> <span class="p">{</span>
-    <span class="kt">void</span> <span class="o">*</span><span class="n">val</span><span class="p">;</span>
-    <span class="kt">uint64_t</span> <span class="n">u64</span><span class="p">;</span>
-    <span class="kt">int64_t</span> <span class="n">s64</span><span class="p">;</span>
-  <span class="p">}</span> <span class="n">v</span><span class="p">;</span> <span class="c1">// 值
-</span><span class="c1"></span>  <span class="k">struct</span> <span class="n">dictEntry</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span> <span class="c1">// 链往后继节点
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#204a87;font-weight:bold">typedef</span> <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">dictEntry</span> <span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">key</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 键
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">union</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">val</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">uint64_t</span> <span style="color:#000">u64</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">int64_t</span> <span style="color:#000">s64</span><span style="color:#000;font-weight:bold">;</span>
+  <span style="color:#000;font-weight:bold">}</span> <span style="color:#000">v</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 值
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">dictEntry</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">next</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 链往后继节点
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div></li>
 </ul>
 <p>整个字典结构：</p>
 <ul>
@@ -897,31 +808,16 @@ Redis数据类型
 <p>收缩规则定义：</p>
 <ul>
 <li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">// redis.c/htNeedResize
-</span><span class="c1"></span><span class="kt">int</span> <span class="nf">htNeedsResize</span><span class="p">(</span><span class="n">dict</span> <span class="o">*</span><span class="n">dict</span><span class="p">)</span> <span class="p">{</span> 
-  <span class="kt">long</span> <span class="kt">long</span> <span class="n">size</span><span class="p">,</span> <span class="n">used</span><span class="p">;</span>
-  <span class="n">size</span> <span class="o">=</span> <span class="n">dictSlots</span><span class="p">(</span><span class="n">dict</span><span class="p">);</span> <span class="c1">// 哈希表已用节点数量 
-</span><span class="c1"></span>  <span class="n">used</span> <span class="o">=</span> <span class="n">dictSize</span><span class="p">(</span><span class="n">dict</span><span class="p">);</span> <span class="c1">// 哈希表大小
-</span><span class="c1"></span>  <span class="c1">// 当哈希表的大小大于 DICT_HT_INITIAL_SIZE 并且字典的填充率低于 REDIS_HT_MINFILL 时 返回 1
-</span><span class="c1"></span>	<span class="k">return</span> <span class="p">(</span><span class="n">size</span> <span class="o">&amp;&amp;</span> <span class="n">used</span> <span class="o">&amp;&amp;</span> <span class="n">size</span> <span class="o">&gt;</span> <span class="n">DICT_HT_INITIAL_SIZE</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">used</span><span class="o">*</span><span class="mi">100</span><span class="o">/</span><span class="n">size</span> <span class="o">&lt;</span> <span class="n">REDIS_HT_MINFILL</span><span class="p">));</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#8f5902;font-style:italic">// redis.c/htNeedResize
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">htNeedsResize</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">dict</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">dict</span><span style="color:#000;font-weight:bold">)</span> <span style="color:#000;font-weight:bold">{</span> 
+  <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">size</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">used</span><span style="color:#000;font-weight:bold">;</span>
+  <span style="color:#000">size</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">dictSlots</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">dict</span><span style="color:#000;font-weight:bold">);</span> <span style="color:#8f5902;font-style:italic">// 哈希表已用节点数量 
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#000">used</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">dictSize</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">dict</span><span style="color:#000;font-weight:bold">);</span> <span style="color:#8f5902;font-style:italic">// 哈希表大小
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#8f5902;font-style:italic">// 当哈希表的大小大于 DICT_HT_INITIAL_SIZE 并且字典的填充率低于 REDIS_HT_MINFILL 时 返回 1
+</span><span style="color:#8f5902;font-style:italic"></span>	<span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">size</span> <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#000">used</span> <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#000">size</span> <span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000">DICT_HT_INITIAL_SIZE</span> <span style="color:#ce5c00;font-weight:bold">&amp;&amp;</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">used</span><span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#0000cf;font-weight:bold">100</span><span style="color:#ce5c00;font-weight:bold">/</span><span style="color:#000">size</span> <span style="color:#ce5c00;font-weight:bold">&lt;</span> <span style="color:#000">REDIS_HT_MINFILL</span><span style="color:#000;font-weight:bold">));</span>
 
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div></li>
 <li>
 <p>默认情况下，<code>DICT_HT_INITIAL_SIZE</code>的值为10。也就是当字典填充率低于10%时，程序就可以对这个字典进行收缩操作的。</p>
 </li>
@@ -961,31 +857,16 @@ Redis数据类型
 <p>迭代器的数据结构定义：</p>
 <ul>
 <li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">dictIterator</span> <span class="p">{</span>
-  <span class="n">dict</span> <span class="o">*</span><span class="n">d</span><span class="p">;</span> <span class="c1">//正在迭代的字典
-</span><span class="c1"></span>
-  <span class="kt">int</span> <span class="n">table</span><span class="p">,</span> <span class="c1">// 正在迭代的哈希表的号码(0或者1)
-</span><span class="c1"></span>        <span class="n">index</span><span class="p">,</span> <span class="c1">// 正在迭代的哈希数组的索引
-</span><span class="c1"></span>        <span class="n">safe</span><span class="p">;</span> <span class="c1">// 是否安全？
-</span><span class="c1"></span>  <span class="n">dictEntry</span> <span class="o">*</span><span class="n">entry</span><span class="p">,</span> <span class="c1">// 当前哈希节点
-</span><span class="c1"></span>                    <span class="o">*</span><span class="n">nextEntry</span><span class="p">;</span> <span class="c1">// 当前哈希节点的后继节点
-</span><span class="c1"></span><span class="p">}</span> <span class="n">dictIterator</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#204a87;font-weight:bold">typedef</span> <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">dictIterator</span> <span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#000">dict</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">d</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">//正在迭代的字典
+</span><span style="color:#8f5902;font-style:italic"></span>
+  <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">table</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#8f5902;font-style:italic">// 正在迭代的哈希表的号码(0或者1)
+</span><span style="color:#8f5902;font-style:italic"></span>        <span style="color:#000">index</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#8f5902;font-style:italic">// 正在迭代的哈希数组的索引
+</span><span style="color:#8f5902;font-style:italic"></span>        <span style="color:#000">safe</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 是否安全？
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#000">dictEntry</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">entry</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#8f5902;font-style:italic">// 当前哈希节点
+</span><span style="color:#8f5902;font-style:italic"></span>                    <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">nextEntry</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 当前哈希节点的后继节点
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span> <span style="color:#000">dictIterator</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></li>
 </ul>
 </li>
 <li>
@@ -1042,52 +923,24 @@ Redis数据类型
 <li>每个节点都带有一个高度为1层的后退至真，用于从表尾方向向表头方向迭代</li>
 </ul>
 <p>结构定义：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">// redis.h/zskiplist
-</span><span class="c1"></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">zskiplist</span> <span class="p">{</span>
-  <span class="k">struct</span> <span class="n">zskiplistNode</span> <span class="o">*</span><span class="n">header</span><span class="p">,</span> <span class="o">*</span><span class="n">tail</span><span class="p">;</span> <span class="c1">// 头节点，尾节点
-</span><span class="c1"></span>  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">length</span><span class="p">;</span> <span class="c1">// 节点数量
-</span><span class="c1"></span>  <span class="kt">int</span> <span class="n">level</span><span class="p">;</span> <span class="c1">// 目前表内节点的最大层数
-</span><span class="c1"></span><span class="p">}</span> <span class="n">zskiplist</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>跳跃表节点定义：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">// redis.h/zskiplistNode
-</span><span class="c1"></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">zskiplistNode</span> <span class="p">{</span>
-  <span class="n">robj</span> <span class="o">*</span><span class="n">obj</span><span class="p">;</span> <span class="c1">// member对象
-</span><span class="c1"></span>  <span class="kt">double</span> <span class="n">score</span><span class="p">;</span> <span class="c1">// 分值
-</span><span class="c1"></span>  <span class="k">struct</span> <span class="n">zskiplistNode</span> <span class="o">*</span><span class="n">backward</span><span class="p">;</span> <span class="c1">// 后退指针
-</span><span class="c1"></span>  <span class="k">struct</span> <span class="n">zskiplistLevel</span> <span class="p">{</span> <span class="c1">// 层
-</span><span class="c1"></span>    <span class="k">struct</span> <span class="n">zskiplistNode</span> <span class="o">*</span><span class="n">forward</span><span class="p">;</span> <span class="c1">// 前进指针
-</span><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">span</span><span class="p">;</span> <span class="c1">// 这个层跨越的节点数量
-</span><span class="c1"></span>  <span class="p">}</span> <span class="n">level</span><span class="p">[];</span>
-<span class="p">}</span> <span class="n">zskiplistNode</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>操作这两个数据结构API：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#8f5902;font-style:italic">// redis.h/zskiplist
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">typedef</span> <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">zskiplist</span> <span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">zskiplistNode</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">header</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">tail</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 头节点，尾节点
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">unsigned</span> <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">length</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 节点数量
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">level</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 目前表内节点的最大层数
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span> <span style="color:#000">zskiplist</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div><p>跳跃表节点定义：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#8f5902;font-style:italic">// redis.h/zskiplistNode
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">typedef</span> <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">zskiplistNode</span> <span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#000">robj</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">obj</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// member对象
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">double</span> <span style="color:#000">score</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 分值
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">zskiplistNode</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">backward</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 后退指针
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">zskiplistLevel</span> <span style="color:#000;font-weight:bold">{</span> <span style="color:#8f5902;font-style:italic">// 层
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">zskiplistNode</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">forward</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 前进指针
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">unsigned</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">span</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 这个层跨越的节点数量
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#000;font-weight:bold">}</span> <span style="color:#000">level</span><span style="color:#000;font-weight:bold">[];</span>
+<span style="color:#000;font-weight:bold">}</span> <span style="color:#000">zskiplistNode</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div><p>操作这两个数据结构API：</p>
 <p>![image-20210709144926947](/Users/cks/Library/Application Support/typora-user-images/image-20210709144926947.png)</p>
 <h5 id="142-跳跃表的应用" class="headerLink"><a href="#142-%e8%b7%b3%e8%b7%83%e8%a1%a8%e7%9a%84%e5%ba%94%e7%94%a8" class="header-mark"></a>1.4.2 跳跃表的应用</h5><ul>
 <li>实现有序集数据类型
@@ -1127,42 +980,20 @@ Redis数据类型
 <h5 id="222-数据结构和主要操作" class="headerLink"><a href="#222-%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e5%92%8c%e4%b8%bb%e8%a6%81%e6%93%8d%e4%bd%9c" class="header-mark"></a>2.2.2 数据结构和主要操作</h5><ul>
 <li>定义</li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">// intset.h/intset
-</span><span class="c1"></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">intset</span> <span class="p">{</span>
-  <span class="kt">uint32_t</span> <span class="n">encoding</span><span class="p">;</span> <span class="c1">// 保存元素所使用的的类型的长度
-</span><span class="c1"></span>  <span class="kt">uint32_t</span> <span class="n">length</span><span class="p">;</span> <span class="c1">// 元素个数
-</span><span class="c1"></span>  <span class="kt">int8_t</span> <span class="n">contents</span><span class="p">[];</span> <span class="c1">// 保存元素的数组
-</span><span class="c1"></span><span class="p">}</span> <span class="n">intset</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div><ul>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#8f5902;font-style:italic">// intset.h/intset
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">typedef</span> <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">intset</span> <span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#204a87;font-weight:bold">uint32_t</span> <span style="color:#000">encoding</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 保存元素所使用的的类型的长度
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">uint32_t</span> <span style="color:#000">length</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 元素个数
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">int8_t</span> <span style="color:#000">contents</span><span style="color:#000;font-weight:bold">[];</span> <span style="color:#8f5902;font-style:italic">// 保存元素的数组
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span> <span style="color:#000">intset</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div><ul>
 <li><code>encoding</code>的值：</li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">// intset.c
-</span><span class="c1"></span><span class="cp"># define INTSET_ENC_INT16 (sizeof(int16_t))
-</span><span class="cp">#define INTSET_ENC_INT32 (sizeof(int32_t)) 
-</span><span class="cp">#define INTSET_ENC_INT64 (sizeof(int64_t))
-</span></code></pre></td></tr></table>
-</div>
-</div><ul>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#8f5902;font-style:italic">// intset.c
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#8f5902;font-style:italic"># define INTSET_ENC_INT16 (sizeof(int16_t))
+</span><span style="color:#8f5902;font-style:italic">#define INTSET_ENC_INT32 (sizeof(int32_t)) 
+</span><span style="color:#8f5902;font-style:italic">#define INTSET_ENC_INT64 (sizeof(int64_t))
+</span></code></pre></div><ul>
 <li>
 <p><code>content</code>数组是实际保存数据的地方，特性：</p>
 <ul>
@@ -1424,75 +1255,35 @@ Redis数据类型
 <h5 id="311-redisobject数据结构以及redis的数据类型" class="headerLink"><a href="#311-redisobject%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e4%bb%a5%e5%8f%8aredis%e7%9a%84%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" class="header-mark"></a>3.1.1 redisObject数据结构，以及Redis的数据类型</h5><ul>
 <li>定义</li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">// redis.h
-</span><span class="c1"></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">redisObject</span> <span class="p">{</span>
-  <span class="kt">unsigned</span> <span class="nl">type</span><span class="p">:</span><span class="mi">4</span><span class="p">;</span> <span class="c1">// 类型
-</span><span class="c1"></span>  <span class="kt">unsigned</span> <span class="nl">notused</span><span class="p">:</span><span class="mi">2</span><span class="p">;</span> <span class="c1">// 对齐位
-</span><span class="c1"></span>  <span class="kt">unsigned</span> <span class="nl">encoding</span><span class="p">:</span><span class="mi">4</span><span class="p">;</span> <span class="c1">// 编码方式
-</span><span class="c1"></span>  <span class="kt">unsigned</span> <span class="nl">lru</span><span class="p">:</span><span class="mi">22</span><span class="p">;</span> <span class="c1">// LRU时间(相对于 server.lruclock)
-</span><span class="c1"></span>  <span class="kt">unsigned</span> <span class="n">refcount</span><span class="p">;</span> <span class="c1">// 引用计数
-</span><span class="c1"></span>  <span class="kt">void</span> <span class="o">*</span><span class="n">ptr</span><span class="p">;</span> <span class="c1">// 指向对象的值
-</span><span class="c1"></span><span class="p">}</span> <span class="n">robj</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div><ul>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#8f5902;font-style:italic">// redis.h
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">typedef</span> <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">redisObject</span> <span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#204a87;font-weight:bold">unsigned</span> <span style="color:#f57900">type</span><span style="color:#000;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">4</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 类型
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">unsigned</span> <span style="color:#f57900">notused</span><span style="color:#000;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">2</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 对齐位
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">unsigned</span> <span style="color:#f57900">encoding</span><span style="color:#000;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">4</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 编码方式
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">unsigned</span> <span style="color:#f57900">lru</span><span style="color:#000;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">22</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// LRU时间(相对于 server.lruclock)
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">unsigned</span> <span style="color:#000">refcount</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 引用计数
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">void</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">ptr</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 指向对象的值
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span> <span style="color:#000">robj</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div><ul>
 <li><code>type</code>记录了对象所保存的值的类型</li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#define REDIS_STRING 0 </span><span class="c1">// 字符串
-</span><span class="c1"></span><span class="cp">#define REDIS_LIST 1 </span><span class="c1">// 列表
-</span><span class="c1"></span><span class="cp">#define REDIS_SET 2 </span><span class="c1">// 集合
-</span><span class="c1"></span><span class="cp">#define REDIS_ZSET 3 </span><span class="c1">// 有序集
-</span><span class="c1"></span><span class="cp">#define REDIS_HASH 4 </span><span class="c1">// 哈希表
-</span></code></pre></td></tr></table>
-</div>
-</div><ul>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#8f5902;font-style:italic">#define REDIS_STRING 0 </span><span style="color:#8f5902;font-style:italic">// 字符串
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#8f5902;font-style:italic">#define REDIS_LIST 1 </span><span style="color:#8f5902;font-style:italic">// 列表
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#8f5902;font-style:italic">#define REDIS_SET 2 </span><span style="color:#8f5902;font-style:italic">// 集合
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#8f5902;font-style:italic">#define REDIS_ZSET 3 </span><span style="color:#8f5902;font-style:italic">// 有序集
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#8f5902;font-style:italic">#define REDIS_HASH 4 </span><span style="color:#8f5902;font-style:italic">// 哈希表
+</span></code></pre></div><ul>
 <li><code>encoding</code>记录了对象所保存的值的编码</li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#define REDIS_ENCODING_RAW 0 </span><span class="c1">// 编码为字符串
-</span><span class="c1"></span><span class="cp">#define REDIS_ENCODING_INT 1 </span><span class="c1">// 编码为整数
-</span><span class="c1"></span><span class="cp">#define REDIS_ENCODING_HT 2 </span><span class="c1">// 编码为哈希表
-</span><span class="c1"></span><span class="cp">#define REDIS_ENCODING_ZIPMAP 3 </span><span class="c1">// 编码为 zipmap
-</span><span class="c1"></span><span class="cp">#define REDIS_ENCODING_LINKEDLIST 4 </span><span class="c1">// 编码为双端链表
-</span><span class="c1"></span><span class="cp">#define REDIS_ENCODING_ZIPLIST 5 </span><span class="c1">// 编码为压缩列表
-</span><span class="c1"></span><span class="cp">#define REDIS_ENCODING_INTSET 6 </span><span class="c1">// 编码为整数集合
-</span><span class="c1"></span><span class="cp">#define REDIS_ENCODING_SKIPLIST 7 </span><span class="c1">// 编码为跳跃表
-</span></code></pre></td></tr></table>
-</div>
-</div><ul>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#8f5902;font-style:italic">#define REDIS_ENCODING_RAW 0 </span><span style="color:#8f5902;font-style:italic">// 编码为字符串
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#8f5902;font-style:italic">#define REDIS_ENCODING_INT 1 </span><span style="color:#8f5902;font-style:italic">// 编码为整数
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#8f5902;font-style:italic">#define REDIS_ENCODING_HT 2 </span><span style="color:#8f5902;font-style:italic">// 编码为哈希表
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#8f5902;font-style:italic">#define REDIS_ENCODING_ZIPMAP 3 </span><span style="color:#8f5902;font-style:italic">// 编码为 zipmap
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#8f5902;font-style:italic">#define REDIS_ENCODING_LINKEDLIST 4 </span><span style="color:#8f5902;font-style:italic">// 编码为双端链表
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#8f5902;font-style:italic">#define REDIS_ENCODING_ZIPLIST 5 </span><span style="color:#8f5902;font-style:italic">// 编码为压缩列表
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#8f5902;font-style:italic">#define REDIS_ENCODING_INTSET 6 </span><span style="color:#8f5902;font-style:italic">// 编码为整数集合
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#8f5902;font-style:italic">#define REDIS_ENCODING_SKIPLIST 7 </span><span style="color:#8f5902;font-style:italic">// 编码为跳跃表
+</span></code></pre></div><ul>
 <li>ptr是一个指针，指向实际保存值的数据结构，这个数据结构由<code>type</code>属性和<code>encoding</code>属性决定</li>
 </ul>
 <h5 id="312-命令的类型检查和多态" class="headerLink"><a href="#312-%e5%91%bd%e4%bb%a4%e7%9a%84%e7%b1%bb%e5%9e%8b%e6%a3%80%e6%9f%a5%e5%92%8c%e5%a4%9a%e6%80%81" class="header-mark"></a>3.1.2 命令的类型检查和多态</h5><ul>
@@ -1647,21 +1438,11 @@ Redis数据类型
 </li>
 </ul>
 <p><code>readyList</code>结构定义：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">readyList</span> <span class="p">{</span>
-  <span class="n">redisDb</span> <span class="o">*</span><span class="n">db</span><span class="p">;</span> <span class="c1">// 指向该键所在的数据库
-</span><span class="c1"></span>  <span class="n">robj</span> <span class="o">*</span><span class="n">key</span><span class="p">;</span> <span class="c1">// 指向造成阻塞的键
-</span><span class="c1"></span><span class="p">}</span> <span class="n">readyList</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#204a87;font-weight:bold">typedef</span> <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">readyList</span> <span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#000">redisDb</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">db</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 指向该键所在的数据库
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#000">robj</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">key</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 指向造成阻塞的键
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span> <span style="color:#000">readyList</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div><p>
 
 
 
@@ -1771,21 +1552,11 @@ Redis数据类型
 <p>当使用<code>REDIS_ENCODING_SKIPLIST</code>编码时，有序集元素由<code>redis.h/zset</code>结构来保存：</p>
 <ul>
 <li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">typedef</span> <span class="k">struct</span>  <span class="n">zset</span> <span class="p">{</span>
-  <span class="n">dict</span> <span class="o">*</span><span class="n">dict</span><span class="p">;</span> <span class="c1">// 字典
-</span><span class="c1"></span>  <span class="n">zskiplist</span> <span class="o">*</span><span class="n">zsl</span><span class="p">;</span> <span class="c1">// 跳跃表
-</span><span class="c1"></span><span class="p">}</span> <span class="n">zset</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#204a87;font-weight:bold">typedef</span> <span style="color:#204a87;font-weight:bold">struct</span>  <span style="color:#000">zset</span> <span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#000">dict</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">dict</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 字典
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#000">zskiplist</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">zsl</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 跳跃表
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span> <span style="color:#000">zset</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></li>
 </ul>
 </li>
 <li>
@@ -1960,19 +1731,10 @@ Redis数据类型
 <p>每个Redis服务器进程都维持这个一个表示服务器状态的<code>redis.h/redisServer</code>结构，结构的<code>pubsub_channels</code>属性是一个字典，用于保存订阅频道的信息</p>
 <ul>
 <li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">struct</span> <span class="n">redisSercer</span> <span class="p">{</span>
-  <span class="n">dict</span> <span class="o">*</span><span class="n">pubsub_channels</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">redisSercer</span> <span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#000">dict</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pubsub_channels</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div></li>
 <li>
 <p>字典的键为正在被订阅的频道，值为一个链表，保存了所有订阅这个频道的客户端</p>
 </li>
@@ -1994,40 +1756,21 @@ Redis数据类型
 <p><code>redisServer.pubsub_patterns</code>属性是一个链表，保存着所有和模式先关的信息</p>
 <ul>
 <li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">struct</span> <span class="n">redisServer</span> <span class="p">{</span>
-  <span class="n">list</span> <span class="o">*</span><span class="n">pubsub_patterns</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">redisServer</span> <span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#000">list</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pubsub_patterns</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div></li>
 </ul>
 </li>
 <li>
 <p>链表的每个节点都包含一个<code>redis.h/pubsubPattern</code>结构</p>
 <ul>
 <li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">pubsubPattern</span> <span class="p">{</span>
-  <span class="n">redisClient</span> <span class="o">*</span><span class="n">client</span><span class="p">;</span>  <span class="c1">// 订阅模式的客户端
-</span><span class="c1"></span>  <span class="n">robj</span> <span class="o">*</span><span class="n">pattern</span><span class="p">;</span>  <span class="c1">// 被订阅的模式
-</span><span class="c1"></span><span class="p">}</span> <span class="n">pubsubPattern</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#204a87;font-weight:bold">typedef</span> <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">pubsubPattern</span> <span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#000">redisClient</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">client</span><span style="color:#000;font-weight:bold">;</span>  <span style="color:#8f5902;font-style:italic">// 订阅模式的客户端
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#000">robj</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">pattern</span><span style="color:#000;font-weight:bold">;</span>  <span style="color:#8f5902;font-style:italic">// 被订阅的模式
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span> <span style="color:#000">pubsubPattern</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></li>
 </ul>
 </li>
 <li>
@@ -2123,21 +1866,11 @@ Redis数据类型
 <p>函数名以<code>f_</code>为前缀，后跟脚本的<code>SHA1</code>校验和</p>
 <ul>
 <li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">// EVAL &#34;return &#39;hello world&#39;&#34; 0
-</span><span class="c1"></span>
-<span class="n">function</span> <span class="n">f_5332031c6b470dc5a0dd9b4bf2030dea6d65de91</span><span class="p">()</span> 
-  <span class="k">return</span> <span class="err">&#39;</span><span class="n">hello</span> <span class="n">world</span><span class="err">&#39;</span> <span class="n">end</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#8f5902;font-style:italic">// EVAL &#34;return &#39;hello world&#39;&#34; 0
+</span><span style="color:#8f5902;font-style:italic"></span>
+<span style="color:#000">function</span> <span style="color:#000">f_5332031c6b470dc5a0dd9b4bf2030dea6d65de91</span><span style="color:#000;font-weight:bold">()</span> 
+  <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#a40000">&#39;</span><span style="color:#000">hello</span> <span style="color:#000">world</span><span style="color:#a40000">&#39;</span> <span style="color:#000">end</span>
+</code></pre></div></li>
 </ul>
 </li>
 <li>
@@ -2179,54 +1912,27 @@ Redis数据类型
 <h5 id="441-相关数据结构" class="headerLink"><a href="#441-%e7%9b%b8%e5%85%b3%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84" class="header-mark"></a>4.4.1 相关数据结构</h5><ul>
 <li>慢日志结构定义：</li>
 </ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="c1">// slowlog.h/slowlogEntry
-</span><span class="c1"></span>
-<span class="k">typedef</span> <span class="k">struct</span> <span class="n">slowlogEntry</span> <span class="p">{</span>
-  <span class="n">robj</span> <span class="o">**</span><span class="n">argv</span><span class="p">;</span> <span class="c1">// 命令参数
-</span><span class="c1"></span>  <span class="kt">int</span> <span class="n">argc</span><span class="p">;</span> <span class="c1">// 命令参数数量
-</span><span class="c1"></span>  <span class="kt">long</span> <span class="kt">long</span> <span class="n">id</span><span class="p">;</span> <span class="c1">// 唯一标识符
-</span><span class="c1"></span>  <span class="kt">long</span> <span class="kt">long</span> <span class="n">duration</span><span class="p">;</span> <span class="c1">// 执行消耗的时间，以纳秒为单位
-</span><span class="c1"></span>  <span class="n">time_t</span> <span class="n">time</span><span class="p">;</span> <span class="c1">// 命令执行时间
-</span><span class="c1"></span><span class="p">}</span> <span class="n">slowlogEntry</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div><ul>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#8f5902;font-style:italic">// slowlog.h/slowlogEntry
+</span><span style="color:#8f5902;font-style:italic"></span>
+<span style="color:#204a87;font-weight:bold">typedef</span> <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">slowlogEntry</span> <span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#000">robj</span> <span style="color:#ce5c00;font-weight:bold">**</span><span style="color:#000">argv</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 命令参数
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">argc</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 命令参数数量
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">id</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 唯一标识符
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">duration</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 执行消耗的时间，以纳秒为单位
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#000">time_t</span> <span style="color:#000">time</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 命令执行时间
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span> <span style="color:#000">slowlogEntry</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div><ul>
 <li>
 <p>记录服务器状态的<code>redis.h/redisServer</code>结构</p>
 <ul>
 <li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">struct</span> <span class="n">redisServer</span> <span class="p">{</span>
-  <span class="n">list</span> <span class="o">*</span><span class="n">slowlog</span><span class="p">;</span> <span class="c1">// 保存慢查询日志的链表
-</span><span class="c1"></span>  <span class="kt">long</span> <span class="kt">long</span> <span class="n">slowlog_entry_id</span><span class="p">;</span> <span class="c1">// 慢查询日志当前id值
-</span><span class="c1"></span>  <span class="kt">long</span> <span class="kt">long</span> <span class="n">slowlog_log_slower_than</span><span class="p">;</span> <span class="c1">// 慢查询时间限制
-</span><span class="c1"></span>  <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">slowlog_max_len</span><span class="p">;</span> <span class="c1">// 慢查询日志最大条目数量
-</span><span class="c1"></span><span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">redisServer</span> <span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#000">list</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">slowlog</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 保存慢查询日志的链表
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">slowlog_entry_id</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 慢查询日志当前id值
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">slowlog_log_slower_than</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 慢查询时间限制
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#204a87;font-weight:bold">unsigned</span> <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">slowlog_max_len</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 慢查询日志最大条目数量
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div></li>
 <li>
 <p><code>slowlog</code>从新到旧排序链表</p>
 </li>
@@ -2260,31 +1966,16 @@ Redis数据类型
 <p>Redis中的每个数据库，都是由一个<code>redis.h/redisDb</code>结构表示：</p>
 <ul>
 <li>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">typedef</span> <span class="k">struct</span> <span class="n">redisDb</span> <span class="p">{</span>
-  <span class="kt">int</span> <span class="n">id</span><span class="p">;</span> <span class="c1">// 保存着数据库以整数表示的号码
-</span><span class="c1"></span>  <span class="n">dict</span> <span class="o">*</span><span class="n">dict</span><span class="p">;</span> <span class="c1">// 保存着数据库中的所有键值对数据。也被称为键空间
-</span><span class="c1"></span>  <span class="n">dict</span> <span class="o">*</span><span class="n">expires</span><span class="p">;</span> <span class="c1">// 保存着键的过期信息
-</span><span class="c1"></span>  <span class="n">dict</span> <span class="o">*</span><span class="n">blocking_keys</span><span class="p">;</span> <span class="c1">// 实现列表阻塞原语
-</span><span class="c1"></span>  <span class="n">dict</span> <span class="o">*</span><span class="n">ready_keys</span><span class="p">;</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#204a87;font-weight:bold">typedef</span> <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">redisDb</span> <span style="color:#000;font-weight:bold">{</span>
+  <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">id</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 保存着数据库以整数表示的号码
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#000">dict</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">dict</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 保存着数据库中的所有键值对数据。也被称为键空间
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#000">dict</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">expires</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 保存着键的过期信息
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#000">dict</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">blocking_keys</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 实现列表阻塞原语
+</span><span style="color:#8f5902;font-style:italic"></span>  <span style="color:#000">dict</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">ready_keys</span><span style="color:#000;font-weight:bold">;</span>
 
-  <span class="n">dict</span> <span class="o">*</span><span class="n">watched_keys</span><span class="p">;</span> <span class="c1">// 用于MATCH命令。事务
-</span><span class="c1"></span><span class="p">}</span> <span class="n">redisDb</span><span class="p">;</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+  <span style="color:#000">dict</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">watched_keys</span><span style="color:#000;font-weight:bold">;</span> <span style="color:#8f5902;font-style:italic">// 用于MATCH命令。事务
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span> <span style="color:#000">redisDb</span><span style="color:#000;font-weight:bold">;</span>
+</code></pre></div></li>
 </ul>
 </li>
 </ul>

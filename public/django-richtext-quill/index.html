@@ -25,7 +25,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/cuiks.top\/django-richtext-quill\/"
-        },"genre": "posts","keywords": "django, quill","wordCount":  530 ,
+        },"genre": "posts","keywords": "django, quill","wordCount":  389 ,
         "url": "https:\/\/cuiks.top\/django-richtext-quill\/","datePublished": "2021-04-08T21:31:44+08:00","dateModified": "2021-04-08T21:31:44+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": ""
     }
     </script></head>
@@ -139,10 +139,10 @@
                         <h1 class="single-title flipInX">Django富文本编辑器django-quill-editor</h1><div class="post-meta summary-post-meta"><span class="post-meta-date meta-item">
                                 <span class="svg-icon icon-clock"></span><time class="timeago" datetime="2021-04-08">2021-04-08</time>
                             </span><span class="post-meta-words meta-item">
-                                <span class="svg-icon icon-pencil"></span>530 words
+                                <span class="svg-icon icon-pencil"></span>389 words
                             </span>
                             <span class="post-meta-reading meta-item">
-                                <span class="svg-icon icon-stopwatch"></span>3 minutes
+                                <span class="svg-icon icon-stopwatch"></span>2 minutes
                             </span>
                         </div>
 
@@ -192,67 +192,31 @@
 </li>
 <li>
 <p>Django配置</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 添加到Django</span>
-<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;django.contrib.admin&#39;</span><span class="p">,</span>
-    <span class="o">...</span>
-    <span class="s1">&#39;django_quill&#39;</span><span class="p">,</span>
-<span class="p">]</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#8f5902;font-style:italic"># 添加到Django</span>
+<span style="color:#000">INSTALLED_APPS</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">[</span>
+    <span style="color:#4e9a06">&#39;django.contrib.admin&#39;</span><span style="color:#000;font-weight:bold">,</span>
+    <span style="color:#ce5c00;font-weight:bold">...</span>
+    <span style="color:#4e9a06">&#39;django_quill&#39;</span><span style="color:#000;font-weight:bold">,</span>
+<span style="color:#000;font-weight:bold">]</span>
+</code></pre></div></li>
 <li>
 <p>Django model配置 &amp;&amp; 数据迁移</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># models.py</span>
-<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
-<span class="kn">from</span> <span class="nn">django_quill.fields</span> <span class="kn">import</span> <span class="n">QuillField</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#8f5902;font-style:italic"># models.py</span>
+<span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">django.db</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">models</span>
+<span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">django_quill.fields</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">QuillField</span>
 
-<span class="k">class</span> <span class="nc">QuillPost</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-    <span class="n">content</span> <span class="o">=</span> <span class="n">QuillField</span><span class="p">()</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">QuillPost</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">models</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">Model</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#000">content</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">QuillField</span><span style="color:#000;font-weight:bold">()</span>
+</code></pre></div></li>
 <li>
 <p>Django admin注册</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">django.contrib</span> <span class="kn">import</span> <span class="n">admin</span>
-<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">QuillPost</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">django.contrib</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">admin</span>
+<span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">.models</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">QuillPost</span>
 
-<span class="nd">@admin</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">QuillPost</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">QuillPostAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
-    <span class="k">pass</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>注册完成后看到如下</p>
+<span style="color:#5c35cc;font-weight:bold">@admin</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">register</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">QuillPost</span><span style="color:#000;font-weight:bold">)</span>
+<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">QuillPostAdmin</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">admin</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">ModelAdmin</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#204a87;font-weight:bold">pass</span>
+</code></pre></div><p>注册完成后看到如下</p>
 <p>
 
 
@@ -267,157 +231,71 @@
 </li>
 <li>
 <p>Form表单使用</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-html" data-lang="html"># 在前端界面使用该方法引入
-<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"># 在前端界面使用该方法引入
+<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">head</span><span style="color:#000;font-weight:bold">&gt;</span>
     {{ form.media }}
-<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span style="color:#000;font-weight:bold">&lt;/</span><span style="color:#204a87;font-weight:bold">head</span><span style="color:#000;font-weight:bold">&gt;</span>
 # 或使用该方法引入
-<span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
-    <span class="c">&lt;!-- django-quill-editor Media --&gt;</span>
+<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">head</span><span style="color:#000;font-weight:bold">&gt;</span>
+    <span style="color:#8f5902;font-style:italic">&lt;!-- django-quill-editor Media --&gt;</span>
     {% include &#39;django_quill/media.html&#39; %}
-<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 表单中配置</span>
-<span class="c1"># forms.py</span>
-<span class="kn">from</span> <span class="nn">django</span> <span class="kn">import</span> <span class="n">forms</span>
-<span class="kn">from</span> <span class="nn">.models</span> <span class="kn">import</span> <span class="n">QuillPost</span>
+<span style="color:#000;font-weight:bold">&lt;/</span><span style="color:#204a87;font-weight:bold">head</span><span style="color:#000;font-weight:bold">&gt;</span>
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#8f5902;font-style:italic"># 表单中配置</span>
+<span style="color:#8f5902;font-style:italic"># forms.py</span>
+<span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">django</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">forms</span>
+<span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">.models</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">QuillPost</span>
 
-<span class="k">class</span> <span class="nc">QuillPostForm</span><span class="p">(</span><span class="n">forms</span><span class="o">.</span><span class="n">ModelForm</span><span class="p">):</span>
-    <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
-        <span class="n">model</span> <span class="o">=</span> <span class="n">QuillPost</span>
-        <span class="n">fields</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="s1">&#39;content&#39;</span><span class="p">,</span>
-        <span class="p">)</span>
+<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">QuillPostForm</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">forms</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">ModelForm</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Meta</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#000">model</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">QuillPost</span>
+        <span style="color:#000">fields</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span>
+            <span style="color:#4e9a06">&#39;content&#39;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#000;font-weight:bold">)</span>
 
-<span class="c1"># 返回的view使用表单</span>
-<span class="c1"># views.py</span>
-<span class="kn">from</span> <span class="nn">django.shortcuts</span> <span class="kn">import</span> <span class="n">render</span>
-<span class="kn">from</span> <span class="nn">.forms</span> <span class="kn">import</span> <span class="n">QuillPostForm</span>
+<span style="color:#8f5902;font-style:italic"># 返回的view使用表单</span>
+<span style="color:#8f5902;font-style:italic"># views.py</span>
+<span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">django.shortcuts</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">render</span>
+<span style="color:#204a87;font-weight:bold">from</span> <span style="color:#000">.forms</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">QuillPostForm</span>
 
-<span class="k">def</span> <span class="nf">model_form_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="s1">&#39;form_view.html&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;form&#39;</span><span class="p">:</span> <span class="n">QuillPostForm</span><span class="p">()})</span>
-</code></pre></td></tr></table>
-</div>
-</div><div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-html" data-lang="html"># 前端页面展示表单
-<span class="c">&lt;!-- form_view.html --&gt;</span>
-<span class="p">&lt;</span><span class="nt">form</span> <span class="na">action</span><span class="o">=</span><span class="s">&#34;&#34;</span> <span class="na">method</span><span class="o">=</span><span class="s">&#34;POST&#34;</span><span class="p">&gt;</span>{% csrf_token %}
+<span style="color:#204a87;font-weight:bold">def</span> <span style="color:#000">model_form_view</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">request</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#000">render</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">request</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;form_view.html&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000;font-weight:bold">{</span><span style="color:#4e9a06">&#39;form&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000">QuillPostForm</span><span style="color:#000;font-weight:bold">()})</span>
+</code></pre></div><div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"># 前端页面展示表单
+<span style="color:#8f5902;font-style:italic">&lt;!-- form_view.html --&gt;</span>
+<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">form</span> <span style="color:#c4a000">action</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;&#34;</span> <span style="color:#c4a000">method</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;POST&#34;</span><span style="color:#000;font-weight:bold">&gt;</span>{% csrf_token %}
     {{ form.content }}
-<span class="p">&lt;/</span><span class="nt">form</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>注：文档分别介绍了<code>Using as form</code>和<code>Using as ModelForm</code>。本文只介绍后者使用。</p>
+<span style="color:#000;font-weight:bold">&lt;/</span><span style="color:#204a87;font-weight:bold">form</span><span style="color:#000;font-weight:bold">&gt;</span>
+</code></pre></div><p>注：文档分别介绍了<code>Using as form</code>和<code>Using as ModelForm</code>。本文只介绍后者使用。</p>
 </li>
 <li>
 <p>自定义配置</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 修改Django的配置文件settings.py。添加</span>
-<span class="n">QUILL_CONFIGS</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s1">&#39;default&#39;</span><span class="p">:{</span>
-        <span class="s1">&#39;theme&#39;</span><span class="p">:</span> <span class="s1">&#39;snow&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;modules&#39;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s1">&#39;syntax&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-            <span class="s1">&#39;toolbar&#39;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">[</span>
-                    <span class="p">{</span><span class="s1">&#39;font&#39;</span><span class="p">:</span> <span class="p">[]},</span>
-                    <span class="p">{</span><span class="s1">&#39;header&#39;</span><span class="p">:</span> <span class="p">[]},</span>
-                    <span class="p">{</span><span class="s1">&#39;align&#39;</span><span class="p">:</span> <span class="p">[]},</span>
-                    <span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="s1">&#39;italic&#39;</span><span class="p">,</span> <span class="s1">&#39;underline&#39;</span><span class="p">,</span> <span class="s1">&#39;strike&#39;</span><span class="p">,</span> <span class="s1">&#39;blockquote&#39;</span><span class="p">,</span>
-                    <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="p">[]},</span>
-                    <span class="p">{</span><span class="s1">&#39;background&#39;</span><span class="p">:</span> <span class="p">[]},</span>
-                <span class="p">],</span>
-                <span class="p">[</span><span class="s1">&#39;code-block&#39;</span><span class="p">,</span> <span class="s1">&#39;link&#39;</span><span class="p">],</span>
-                <span class="p">[</span><span class="s1">&#39;clean&#39;</span><span class="p">],</span>
-            <span class="p">]</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>关于配置项可参考：<a href="https://quilljs.com/docs/configuration/" target="_blank" rel="noopener noreffer">Quill Configuration</a></p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#8f5902;font-style:italic"># 修改Django的配置文件settings.py。添加</span>
+<span style="color:#000">QUILL_CONFIGS</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#4e9a06">&#39;default&#39;</span><span style="color:#000;font-weight:bold">:{</span>
+        <span style="color:#4e9a06">&#39;theme&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#39;snow&#39;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#39;modules&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#4e9a06">&#39;syntax&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">True</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#39;toolbar&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[</span>
+                <span style="color:#000;font-weight:bold">[</span>
+                    <span style="color:#000;font-weight:bold">{</span><span style="color:#4e9a06">&#39;font&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[]},</span>
+                    <span style="color:#000;font-weight:bold">{</span><span style="color:#4e9a06">&#39;header&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[]},</span>
+                    <span style="color:#000;font-weight:bold">{</span><span style="color:#4e9a06">&#39;align&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[]},</span>
+                    <span style="color:#4e9a06">&#39;bold&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;italic&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;underline&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;strike&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;blockquote&#39;</span><span style="color:#000;font-weight:bold">,</span>
+                    <span style="color:#000;font-weight:bold">{</span><span style="color:#4e9a06">&#39;color&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[]},</span>
+                    <span style="color:#000;font-weight:bold">{</span><span style="color:#4e9a06">&#39;background&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[]},</span>
+                <span style="color:#000;font-weight:bold">],</span>
+                <span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#39;code-block&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;link&#39;</span><span style="color:#000;font-weight:bold">],</span>
+                <span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#39;clean&#39;</span><span style="color:#000;font-weight:bold">],</span>
+            <span style="color:#000;font-weight:bold">]</span>
+        <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div><p>关于配置项可参考：<a href="https://quilljs.com/docs/configuration/" target="_blank" rel="noopener noreffer">Quill Configuration</a></p>
 </li>
 <li>
 <p>富文本编辑框的前端回显展示(Django模板语言)</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-html" data-lang="html"># html页面展示
-<span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;form-control ql-editor ql-container ql-snow&#34;</span><span class="p">&gt;</span>{{ object.content.html|safe }}<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>使用<code>conten.html</code>属性，可以获取该字段html格式，添加<code>safe</code>控制，可在前端进行展示。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"># html页面展示
+<span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">div</span> <span style="color:#c4a000">class</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;form-control ql-editor ql-container ql-snow&#34;</span><span style="color:#000;font-weight:bold">&gt;</span>{{ object.content.html|safe }}<span style="color:#000;font-weight:bold">&lt;/</span><span style="color:#204a87;font-weight:bold">div</span><span style="color:#000;font-weight:bold">&gt;</span>
+</code></pre></div><p>使用<code>conten.html</code>属性，可以获取该字段html格式，添加<code>safe</code>控制，可在前端进行展示。</p>
 </li>
 </ol>
 <h3 id="2django-quill-editor图片插件的配置及使用" class="headerLink"><a href="#2django-quill-editor%e5%9b%be%e7%89%87%e6%8f%92%e4%bb%b6%e7%9a%84%e9%85%8d%e7%bd%ae%e5%8f%8a%e4%bd%bf%e7%94%a8" class="header-mark"></a>2、<code>django-quill-editor</code>图片插件的配置及使用</h3><p>配置完成后，粘贴图片进去会发现往往图片充满了整个编辑框，看起来很不方便。通过查阅<a href="https://quilljs.com/docs/modules/" target="_blank" rel="noopener noreffer">Quill文档</a>。会发现Quill的Modules支持自定义扩展，所以确定方向：寻找(让我写，我也不会啊🌚)Quill调整图片大小的扩展。<a href="https://github.com/quilljs/quill" target="_blank" rel="noopener noreffer">QuillJS</a>是一个比较热门的项目，很像web框架都开发了响应的扩展。在网上搜索发现项目<a href="https://github.com/kensnyder/quill-image-resize-module" target="_blank" rel="noopener noreffer">quill-image-resize-module</a>就是专门为Quill开发的扩展用于调整图片大小。到此我们就找到了Quill调节图片大小的方案。</p>
@@ -428,80 +306,39 @@
 </li>
 <li>
 <p>项目中引入。此处需要注意，Modules必须在Quill后面引入，否则会报错。</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">head</span><span style="color:#000;font-weight:bold">&gt;</span>
     {% include &#39;django_quill/media.html&#39; %}
-    <span class="c">&lt;!-- Quill resize-image.js --&gt;</span>
-    <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdn.jsdelivr.net/npm/quill-image-resize-module@3.0.0/image-resize.min.js&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
-<span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+    <span style="color:#8f5902;font-style:italic">&lt;!-- Quill resize-image.js --&gt;</span>
+    <span style="color:#000;font-weight:bold">&lt;</span><span style="color:#204a87;font-weight:bold">script</span> <span style="color:#c4a000">src</span><span style="color:#ce5c00;font-weight:bold">=</span><span style="color:#4e9a06">&#34;https://cdn.jsdelivr.net/npm/quill-image-resize-module@3.0.0/image-resize.min.js&#34;</span><span style="color:#000;font-weight:bold">&gt;&lt;/</span><span style="color:#204a87;font-weight:bold">script</span><span style="color:#000;font-weight:bold">&gt;</span>
+<span style="color:#000;font-weight:bold">&lt;/</span><span style="color:#204a87;font-weight:bold">head</span><span style="color:#000;font-weight:bold">&gt;</span>
+</code></pre></div></li>
 <li>
 <p>修改Django项目<code>settings.py</code>，引入<code>imageResize</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Quill config</span>
-<span class="n">QUILL_CONFIGS</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&#34;default&#34;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;theme&#39;</span><span class="p">:</span> <span class="s1">&#39;snow&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;modules&#39;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s1">&#39;syntax&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
-            <span class="s1">&#39;toolbar&#39;</span><span class="p">:</span> <span class="p">[</span>
-                <span class="p">[</span>
-                    <span class="p">{</span><span class="s1">&#39;font&#39;</span><span class="p">:</span> <span class="p">[]},</span>
-                    <span class="p">{</span><span class="s1">&#39;header&#39;</span><span class="p">:</span> <span class="p">[]},</span>
-                    <span class="p">{</span><span class="s1">&#39;align&#39;</span><span class="p">:</span> <span class="p">[]},</span>
-                    <span class="s1">&#39;bold&#39;</span><span class="p">,</span> <span class="s1">&#39;italic&#39;</span><span class="p">,</span> <span class="s1">&#39;underline&#39;</span><span class="p">,</span> <span class="s1">&#39;strike&#39;</span><span class="p">,</span> <span class="s1">&#39;blockquote&#39;</span><span class="p">,</span>
-                    <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="p">[]},</span>
-                    <span class="p">{</span><span class="s1">&#39;background&#39;</span><span class="p">:</span> <span class="p">[]},</span>
-                <span class="p">],</span>
-                <span class="p">[</span><span class="s1">&#39;code-block&#39;</span><span class="p">,</span> <span class="s1">&#39;link&#39;</span><span class="p">,</span> <span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="s1">&#39;video&#39;</span><span class="p">],</span>
-                <span class="p">[</span><span class="s1">&#39;clean&#39;</span><span class="p">],</span>
-            <span class="p">],</span>
-            <span class="s1">&#39;imageResize&#39;</span><span class="p">:</span> <span class="p">{</span>  <span class="c1"># open imageResize</span>
-                <span class="s1">&#39;displaySize&#39;</span><span class="p">:</span> <span class="kc">True</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#8f5902;font-style:italic"># Quill config</span>
+<span style="color:#000">QUILL_CONFIGS</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#4e9a06">&#34;default&#34;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span>
+        <span style="color:#4e9a06">&#39;theme&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#4e9a06">&#39;snow&#39;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#4e9a06">&#39;modules&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span>
+            <span style="color:#4e9a06">&#39;syntax&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">True</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#39;toolbar&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[</span>
+                <span style="color:#000;font-weight:bold">[</span>
+                    <span style="color:#000;font-weight:bold">{</span><span style="color:#4e9a06">&#39;font&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[]},</span>
+                    <span style="color:#000;font-weight:bold">{</span><span style="color:#4e9a06">&#39;header&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[]},</span>
+                    <span style="color:#000;font-weight:bold">{</span><span style="color:#4e9a06">&#39;align&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[]},</span>
+                    <span style="color:#4e9a06">&#39;bold&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;italic&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;underline&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;strike&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;blockquote&#39;</span><span style="color:#000;font-weight:bold">,</span>
+                    <span style="color:#000;font-weight:bold">{</span><span style="color:#4e9a06">&#39;color&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[]},</span>
+                    <span style="color:#000;font-weight:bold">{</span><span style="color:#4e9a06">&#39;background&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">[]},</span>
+                <span style="color:#000;font-weight:bold">],</span>
+                <span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#39;code-block&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;link&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;image&#39;</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#4e9a06">&#39;video&#39;</span><span style="color:#000;font-weight:bold">],</span>
+                <span style="color:#000;font-weight:bold">[</span><span style="color:#4e9a06">&#39;clean&#39;</span><span style="color:#000;font-weight:bold">],</span>
+            <span style="color:#000;font-weight:bold">],</span>
+            <span style="color:#4e9a06">&#39;imageResize&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#000;font-weight:bold">{</span>  <span style="color:#8f5902;font-style:italic"># open imageResize</span>
+                <span style="color:#4e9a06">&#39;displaySize&#39;</span><span style="color:#000;font-weight:bold">:</span> <span style="color:#204a87;font-weight:bold">True</span>
+            <span style="color:#000;font-weight:bold">}</span>
+        <span style="color:#000;font-weight:bold">}</span>
+    <span style="color:#000;font-weight:bold">}</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div></li>
 <li>
 <p>前端实现效果</p>
 <p>
@@ -518,98 +355,48 @@
 </li>
 <li>
 <p>admin引入<code>imageResize</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># admin.py。添加静态文件并控制引入顺序</span>
-<span class="nd">@admin</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">QuillPost</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">QuillPostAdmin</span><span class="p">(</span><span class="n">admin</span><span class="o">.</span><span class="n">ModelAdmin</span><span class="p">):</span>
-    <span class="k">class</span> <span class="nc">Media</span><span class="p">:</span>
-        <span class="n">js</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="s1">&#39;https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;django_quill/django_quill.js&#39;</span><span class="p">,</span>
-            <span class="s1">&#39;https://cdn.quilljs.com/1.3.7/quill.min.js&#39;</span><span class="p">,</span>
-            <span class="s2">&#34;https://cdn.jsdelivr.net/npm/quill-image-resize-module@3.0.0/image-resize.min.js&#34;</span><span class="p">,</span>
-        <span class="p">)</span>
-</code></pre></td></tr></table>
-</div>
-</div></li>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-python" data-lang="python"><span style="color:#8f5902;font-style:italic"># admin.py。添加静态文件并控制引入顺序</span>
+<span style="color:#5c35cc;font-weight:bold">@admin</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">register</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">QuillPost</span><span style="color:#000;font-weight:bold">)</span>
+<span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">QuillPostAdmin</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">admin</span><span style="color:#ce5c00;font-weight:bold">.</span><span style="color:#000">ModelAdmin</span><span style="color:#000;font-weight:bold">):</span>
+    <span style="color:#204a87;font-weight:bold">class</span> <span style="color:#000">Media</span><span style="color:#000;font-weight:bold">:</span>
+        <span style="color:#000">js</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000;font-weight:bold">(</span>
+            <span style="color:#4e9a06">&#39;https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js&#39;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#39;django_quill/django_quill.js&#39;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#39;https://cdn.quilljs.com/1.3.7/quill.min.js&#39;</span><span style="color:#000;font-weight:bold">,</span>
+            <span style="color:#4e9a06">&#34;https://cdn.jsdelivr.net/npm/quill-image-resize-module@3.0.0/image-resize.min.js&#34;</span><span style="color:#000;font-weight:bold">,</span>
+        <span style="color:#000;font-weight:bold">)</span>
+</code></pre></div></li>
 </ol>
 <h3 id="3遇到的问题" class="headerLink"><a href="#3%e9%81%87%e5%88%b0%e7%9a%84%e9%97%ae%e9%a2%98" class="header-mark"></a>3、遇到的问题</h3><p>上面已经强调过，Quill的Modules必须要在Quill之后引入，否则就会报找不到的错误，如下：</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
-</span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
-</span><span class="lnt">24
-</span><span class="lnt">25
-</span><span class="lnt">26
-</span><span class="lnt">27
-</span><span class="lnt">28
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">Uncaught</span> <span class="nx">TypeError</span><span class="o">:</span> <span class="nx">Cannot</span> <span class="nx">read</span> <span class="nx">property</span> <span class="s1">&#39;imports&#39;</span> <span class="k">of</span> <span class="kc">undefined</span>
-    <span class="nx">at</span> <span class="nb">Object</span><span class="p">.</span><span class="o">&lt;</span><span class="nx">anonymous</span><span class="o">&gt;</span> <span class="p">(</span><span class="nx">image</span><span class="o">-</span><span class="nx">resize</span><span class="p">.</span><span class="nx">min</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span><span class="mi">1</span><span class="p">)</span>
-    <span class="nx">at</span> <span class="nx">e</span> <span class="p">(</span><span class="nx">image</span><span class="o">-</span><span class="nx">resize</span><span class="p">.</span><span class="nx">min</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span><span class="mi">1</span><span class="p">)</span>
-    <span class="nx">at</span> <span class="nb">Object</span><span class="p">.</span><span class="o">&lt;</span><span class="nx">anonymous</span><span class="o">&gt;</span> <span class="p">(</span><span class="nx">image</span><span class="o">-</span><span class="nx">resize</span><span class="p">.</span><span class="nx">min</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span><span class="mi">1</span><span class="p">)</span>
-    <span class="nx">at</span> <span class="nx">e</span> <span class="p">(</span><span class="nx">image</span><span class="o">-</span><span class="nx">resize</span><span class="p">.</span><span class="nx">min</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span><span class="mi">1</span><span class="p">)</span>
-    <span class="nx">at</span> <span class="nx">image</span><span class="o">-</span><span class="nx">resize</span><span class="p">.</span><span class="nx">min</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span><span class="mi">1</span>
-    <span class="nx">at</span> <span class="nx">image</span><span class="o">-</span><span class="nx">resize</span><span class="p">.</span><span class="nx">min</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span><span class="mi">1</span>
-    <span class="nx">at</span> <span class="nx">image</span><span class="o">-</span><span class="nx">resize</span><span class="p">.</span><span class="nx">min</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span><span class="mi">1</span>
-    <span class="nx">at</span> <span class="nx">image</span><span class="o">-</span><span class="nx">resize</span><span class="p">.</span><span class="nx">min</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span><span class="mi">1</span>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#000">Uncaught</span> <span style="color:#000">TypeError</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">Cannot</span> <span style="color:#000">read</span> <span style="color:#000">property</span> <span style="color:#4e9a06">&#39;imports&#39;</span> <span style="color:#204a87;font-weight:bold">of</span> <span style="color:#204a87;font-weight:bold">undefined</span>
+    <span style="color:#000">at</span> <span style="color:#204a87">Object</span><span style="color:#000;font-weight:bold">.</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">anonymous</span><span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">image</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#000">resize</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">min</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">js</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">at</span> <span style="color:#000">e</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">image</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#000">resize</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">min</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">js</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">at</span> <span style="color:#204a87">Object</span><span style="color:#000;font-weight:bold">.</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">anonymous</span><span style="color:#ce5c00;font-weight:bold">&gt;</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">image</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#000">resize</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">min</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">js</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">at</span> <span style="color:#000">e</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">image</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#000">resize</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">min</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">js</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">at</span> <span style="color:#000">image</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#000">resize</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">min</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">js</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">1</span>
+    <span style="color:#000">at</span> <span style="color:#000">image</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#000">resize</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">min</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">js</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">1</span>
+    <span style="color:#000">at</span> <span style="color:#000">image</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#000">resize</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">min</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">js</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">1</span>
+    <span style="color:#000">at</span> <span style="color:#000">image</span><span style="color:#ce5c00;font-weight:bold">-</span><span style="color:#000">resize</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">min</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">js</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">1</span>
 
-<span class="nx">quill</span><span class="p">.</span><span class="nx">min</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span><span class="mi">7</span> <span class="nx">quill</span> <span class="nx">Cannot</span> <span class="kr">import</span> <span class="nx">modules</span><span class="o">/</span><span class="nx">imageResize</span><span class="p">.</span> <span class="nx">Are</span> <span class="nx">you</span> <span class="nx">sure</span> <span class="nx">it</span> <span class="nx">was</span> <span class="nx">registered</span><span class="o">?</span>
+<span style="color:#000">quill</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">min</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">js</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">7</span> <span style="color:#000">quill</span> <span style="color:#000">Cannot</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">modules</span><span style="color:#ce5c00;font-weight:bold">/</span><span style="color:#000">imageResize</span><span style="color:#000;font-weight:bold">.</span> <span style="color:#000">Are</span> <span style="color:#000">you</span> <span style="color:#000">sure</span> <span style="color:#000">it</span> <span style="color:#000">was</span> <span style="color:#000">registered</span><span style="color:#ce5c00;font-weight:bold">?</span>
 
-<span class="nx">quill</span><span class="p">.</span><span class="nx">min</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span><span class="mi">7</span> <span class="nx">quill</span> <span class="nx">Cannot</span> <span class="nx">load</span> <span class="nx">imageResize</span> <span class="nx">module</span><span class="p">.</span> <span class="nx">Are</span> <span class="nx">you</span> <span class="nx">sure</span> <span class="nx">you</span> <span class="nx">registered</span> <span class="nx">it</span><span class="o">?</span>
+<span style="color:#000">quill</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">min</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">js</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">7</span> <span style="color:#000">quill</span> <span style="color:#000">Cannot</span> <span style="color:#000">load</span> <span style="color:#000">imageResize</span> <span style="color:#000">module</span><span style="color:#000;font-weight:bold">.</span> <span style="color:#000">Are</span> <span style="color:#000">you</span> <span style="color:#000">sure</span> <span style="color:#000">you</span> <span style="color:#000">registered</span> <span style="color:#000">it</span><span style="color:#ce5c00;font-weight:bold">?</span>
 
-<span class="nx">quill</span><span class="p">.</span><span class="nx">min</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span><span class="mi">7</span> <span class="nx">quill</span> <span class="nx">Cannot</span> <span class="kr">import</span> <span class="nx">modules</span><span class="o">/</span><span class="nx">imageResize</span><span class="p">.</span> <span class="nx">Are</span> <span class="nx">you</span> <span class="nx">sure</span> <span class="nx">it</span> <span class="nx">was</span> <span class="nx">registered</span><span class="o">?</span>
+<span style="color:#000">quill</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">min</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">js</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">7</span> <span style="color:#000">quill</span> <span style="color:#000">Cannot</span> <span style="color:#204a87;font-weight:bold">import</span> <span style="color:#000">modules</span><span style="color:#ce5c00;font-weight:bold">/</span><span style="color:#000">imageResize</span><span style="color:#000;font-weight:bold">.</span> <span style="color:#000">Are</span> <span style="color:#000">you</span> <span style="color:#000">sure</span> <span style="color:#000">it</span> <span style="color:#000">was</span> <span style="color:#000">registered</span><span style="color:#ce5c00;font-weight:bold">?</span>
 
-<span class="nx">quill</span><span class="p">.</span><span class="nx">min</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span><span class="mi">7</span> <span class="nx">Uncaught</span> <span class="nx">TypeError</span><span class="o">:</span> <span class="nx">e</span> <span class="nx">is</span> <span class="nx">not</span> <span class="nx">a</span> <span class="nx">constructor</span>
-    <span class="nx">at</span> <span class="nx">e</span><span class="p">.</span><span class="nx">value</span> <span class="p">(</span><span class="nx">quill</span><span class="p">.</span><span class="nx">min</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span><span class="mi">7</span><span class="p">)</span>
-    <span class="nx">at</span> <span class="nx">e</span><span class="p">.</span><span class="nx">value</span> <span class="p">(</span><span class="nx">quill</span><span class="p">.</span><span class="nx">min</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span><span class="mi">7</span><span class="p">)</span>
-    <span class="nx">at</span> <span class="nx">quill</span><span class="p">.</span><span class="nx">min</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span><span class="mi">7</span>
-    <span class="nx">at</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">forEach</span> <span class="p">(</span><span class="o">&lt;</span><span class="nx">anonymous</span><span class="o">&gt;</span><span class="p">)</span>
-    <span class="nx">at</span> <span class="nx">e</span><span class="p">.</span><span class="nx">value</span> <span class="p">(</span><span class="nx">quill</span><span class="p">.</span><span class="nx">min</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span><span class="mi">7</span><span class="p">)</span>
-    <span class="nx">at</span> <span class="k">new</span> <span class="nx">t</span> <span class="p">(</span><span class="nx">quill</span><span class="p">.</span><span class="nx">min</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span><span class="mi">7</span><span class="p">)</span>
-    <span class="nx">at</span> <span class="k">new</span> <span class="nx">QuillWrapper</span> <span class="p">(</span><span class="nx">VM153</span> <span class="nx">django_quill</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span><span class="mi">9</span><span class="p">)</span>
-    <span class="nx">at</span> <span class="p">(</span><span class="nx">index</span><span class="p">)</span><span class="o">:</span><span class="mi">157</span>
-    <span class="nx">at</span> <span class="p">(</span><span class="nx">index</span><span class="p">)</span><span class="o">:</span><span class="mi">159</span>
+<span style="color:#000">quill</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">min</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">js</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">7</span> <span style="color:#000">Uncaught</span> <span style="color:#000">TypeError</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">e</span> <span style="color:#000">is</span> <span style="color:#000">not</span> <span style="color:#000">a</span> <span style="color:#000">constructor</span>
+    <span style="color:#000">at</span> <span style="color:#000">e</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">value</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">quill</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">min</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">js</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">7</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">at</span> <span style="color:#000">e</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">value</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">quill</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">min</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">js</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">7</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">at</span> <span style="color:#000">quill</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">min</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">js</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">7</span>
+    <span style="color:#000">at</span> <span style="color:#204a87">Array</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">forEach</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#ce5c00;font-weight:bold">&lt;</span><span style="color:#000">anonymous</span><span style="color:#ce5c00;font-weight:bold">&gt;</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">at</span> <span style="color:#000">e</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">value</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">quill</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">min</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">js</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">7</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">at</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">t</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">quill</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">min</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">js</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">7</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">at</span> <span style="color:#204a87;font-weight:bold">new</span> <span style="color:#000">QuillWrapper</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">VM153</span> <span style="color:#000">django_quill</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">js</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">9</span><span style="color:#000;font-weight:bold">)</span>
+    <span style="color:#000">at</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">index</span><span style="color:#000;font-weight:bold">)</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">157</span>
+    <span style="color:#000">at</span> <span style="color:#000;font-weight:bold">(</span><span style="color:#000">index</span><span style="color:#000;font-weight:bold">)</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">159</span>
 
-<span class="nx">django_quill</span><span class="p">.</span><span class="nx">js</span><span class="o">:</span><span class="mi">1</span> <span class="nx">Uncaught</span> <span class="nx">SyntaxError</span><span class="o">:</span> <span class="nx">Identifier</span> <span class="s1">&#39;QuillWrapper&#39;</span> <span class="nx">has</span> <span class="nx">already</span> <span class="nx">been</span> <span class="nx">declared</span>
-</code></pre></td></tr></table>
-</div>
-</div><p>如果使用框架应该就没有引入顺序这些麻烦了吧😐</p>
+<span style="color:#000">django_quill</span><span style="color:#000;font-weight:bold">.</span><span style="color:#000">js</span><span style="color:#ce5c00;font-weight:bold">:</span><span style="color:#0000cf;font-weight:bold">1</span> <span style="color:#000">Uncaught</span> <span style="color:#000">SyntaxError</span><span style="color:#ce5c00;font-weight:bold">:</span> <span style="color:#000">Identifier</span> <span style="color:#4e9a06">&#39;QuillWrapper&#39;</span> <span style="color:#000">has</span> <span style="color:#000">already</span> <span style="color:#000">been</span> <span style="color:#000">declared</span>
+</code></pre></div><p>如果使用框架应该就没有引入顺序这些麻烦了吧😐</p>
 <h2 id="结束语" class="headerLink"><a href="#%e7%bb%93%e6%9d%9f%e8%af%ad" class="header-mark"></a>结束语</h2><p>OK。本文就介绍在这里，有什么问题欢迎在评论区与我讨论。实现/修改代码在仓库<a href="https://github.com/Cuiks/django-quill-editor" target="_blank" rel="noopener noreffer">Cuiks/django-quill-editor</a>。</p>
 <p>🔚</p></div><footer>
                         <div class="post">
