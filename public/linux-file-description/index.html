@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noodp"/><title>文件描述符 fd | </title><meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content=""/>
+<meta name="twitter:title" content="文件描述符 fd"/>
+<meta name="twitter:description" content=""/><meta name="Description" content="cuiks&#39;s Note"><meta property="og:title" content="文件描述符 fd" />
+<meta property="og:description" content="
+fd是什么
+Linux内核层面解释
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://cuiks.top/linux-file-description/" />
+<meta property="og:image" content="https://cuiks.top/logo.png"/>
+<meta property="article:published_time" content="2021-07-20T14:36:39+08:00" />
+<meta property="article:modified_time" content="2021-07-20T14:36:39+08:00" />
+<meta name="application-name" content="Note Site">
+<meta name="apple-mobile-web-app-title" content="Note Site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/favicon.ico" type="image/x-icon"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://cuiks.top/linux-file-description/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/lib/prismjs/prism.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "文件描述符 fd",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/cuiks.top\/linux-file-description\/"
+        },"genre": "posts","keywords": "文件描述符, linux","wordCount":  442 ,
+        "url": "https:\/\/cuiks.top\/linux-file-description\/","datePublished": "2021-07-20T14:36:39+08:00","dateModified": "2021-07-20T14:36:39+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header>
+    <div class="desktop header" id="header-desktop">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Note Site" class="header-logo logo-svg"><span class="header-title-pre"><i class='fas fa-pencil-alt fa-fw'></i></span>Note Site</a>
+            </div>
+            <div class="menu">
+                <nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul class="menu-inner"><li>
+                            <a class="menu-item" href="/posts/"> Posts </a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/"> Tags </a>
+                        </li><li>
+                            <a class="menu-item" href="/about/about"> About </a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/cuiks" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a>
+                        </li></ul>
+                </nav><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <span class="svg-icon icon-search"></span>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <span class="svg-icon icon-cancel"></span>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <span class="svg-icon icon-loading"></span>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <span class="svg-icon icon-moon"></span>
+                </a>
+            </div>
+        </div>
+    </div><div class="mobile header" id="header-mobile">
+        <div class="header-container">
+            <div class="header-wrapper">
+                <div class="header-title">
+                    <a href="/" title="Note Site" class="header-logo"><span class="header-title-pre"><i class='fas fa-pencil-alt fa-fw'></i></span>Note Site</a>
+                </div>
+                <div class="menu-toggle" id="menu-toggle-mobile">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+            <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                        <div class="search mobile" id="search-mobile">
+                            <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                            <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                                <span class="svg-icon icon-search"></span>
+                            </a>
+                            <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                                <span class="svg-icon icon-cancel"></span>
+                            </a>
+                            <span class="search-button search-loading" id="search-loading-mobile">
+                                <span class="svg-icon icon-loading"></span>
+                            </span>
+                        </div>
+                        <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                            Cancel
+                        </a>
+                    </div><nav>
+                    <h2 class="display-hidden">Основная навигация</h2>
+                    <ul><li>
+                            <a class="menu-item" href="/posts/" title="">Posts</a>
+                        </li><li>
+                            <a class="menu-item" href="/tags/" title="">Tags</a>
+                        </li><li>
+                            <a class="menu-item" href="/about/about" title="">About</a>
+                        </li><li>
+                            <a class="menu-item" href="https://github.com/cuiks" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a>
+                        </li></ul>
+                </nav>
+                <a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <span class="svg-icon icon-moon"></span>
+                </a></div>
+        </div>
+    </div><div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div></header><main class="main">
+<div class="container content-article page-toc theme-classic"><div class="toc" id="toc-auto">
+            <div class="toc-title">Contents</div>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div>
+
+    
+    
+    <article>
+    
+
+        <header class="header-post">
+
+            
+
+            
+            <div class="post-title">
+
+                    <div class="post-all-meta">
+                        <nav class="breadcrumbs">
+    <ol>
+        <li><a href="/">Home </a></li><li>文件描述符 fd</li>
+    </ol>
+</nav>
+                        <h1 class="single-title flipInX">文件描述符 fd</h1><div class="post-meta summary-post-meta"><span class="post-meta-date meta-item">
+                                <span class="svg-icon icon-clock"></span><time class="timeago" datetime="2021-07-20">2021-07-20</time>
+                            </span><span class="post-meta-words meta-item">
+                                <span class="svg-icon icon-pencil"></span>442 words
+                            </span>
+                            <span class="post-meta-reading meta-item">
+                                <span class="svg-icon icon-stopwatch"></span>3 minutes
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                </header>
+
+        <div class="article-post toc-start">
+
+            <div class="content-block content-block-first content-block-position">
+
+                <div class="post single"><div class="details toc" id="toc-static"  data-kept="">
+                        <div class="details-summary toc-title">
+                            <span>Contents</span>
+                        </div>
+                        <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#fd-是什么">fd 是什么</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#什么时候获取fd">什么时候获取<code>fd</code>？</a></li>
+                <li><a href="#fd的范围是什么"><code>fd</code>的范围是什么？</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#linux内核层面解释">Linux内核层面解释</a>
+          <ul>
+            <li><a href="#task_struct"><code>task_struct</code></a></li>
+            <li><a href="#files_struct"><code>files_struct</code></a>
+              <ul>
+                <li><a href="#fdtable"><code>fdtable</code></a></li>
+                <li><a href="#files_struct小结"><code>files_struct</code>小结</a></li>
+                <li><a href="#file"><code>file</code></a></li>
+                <li><a href="#inode"><code>inode</code></a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#小结梳理">小结梳理</a>
+          <ul>
+            <li>
+              <ul>
+                <li><a href="#文件读写io是时候发生了什么">文件读写（IO）是时候发生了什么？</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+                    </div><ul>
+<li><code>fd</code>是什么</li>
+<li>Linux内核层面解释</li>
+</ul>
+<h3 id="fd-是什么" class="headerLink"><a href="#fd-%e6%98%af%e4%bb%80%e4%b9%88" class="header-mark"></a>fd 是什么</h3><ul>
+<li><code>fd</code>是<code>File description</code>的缩写，中文名叫做：文件描述符。文件描述符是一个非负整数，<strong>本质上是一个索引值</strong>。</li>
+</ul>
+<h5 id="什么时候获取fd" class="headerLink"><a href="#%e4%bb%80%e4%b9%88%e6%97%b6%e5%80%99%e8%8e%b7%e5%8f%96fd" class="header-mark"></a>什么时候获取<code>fd</code>？</h5><ul>
+<li>当打开一个文件时，内核向进程返回一个文件描述符（<code>open</code>系统调用得到），后续<code>read</code>、<code>write</code>这个文件时，则只需要用这个文件描述符来标识该文件，将其作为参数传入<code>read</code>、<code>write</code></li>
+</ul>
+<h5 id="fd的范围是什么" class="headerLink"><a href="#fd%e7%9a%84%e8%8c%83%e5%9b%b4%e6%98%af%e4%bb%80%e4%b9%88" class="header-mark"></a><code>fd</code>的范围是什么？</h5><ul>
+<li>在<code>POSIX</code>语义中，0、1、2这三个<code>fd</code>值已经被赋予特殊含义，分别是标准输入（<code>STDIN_FILENO</code>），标准输出（<code>STDOUT_FILENO</code>）、标准错误（<code>STDERR_FILENO</code>）</li>
+<li>文件描述符是有一个范围的：<code>0 ~ OPEN_MAX-1</code>，现在的主流系统但就这个值来说，变化范围几乎不受限制，只受到系统硬件配置和系统管理员配置的约束</li>
+<li>使用<code>ulimit</code>查看当前系统的配置</li>
+</ul>
+<h3 id="linux内核层面解释" class="headerLink"><a href="#linux%e5%86%85%e6%a0%b8%e5%b1%82%e9%9d%a2%e8%a7%a3%e9%87%8a" class="header-mark"></a>Linux内核层面解释</h3><ul>
+<li>用户使用系统调用<code>open</code>或者<code>create</code>来打开或者创建一个文件，用户态得到的结果值就是<code>fd</code>，后续的IO操作全都是用<code>fd</code>来标识这个文件。</li>
+</ul>
+<h4 id="task_struct" class="headerLink"><a href="#task_struct" class="header-mark"></a><code>task_struct</code></h4><ul>
+<li>
+<p>进程的抽象是基于<code>struct task_struct</code>结构体</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">task_struct</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#8f5902;font-style:italic">// ...
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#8f5902;font-style:italic">/* Open file information: */</span>
+    <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">files_struct</span>     <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">files</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#8f5902;font-style:italic">// ...
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div></li>
+<li>
+<p><code>files</code>是一个指针，指向一个为<code>struct files_struct</code>的结构体。这个结构体用于管理该进程打来的所有文件的管理结构。</p>
+</li>
+<li>
+<p><code>struct task_struct</code>是进程的抽象封装，标识一个进程，在Linux里面的进程各种抽象视角，都是这个结构体给到的。当创建一个进程，其实也就是<code>new</code>一个<code>struct task_struct</code>出来。</p>
+</li>
+</ul>
+<h4 id="files_struct" class="headerLink"><a href="#files_struct" class="header-mark"></a><code>files_struct</code></h4><ul>
+<li>
+<p>这个结构体管理某些进程打开的所有文件的管理结构。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#8f5902;font-style:italic">/*
+</span><span style="color:#8f5902;font-style:italic"> * Open file table structure
+</span><span style="color:#8f5902;font-style:italic"> */</span>
+<span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">files_struct</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#8f5902;font-style:italic">// 读相关字段
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">atomic_t</span> <span style="color:#000">count</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">bool</span> <span style="color:#000">resize_in_progress</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">wait_queue_head_t</span> <span style="color:#000">resize_wait</span><span style="color:#000;font-weight:bold">;</span>
+  
+    <span style="color:#8f5902;font-style:italic">// 打开的文件管理结构
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">fdtable</span> <span style="color:#000">__rcu</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">fdt</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">fdtable</span> <span style="color:#000">fdtab</span><span style="color:#000;font-weight:bold">;</span>
+  
+    <span style="color:#8f5902;font-style:italic">// 写相关字段
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">unsigned</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">next_fd</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">unsigned</span> <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">close_on_exec_init</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">];</span>
+    <span style="color:#204a87;font-weight:bold">unsigned</span> <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">open_fds_init</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">];</span>
+    <span style="color:#204a87;font-weight:bold">unsigned</span> <span style="color:#204a87;font-weight:bold">long</span> <span style="color:#000">full_fds_bits_init</span><span style="color:#000;font-weight:bold">[</span><span style="color:#0000cf;font-weight:bold">1</span><span style="color:#000;font-weight:bold">];</span>
+    <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">file</span> <span style="color:#ce5c00;font-weight:bold">*</span> <span style="color:#000">fd_array</span><span style="color:#000;font-weight:bold">[</span><span style="color:#000">NR_OPEN_DEFAULT</span><span style="color:#000;font-weight:bold">];</span>
+<span style="color:#000;font-weight:bold">};</span>
+</code></pre></div></li>
+<li>
+<p><code>files_struct</code>这个结构体是用来管理所有打开的文件的。本质上就是数组管理的方式，所有打开的文件结构都在一个数组里。数组在那里？有两个地方：</p>
+<ol>
+<li><code>struct file * fd_array[NR_OPEN_DEFAULT]</code>是一个静态数组，随着<code>files_struct</code>结构体分配出来的，在64位系统上，静态数组大小为64；</li>
+<li><code>struct fdtable fdtab;</code>也是数组管理结构，只不过是一个动态数组，数组边界是用字段描述的；</li>
+</ol>
+</li>
+<li>
+<p>为什么会有静态数组 + 动态数组存储的方式？</p>
+<ul>
+<li>性能和资源的权衡。</li>
+<li>大部分进程机会打开少量的文件，所以静态数组就够了，这样不用另外分配内存。</li>
+<li>如果超过了静态数组的阈值，那么就动态扩展。</li>
+</ul>
+</li>
+</ul>
+<h5 id="fdtable" class="headerLink"><a href="#fdtable" class="header-mark"></a><code>fdtable</code></h5><ul>
+<li>
+<p><code>fdtable</code>结构体就是封装用来管理<code>fd</code>的结构体：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">fdtable</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">unsigned</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">max_fds</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">file</span> <span style="color:#000">__rcu</span> <span style="color:#ce5c00;font-weight:bold">**</span><span style="color:#000">fd</span><span style="color:#000;font-weight:bold">;</span>      <span style="color:#8f5902;font-style:italic">/* current fd array */</span>
+<span style="color:#000;font-weight:bold">};</span>
+</code></pre></div></li>
+<li>
+<p><code>fdtable.fd</code>字段是一个耳机指针，就是指向<code>fdtable.fd</code>的一个指针字段，指向的内存地址还是存储指针的。即，<code>fdtable.fd</code>指向一个数组，数组元素为指针（指针类型为<code>struct file *</code>）</p>
+</li>
+<li>
+<p><code>max_fds</code>指明数组边界</p>
+</li>
+</ul>
+<h5 id="files_struct小结" class="headerLink"><a href="#files_struct%e5%b0%8f%e7%bb%93" class="header-mark"></a><code>files_struct</code>小结</h5><ul>
+<li><code>file_struct</code> 本质上是用来管理所有打开的文件的，内部的核心是由一个<strong>静态数组</strong>和<strong>动态数组</strong>管理结构实现。</li>
+<li><strong><code>fd</code> 本质上就是索引</strong>：<strong><code>fd</code> 就是这个数组的索引，也就是数组的槽位编号而已。</strong></li>
+<li><code>fd</code> 真的就是 <code>files</code> 这个字段指向的指针数组的索引而已（仅此而已）。通过 <code>fd</code> 能够找到对应文件的 <code>struct file</code> 结构体；</li>
+</ul>
+<h5 id="file" class="headerLink"><a href="#file" class="header-mark"></a><code>file</code></h5><ul>
+<li>
+<p><code>fd</code>索引指向的元素为<code>struct file</code>结构体：</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">file</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#8f5902;font-style:italic">// ...
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">path</span>                     <span style="color:#000">f_path</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">inode</span>                    <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">f_inode</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">file_operations</span>    <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">f_op</span><span style="color:#000;font-weight:bold">;</span>
+  
+    <span style="color:#000">atomic_long_t</span>                    <span style="color:#000">f_count</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">unsigned</span> <span style="color:#204a87;font-weight:bold">int</span>                     <span style="color:#000">f_flags</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">fmode_t</span>                          <span style="color:#000">f_mode</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">mutex</span>                     <span style="color:#000">f_pos_lock</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">loff_t</span>                           <span style="color:#000">f_pos</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">fown_struct</span>               <span style="color:#000">f_owner</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#8f5902;font-style:italic">// ...
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#000;font-weight:bold">}</span>
+</code></pre></div></li>
+<li>
+<p>这个结构体非常重要，它标示一个进程打开的文件，IO相关的几个重要字段：</p>
+<ul>
+<li><code>f_path</code>：标识文件名；</li>
+<li><code>f_inode</code>：<code>inode</code>这个是 vfs 的<code>inode</code>类型，是基于具体文件系统之上的抽象封装；</li>
+<li><code>f_pos</code>：当前文件的偏移。<code>open</code>时设置成默认值，<code>seek</code>时可以更改，从而影响<code>read/write</code>的位置；</li>
+</ul>
+</li>
+<li>
+<p>问题1：<code>files_struct</code>结构体只属于一个进程，那么<code>struct file</code>这个结构体呢？</p>
+<ul>
+<li><code>struct file</code>是属于系统级别的结构，可以共享于多个不用的进程。</li>
+</ul>
+</li>
+<li>
+<p>问题2：什么时候出现多个进程的<code>fd</code>指向同一个<code>file</code>结构体？</p>
+<ul>
+<li><code>fork</code>的时候，父进程打开了文件，<code>fork</code>出一个子进程共享<code>file</code>的场景</li>
+</ul>
+</li>
+<li>
+<p>问题3：同一个进程中，多个<code>fd</code>可以指向同一个<code>file</code>结构吗？</p>
+<ul>
+<li>
+<p>可以。<code>dup</code>函数就是做这个的。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#8f5902;font-style:italic">#include</span> <span style="color:#8f5902;font-style:italic">&lt;unistd.h&gt;</span><span style="color:#8f5902;font-style:italic">
+</span><span style="color:#8f5902;font-style:italic"></span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">dup</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">oldfd</span><span style="color:#000;font-weight:bold">);</span>
+<span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">dup2</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">oldfd</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#204a87;font-weight:bold">int</span> <span style="color:#000">newfd</span><span style="color:#000;font-weight:bold">);</span>
+</code></pre></div></li>
+</ul>
+</li>
+</ul>
+<h5 id="inode" class="headerLink"><a href="#inode" class="header-mark"></a><code>inode</code></h5><ul>
+<li>
+<p><code>struct file</code>结构体里面有一个<code>inode</code>指针。这个指向的<code>inode</code>并没有直接指出具体文件系统的<code>inode</code>，而是操作系统抽象出来的一层虚拟文件系统，叫做<code>VFS(Virtual File System)</code>，然后在 VFS 之下才是真正的文件系统，比如<code>ext4</code>等。</p>
+</li>
+<li>
+<p>完整架构图</p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210720152350.png"
+         alt="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210720152350.png"
+         title="20210720152350.png"
+    /></p>
+</li>
+<li>
+<p>为什么会有这一层封装呢？</p>
+<ul>
+<li>解耦</li>
+<li>如果让<code>struct file</code>直接和<code>struct exts_inode</code>这样的文件系统对接，会导致<code>struct file</code>的处理逻辑非常复杂，因为每对接一个具体的文件系统，就要考虑一种实现。</li>
+<li>所以，操作系统必须把底层文件系统屏蔽掉，对外提供统一的<code>inode</code>概念，对下定义好接口进行回调注册。这样让<code>inode</code>的概念得以统一，Unix一切皆文件的基础就来源于此。</li>
+</ul>
+</li>
+<li>
+<p>VFS 的<code>inode</code>结构</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">inode</span> <span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#8f5902;font-style:italic">// 文件相关的基本信息（权限，模式，uid，gid等）
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">umode_t</span>             <span style="color:#000">i_mode</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">unsigned</span> <span style="color:#204a87;font-weight:bold">short</span>      <span style="color:#000">i_opflags</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">kuid_t</span>              <span style="color:#000">i_uid</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#000">kgid_t</span>              <span style="color:#000">i_gid</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">unsigned</span> <span style="color:#204a87;font-weight:bold">int</span>        <span style="color:#000">i_flags</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#8f5902;font-style:italic">// 回调函数
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">inode_operations</span>   <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">i_op</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">super_block</span>              <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">i_sb</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">address_space</span>            <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">i_mapping</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#8f5902;font-style:italic">// 文件大小，atime，ctime，mtime等
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">loff_t</span>              <span style="color:#000">i_size</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">timespec64</span>   <span style="color:#000">i_atime</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">timespec64</span>   <span style="color:#000">i_mtime</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">timespec64</span>   <span style="color:#000">i_ctime</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#8f5902;font-style:italic">// 回调函数
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">const</span> <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">file_operations</span>    <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">i_fop</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">address_space</span>            <span style="color:#000">i_data</span><span style="color:#000;font-weight:bold">;</span>
+    <span style="color:#8f5902;font-style:italic">// 指向后端具体文件系统的特殊数据
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">void</span>    <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">i_private</span><span style="color:#000;font-weight:bold">;</span>     <span style="color:#8f5902;font-style:italic">/* fs or device private pointer */</span>
+<span style="color:#000;font-weight:bold">};</span>
+</code></pre></div><ul>
+<li>
+<p>包括了一些基本的文件信息，<code>uid</code>、<code>gid</code>、大小、模式、类型、时间等</p>
+</li>
+<li>
+<p>一个 vfs 和后端具体文件系统的纽带：<code>i_private</code>字段。用来传递一些集具体文件系统使用的数据结构。</p>
+</li>
+<li>
+<p><code>i_op</code>回调函数是在构造<code>inode</code>的时候，就注册成了后端的文件系统函数，比如<code>ext4</code>等</p>
+</li>
+<li>
+<p>问题：怎么通过 <code>vfs inode</code>得到具体文件系统的<code>inode</code>呢？ext4 的 inode 类型是 <code>struct ext4_inode_info</code> 。</p>
+<ul>
+<li>
+<p>通过c语言常见的编程手法：强转类型。</p>
+</li>
+<li>
+<p>分配<code>inode</code>的时候，其实分配的是<code>ext4_inode_info</code>结构体，包含了<code>vfs inode</code>，然后对外给出去<code>vfs_inode</code>字段的地址即可。VFS 层拿<code>inode</code>的地址使用，底下文件系统强转类型后，取外层的<code>inode</code>地址使用。</p>
+<div class="highlight"><pre style="background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c" data-lang="c"><span style="color:#204a87;font-weight:bold">static</span> <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">inode</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">ext4_alloc_inode</span><span style="color:#000;font-weight:bold">(</span><span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">super_block</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">sb</span><span style="color:#000;font-weight:bold">)</span>
+<span style="color:#000;font-weight:bold">{</span>
+    <span style="color:#204a87;font-weight:bold">struct</span> <span style="color:#000">ext4_inode_info</span> <span style="color:#ce5c00;font-weight:bold">*</span><span style="color:#000">ei</span><span style="color:#000;font-weight:bold">;</span>
+      
+    <span style="color:#8f5902;font-style:italic">// 内存分配，分配 ext4_inode_info 的地址
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#000">ei</span> <span style="color:#ce5c00;font-weight:bold">=</span> <span style="color:#000">kmem_cache_alloc</span><span style="color:#000;font-weight:bold">(</span><span style="color:#000">ext4_inode_cachep</span><span style="color:#000;font-weight:bold">,</span> <span style="color:#000">GFP_NOFS</span><span style="color:#000;font-weight:bold">);</span>
+      
+    <span style="color:#8f5902;font-style:italic">// ext4_inode_info 结构体初始化
+</span><span style="color:#8f5902;font-style:italic"></span>      
+    <span style="color:#8f5902;font-style:italic">// 返回 vfs_inode 字段的地址
+</span><span style="color:#8f5902;font-style:italic"></span>    <span style="color:#204a87;font-weight:bold">return</span> <span style="color:#ce5c00;font-weight:bold">&amp;</span><span style="color:#000">ei</span><span style="color:#ce5c00;font-weight:bold">-&gt;</span><span style="color:#000">vfs_inode</span><span style="color:#000;font-weight:bold">;</span>
+<span style="color:#000;font-weight:bold">}</span>
+</code></pre></div></li>
+<li>
+<p><code>inode</code>的内存由后端文件系统分配，<code>vfs inode</code>结构体嵌在不同的文件系统的<code>inode</code>中。</p>
+</li>
+<li>
+<p>不同层次用不同的地址，<code>ext4</code>文件系统用<code>ext4_inode_info</code>的结构体的地址，vfs 层用<code>ext4_inode_info.vfs_inode</code>的地址</p>
+</li>
+</ul>
+</li>
+<li>
+<p>问题：怎么理解 vfs <code>inode</code> 和 <code>ext2_inode_info</code>，<code>ext4_inode_info</code> 等结构体的区别？</p>
+<ul>
+<li>所有文件系统共性的东西抽象到 vfs <code>inode</code> ，不同文件系统差异的东西放在各自的 <code>inode</code> 结构体中。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="小结梳理" class="headerLink"><a href="#%e5%b0%8f%e7%bb%93%e6%a2%b3%e7%90%86" class="header-mark"></a>小结梳理</h3><p>当用户打开一个文件，用户只得到了一个 <code>fd</code> 句柄，但内核做了很多事情，梳理下来，我们得到几个关键的数据结构，这几个数据结构是有层次递进关系的，我们简单梳理下：</p>
+<ol>
+<li>
+<p>进程结构 <code>task_struct</code> ：表征进程实体，每一个进程都和一个 <code>task_struct</code> 结构体对应，其中 <code>task_struct.files</code> 指向一个管理打开文件的结构体 <code>fiels_struct</code> ；</p>
+</li>
+<li>
+<p>文件表项管理结构 <code>files_struct</code> ：用于管理进程打开的 open 文件列表，内部以数组的方式实现（静态数组和动态数组结合）。返回给用户的 <code>fd</code> 就是这个数组的<strong>编号索引</strong>而已，索引元素为 <code>file</code> 结构；</p>
+</li>
+<li>
+<ul>
+<li><code>files_struct</code> 只从属于某进程；</li>
+</ul>
+</li>
+<li>
+<p>文件 <code>file</code> 结构：表征一个打开的文件，内部包含关键的字段有：<strong>当前文件偏移，inode 结构地址</strong>；</p>
+</li>
+<li>
+<ul>
+<li>该结构虽然由进程触发创建，但是 <code>file</code> 结构可以在进程间共享；</li>
+</ul>
+</li>
+<li>
+<p>vfs <code>inode</code> 结构体：文件 <code>file</code> 结构指向 的是 vfs 的 <code>inode</code> ，这个是操作系统抽象出来的一层，用于屏蔽后端各种各样的文件系统的 <code>inode</code> 差异；</p>
+</li>
+<li>
+<ul>
+<li>inode 这个具体进程无关，是文件系统级别的资源；</li>
+</ul>
+</li>
+<li>
+<p>ext4 <code>inode</code> 结构体（指代具体文件系统 inode ）：后端文件系统的 <code>inode</code> 结构，不同文件系统自定义的结构体，ext2 有 <code>ext2_inode_info</code>，ext4 有<code>ext4_inode_info</code>，minix 有 <code>minix_inode_info</code>，这些结构里都是内嵌了一个 vfs <code>inode</code> 结构体，原理相同；</p>
+<p>
+
+
+
+    
+<img loading="lazy" decoding="async"
+         class="render-image"
+         src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210720162030.png"
+         alt="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210720162030.png"
+         title="20210720162030.png"
+    /></p>
+</li>
+</ol>
+<h5 id="文件读写io是时候发生了什么" class="headerLink"><a href="#%e6%96%87%e4%bb%b6%e8%af%bb%e5%86%99io%e6%98%af%e6%97%b6%e5%80%99%e5%8f%91%e7%94%9f%e4%ba%86%e4%bb%80%e4%b9%88" class="header-mark"></a>文件读写（IO）是时候发生了什么？</h5><ul>
+<li>在完成 write 操作后，在文件 <code>file</code> 中的当前文件偏移量会增加所写入的字节数，如果这导致当前文件偏移量超处了当前文件长度，则会把 inode 的当前长度设置为当前文件偏移量（也就是文件变长）</li>
+<li><code>O_APPEND</code> 标志打开一个文件，则相应的标识会被设置到文件 <code>file</code> 状态的标识中，每次对这种具有追加写标识的文件执行 <code>write</code> 操作的时候，<code>file</code> 的当前文件偏移量首先会被设置成 <code>inode</code> 结构体中的文件长度，这就使得每次写入的数据都追加到文件的当前尾端处（该操作对用户态提供原子语义）；</li>
+<li>若一个文件 <code>seek</code> 定位到文件当前的尾端，则 <code>file</code> 中的当前文件偏移量设置成 <code>inode</code> 的当前文件长度；</li>
+<li><code>seek</code> 函数值修改 <code>file</code> 中的当前文件偏移量，不进行任何 <code>I/O</code> 操作；</li>
+<li>每个进程对有它自己的 <code>file</code>，其中包含了当前文件偏移，当多个进程写同一个文件的时候，由于一个文件 IO 最终只会是落到全局的一个 <code>inode</code> 上，这种并发场景则可能产生用户不可预期的结果；</li>
+</ul>
+<h3 id="总结" class="headerLink"><a href="#%e6%80%bb%e7%bb%93" class="header-mark"></a>总结</h3><p>一切IO的行为到系统层面都是以<code>fd</code>的形式进行的。</p>
+<ul>
+<li>用户<code>open</code>文件得到一个非负数句柄<code>fd</code>，之后对该文件的IO操作都是基于这个<code>fd</code></li>
+<li>文件描述符<code>fd</code>本质上来讲就是数组索引，<code>fd</code>等于5，那对应数组的第5个元素，高数组是进程打开的所有文件的数组，数据元素类型为<code>struct file</code></li>
+<li>结构体<code>task_struct</code>对应一个抽象的进程，<code>files_struct</code>是这个进程管理该进程打开的文件数组管理器。<code>fd</code>则对应了这个数组的编号，每一个打开的文件用<code>file</code>结构体表示，内含当前偏移等信息。</li>
+<li><code>file</code>结构体可以为进程间共享，属于系统级资源，同一个文件可能对应多个<code>file</code>结构体，<code>file</code>内部有个<code>inode</code>指针，指向文件系统的<code>inode</code></li>
+<li><code>inode</code>是文件系统级别的概念，只由文件系统管理维护，不因进程改变（<code>file</code>是进程出发创建的，进程<code>open</code>同一个文件会导致多个<code>file</code>，指向同一个<code>inode</code>）</li>
+</ul></div><footer>
+                        <div class="post">
+
+
+<div class="post-share"></div>
+
+
+
+
+
+
+<div class="post-tags"><a href="/tags/%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6/" class="tag">文件描述符</a><a href="/tags/linux/" class="tag">linux</a></div></div>
+                </footer></div>
+
+        <div id="toc-final"></div>
+        </div>
+
+    
+    </article>
+    <section class="page single comments content-block-position">
+        <h1 class="display-hidden">Комментарии</h1><div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></section></div>
+
+</main></div>
+
+        <aside id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="svg-icon icon-arrow-up"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="svg-icon icon-comments-fixed"></i>
+            </a>
+        </aside><link rel="stylesheet" href="/lib/valine/valine.min.css"><script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script src="https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script>window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"valine":{"appId":"qawpEGaIhzxE9qCJm9hisTxW-gzGzoHsz","appKey":"FkncojWQwaOzzkHjlvW0vH3b","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://qawpegai.lc-cn-n1-shared.com","visitor":true}},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"lunr"}};</script><script src="/js/theme.min.js"></script></body>
+</html>

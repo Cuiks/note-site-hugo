@@ -2,9 +2,14 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://cuiks.top/</loc><lastmod>2021-07-18T20:50:46&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://cuiks.top/posts/</loc><lastmod>2021-07-18T20:50:46&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
-            <loc>https://cuiks.top/tags/</loc><lastmod>2021-07-18T20:50:46&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://cuiks.top/tags/linux/</loc><lastmod>2021-07-20T14:36:39&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://cuiks.top/</loc><lastmod>2021-07-20T14:36:39&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://cuiks.top/posts/</loc><lastmod>2021-07-20T14:36:39&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://cuiks.top/tags/</loc><lastmod>2021-07-20T14:36:39&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://cuiks.top/tags/%E6%96%87%E4%BB%B6%E6%8F%8F%E8%BF%B0%E7%AC%A6/</loc><lastmod>2021-07-20T14:36:39&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://cuiks.top/linux-file-description/</loc><lastmod>2021-07-20T14:36:39&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://cuiks.top/tags/epoll/</loc><lastmod>2021-07-20T08:58:27&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
+            <loc>https://cuiks.top/linux-epoll/</loc><lastmod>2021-07-20T08:58:27&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://cuiks.top/tags/%E5%88%86%E5%B8%83%E5%BC%8F/</loc><lastmod>2021-07-18T20:50:46&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://cuiks.top/distributed-system/</loc><lastmod>2021-07-18T20:50:46&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>
             <loc>https://cuiks.top/tags/redis/</loc><lastmod>2021-07-14T17:40:56&#43;08:00</lastmod><changefreq>weekly</changefreq><priority>1</priority></url><url>

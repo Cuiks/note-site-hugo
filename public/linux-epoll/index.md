@@ -1,9 +1,5 @@
----
-title: "linux的epoll机制"
-date: 2021-07-20T08:58:27+08:00
-tags: ["linux", "epoll"]
-draft: false
----
+# linux的epoll机制
+
 
 - IO多路复用
 - epoll池原理
@@ -199,6 +195,7 @@ draft: false
 - epoll 全名 eventpoll，在 Linux 内核下以一个文件系统模块的形式实现，所以有人常说 **epoll 其实本身就是文件系统**也是对的；
 - socketfd，eventfd，timerfd 这三种“文件”fd 实现了 poll 接口，所以网络 fd，事件fd，定时器fd 都可以使用 epoll_ctl 注册到池子里。我们最常见的就是网络fd的多路复用；
 - **ext2，ext4，xfs 这种真正意义的文件系统反倒没有提供 poll 接口实现，所以不能用 epoll 池来管理其句柄。**那文件就无法使用 epoll 机制了吗？不是的，有一个库叫做 libaio ，通过这个库我们可以间接的让文件使用 epoll 通知事件
+
 
 
 
