@@ -33,6 +33,10 @@
         {{- /* Valine Comment System */ -}}
         {{- $valine := $comment.valine | default dict -}}
         {{- if $valine.enable -}}
+            <span id="{{ .URL | relURL }}" class="leancloud_visitors" data-flag-title="{{ .Title }}">
+            <span class="post-meta-item-text">文章阅读量 </span>
+                <span class="leancloud-visitors-count">0</span>
+            </span>
             <div id="valine" class="comment"></div>
             {{- $options := dict "targetPath" "lib/valine/valine.min.css" -}}
             {{- dict "Source" "lib/valine/valine.scss" "ToCSS" $options | dict "Scratch" .Scratch "Data" | partial "scratch/style.html" -}}

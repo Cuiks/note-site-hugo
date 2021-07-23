@@ -63,7 +63,7 @@ other = "Powered by {{ .Hugo }} | Theme - {{ .Theme }}"
 other = "en"
 
 [valinePlaceholder]
-other = "Your comment ..."
+other = "说点什么吧...\n注:填写邮件可以收到回复推送&#128406;"
 
 [facebookLanguageCode]
 other = "en_US"

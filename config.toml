@@ -352,8 +352,8 @@ enableEmoji = true
       appId = "qawpEGaIhzxE9qCJm9hisTxW-gzGzoHsz"
       appKey = "FkncojWQwaOzzkHjlvW0vH3b"
       placeholder = ""
-      avatar = "mp"
-      meta= ""
+      avatar = "monsterid"
+      meta= ['nick','mail','link']
       pageSize = 10
       lang = ""
       visitor = true
@@ -671,7 +671,7 @@ enableEmoji = true
 # Author config
 # 作者配置
 [author]
-  name = "cuiks.top"
+  name = "cuiks"
 
 # Sitemap config
 # 网站地图配置
