@@ -4,15 +4,17 @@ on:
       - master
 jobs: 
     deploy: 
-        runs-on: ubuntu-latest
-        name: Tencent Cloudbase Github Action Example
-        steps: 
+      runs-on: ubuntu-20.04
+      steps:
         - name: Checkout
           uses: actions/checkout@v2
-        - name: build
-          run: |
-            sudo apt-get install hugo
-            hugo -D
+        - name: Setup Hugo
+          uses: peaceiris/actions-hugo@v2
+          with:
+            hugo-version: 'latest'
+            extended: true
+        - name: Build
+          run: hugo --minify
         # 使用云开发 Github Action 部署
         - name: Deploy
           uses: cuiks/tcb-action@master
