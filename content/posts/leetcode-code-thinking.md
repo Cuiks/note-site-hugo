@@ -10,12 +10,35 @@ weight: 1
 
 <!--more-->
 
+## 回溯
+### 2022-05-18
+<img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220511130758.png"/>
+
+- 回溯算法理论不好理解，可以结合b站该博主视频<https://www.bilibili.com/video/BV1cy4y167mM/>
+- 组合的优化没看出和组合的区别，只要了解剪枝这个思想就可以，因为回溯里面会常用
+- <https://programmercarl.com/回溯算法理论基础.html>
+
+
 ## 二叉树
+### 2022-05-17
+<img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220511094741.png"/>
+
+- 树的问题优先考虑递归，结合dfs，爽的一批
+- <https://programmercarl.com/0669.修剪二叉搜索树.html>
+
+
+### 2022-05-16
+<img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220511094610.png"/>
+
+- 把握二叉搜索树特性，优化结题时间复杂度
+- <https://programmercarl.com/0235.二叉搜索树的最近公共祖先.html>
+
 
 ### 2022-05-13
 <img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220510115509.png"/>
 
 - <https://programmercarl.com/0530.二叉搜索树的最小绝对差.html>
+
 
 ### 2022-05-12
 <img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220510111907.png"/>
