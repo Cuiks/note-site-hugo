@@ -11,6 +11,21 @@ weight: 1
 <!--more-->
 
 ## 回溯
+### 2022-05-23
+<img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220516142212.png"/>
+
+- 本周四个题目。全排列问题是典型的回溯问题
+- <https://programmercarl.com/0090.子集II.html>
+
+
+### 2022-05-20
+<img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220516114919.png"/>
+
+- 子集问题是典型回溯问题
+- 分割字符串和复原IP地址都应用剪枝
+- <https://programmercarl.com/0131.分割回文串.html>
+
+
 ### 2022-05-19
 <img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220512111439.png"/>
 
