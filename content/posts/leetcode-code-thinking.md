@@ -44,6 +44,7 @@ weight: 1
 <img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220511130758.png"/>
 
 - 回溯算法理论不好理解，可以结合b站该博主视频<https://www.bilibili.com/video/BV1cy4y167mM/>
+{{< bilibili BV1cy4y167mM >}}
 - 组合的优化没看出和组合的区别，只要了解剪枝这个思想就可以，因为回溯里面会常用
 - <https://programmercarl.com/回溯算法理论基础.html>
 
