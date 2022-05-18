@@ -11,6 +11,13 @@ weight: 1
 <!--more-->
 
 ## 回溯
+### 2022-05-24
+<img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220518114739.png"/>
+
+- n皇后和解数独是典型的二维回溯问题，需要了解。也有一定的难度，加油！
+- <https://programmercarl.com/0332.重新安排行程.html>
+
+
 ### 2022-05-23
 <img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220516142212.png"/>
 
