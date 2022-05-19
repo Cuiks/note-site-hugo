@@ -10,6 +10,14 @@ weight: 1
 
 <!--more-->
 
+## 贪心
+### 2022-05-25
+<img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220519105423.png"/>
+
+- 部分贪心问题可以使用动态规划获取更优解。所以该部分题目使用贪心或者动态规划都可。
+- <https://programmercarl.com/0455.分发饼干.html>
+
+
 ## 回溯
 ### 2022-05-24
 <img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220518114739.png"/>
