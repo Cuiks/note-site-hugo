@@ -485,8 +485,6 @@ RIP协议缺点：
 对比：
 ![](https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210521163242.png)
 
-
-
 ### 外部网关路由协议之BGP协议
 
 - BGP(Border Gateway Protocol: 边际网关协议)
