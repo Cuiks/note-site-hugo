@@ -11,6 +11,20 @@ weight: 1
 <!--more-->
 
 ## 贪心
+### 2022-05-27
+<img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220520121117.png"/>
+
+- 部分贪心真的很巧妙。
+- <https://programmercarl.com/0134.加油站.html>
+
+
+### 2022-05-26
+<img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220520105528.png"/>
+
+- 使用贪心要比动态规划效率更高，值的学习
+- <https://programmercarl.com/0122.买卖股票的最佳时机II.html>
+
+
 ### 2022-05-25
 <img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220519105423.png"/>
 

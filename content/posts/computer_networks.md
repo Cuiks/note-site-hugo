@@ -146,8 +146,8 @@ RTT(Route-Trip Time)
   - 即是控制字符在帧数据中，但要当做不存在的去处理
   - ESC  转义字符
 - 差错监测
-  - 物理层只管传=传输比特流，无法控制是否出错
-  - 数据链路层负责起“查错检测”的工作
+  - 物理层只管传输比特流，无法控制是否出错
+  - 数据链路层负责起“差错检测”的工作
 
 
 ### 数据链路层的差错检测
@@ -157,7 +157,7 @@ RTT(Route-Trip Time)
   - 出错位数为偶数时，校验不出
 - 循环冗余校验码CRC
   - 一种根据串或保存的数据而产生固定位数校验码的方法
-  - 检测数据传输或者保存后可能出现的错误生成的数字计算出来并且附加导数据后面
+  - 检测数据传输或者保存后可能出现的错误，生成的数字计算出来并且附加导数据后面
   - ![](https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210518134703.png)
   - 计算步骤
     - 选定一个用于校验的多项式G(x)，并在数据尾部添加r个0
@@ -203,7 +203,7 @@ RTT(Route-Trip Time)
 
 #### 虚拟互联网络
 
-- IP协议是的复杂的实际网络变成一个虚拟互联的网络
+- IP协议是把复杂的实际网络变成一个虚拟互联的网络
 - IP协议是的网络层可以屏蔽底层细节而专注网络层的数据转发
 - IP协议解决了在虚拟网络中数据报传输路径的问题 
 
@@ -288,12 +288,12 @@ RARP(Reverse Address Resolution Protocol)逆地址解析协议
     - A类：255.0.0.0
     - B类：255.255.0.0
     - C类：255.255.255.0
-  - 用于快速判断IP属于拿一个子网号
+  - 用于快速判断IP属于哪一个子网号
 
 #### 无分类编址CIDR
 
 - CIDR中没有A、B、C类网络号和子网划分的概念
-- CIDR吧网络前缀相同的IP地址成为一个"CIDR地址块"
+- CIDR把网络前缀相同的IP地址成为一个"CIDR地址块"
 - 斜线记法
   - 193.10.10.129/25
   - ![](https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210519174547.png)
@@ -325,7 +325,6 @@ RARP(Reverse Address Resolution Protocol)逆地址解析协议
 - NAT技术用于多个主机通过一个公有IP访问互联网的
 - NAT减缓了IP地址的消耗，但是增加了网络通信的复杂度
 - ![](https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210520103506.png)
-- 
 
 
 ### ICMP协议详解
@@ -339,7 +338,8 @@ RARP(Reverse Address Resolution Protocol)逆地址解析协议
 
 - 差错报告报文
   - ![](https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210520111733.png)
-  - 
+  
+  
 - 询问报文
   - ![](https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210520112422.png)
 
@@ -361,7 +361,7 @@ RARP(Reverse Address Resolution Protocol)逆地址解析协议
 
 ### 网络层的路由概述
 
-背景：
+#### 背景：
 
 - 路由表怎么维护的
 - 下一跳怎么来的
@@ -369,21 +369,21 @@ RARP(Reverse Address Resolution Protocol)逆地址解析协议
 - 下一跳地址是最佳的吗
 - 路由器这么多，他们怎么协同工作
 
-要求：
+#### 要求：
 
 - 算法是正确的、完整的
 - 算法在计算上应该尽可能的简单
 - 算法可以适应网络中的变化
 - 算法是稳定的和公平的
 
-路由算法本质是图的算法
+#### 路由算法本质是图的算法
 
-对互联网进行划分
+#### 对互联网进行划分
 
 - 互联网的规模是非常大的
 - 互联网的环境是非常复杂的
 
-自制系统（Autonomous System）
+#### 自制系统（Autonomous System）
 
 - 一个自治系统(AS)是处于一个管理机构下的网络设备群
 - AS内部网络自行管理，AS对外提供一个或者多个出（入）口
@@ -392,7 +392,7 @@ RARP(Reverse Address Resolution Protocol)逆地址解析协议
 - 自治系统外部路由的协议称为：外部网关协议（BGP）
 
 
-### 内部网络路由协议只RIP协议
+### 内部网络路由协议RIP协议
 
 #### 距离矢量(DV)算法
 
@@ -402,7 +402,7 @@ RARP(Reverse Address Resolution Protocol)逆地址解析协议
 - ![](https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210521145503.png)
 
 - 每一个节点与相邻的节点交换向量Di和Si的信息
-- 每一个节点根据交换的信息更新及的节点信息
+- 每一个节点根据交换的信息更新自己的节点信息
 
 - ![](https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210521153327.png)
 
@@ -410,9 +410,7 @@ RARP(Reverse Address Resolution Protocol)逆地址解析协议
 #### RIP协议的过程
 
 - RIP(Routing Information Protocol)协议
-- RIP协议是使用DV算法的一中路由协议
-
-
+- RIP协议是使用DV算法的一种路由协议
 - RIP协议把网络的跳数(hop)作为DV算法的距离
 - RIP协议每隔30秒交换一次路由信息
 - RIP协议认为跳数>15的路由则为不可达路由
@@ -432,7 +430,9 @@ RIP协议过程
 RIP协议优点：
 
 - 实现简单，开销很小
-  RIP协议缺点：
+
+RIP协议缺点：
+
 - 限制了网络的规模
 - 故障消息传递慢，更新收敛时间过长
 
