@@ -542,7 +542,7 @@ BGP发言人(speaker)
 - TCP的一个连接有两端（点对点通信）
 - TCP提供可靠的传输服务
 - TCP协议提供全双工的通信
-- TCP是面向字节流的协议- 
+- TCP是面向字节流的协议
 
 ![](https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210521224357.png)
 
@@ -582,7 +582,7 @@ BGP发言人(speaker)
 
 超时定时器
 
-- 每发送一个消息买都需要设置一个定时器
+- 每发送一个消息后都需要设置一个定时器
 
 
 - 停止等待协议是最简单的可靠传输协议
@@ -592,7 +592,7 @@ BGP发言人(speaker)
 
 ARQ(Automatic Repeat reQuest: 自动重传请求)
     - 滑动窗口
-    - 累计确认
+        - 累计确认
 
 ### TCP协议的可靠传输
 
@@ -651,7 +651,7 @@ ARQ(Automatic Repeat reQuest: 自动重传请求)
 ![](https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210525115024.png)
 
 
-### TCP连接的建立
+### TCP连接的建立  三次握手
 
 ![](https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210525133143.png)
 
@@ -663,7 +663,7 @@ ARQ(Automatic Repeat reQuest: 自动重传请求)
 - ![](https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210525140546.png)
 
 
-### TCP的释放
+### TCP的释放  四次挥手
 
 ![](https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210525142503.png)
 
@@ -689,7 +689,7 @@ MSL:
 
 
 - 套接字(Socket)是抽象概念，表示TCP连接的一端
-- 通过套接字可以金慈宁宫数据发送或接收
+- 通过套接字可以进行数据发送或接收
 - ![](https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20210525143952.png)
 
 套接字编程流程：
