@@ -10,6 +10,21 @@ weight: 1
 
 <!--more-->
 
+## 动态规划
+### 2022-06-14
+<img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220531135259.png"/>
+
+- 不同路径开始有动态规划那味了
+- <https://programmercarl.com/0062.不同路径.html>
+
+
+### 2022-06-13
+<img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220531102235.png"/>
+
+ - 动态规划 yyds。前几个比较简单，递归 动态规划均可解决
+ - <https://programmercarl.com/0509.斐波那契数.html>
+
+
 ## 贪心
 ### 2022-06-01
 <img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220525113746.png"/>
