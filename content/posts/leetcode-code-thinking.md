@@ -11,6 +11,30 @@ weight: 1
 <!--more-->
 
 ## 动态规划
+### 2022-06-17
+<img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220622103118.png"/>
+
+- 看一下完全背包的理论
+- <https://programmercarl.com/背包问题理论基础完全背包.html>
+
+### 2022-06-16
+<img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220622102953.png"/>
+
+- <https://programmercarl.com/0494.目标和.html>
+
+### 2022-06-15
+<img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220622102838.png"/>
+
+- 01背包变形比较多，需要多做
+- <https://programmercarl.com/1049.最后一块石头的重量II.html>
+
+
+### 2022-06-14
+<img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220622102545.png"/>
+
+- 先看01背包的理论，难度较大
+- <https://programmercarl.com/背包理论基础01背包-1.html>
+
 ### 2022-06-14
 <img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/20220531135259.png"/>
 
