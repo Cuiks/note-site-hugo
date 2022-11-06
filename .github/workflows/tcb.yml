@@ -16,13 +16,11 @@ jobs:
         - name: Build
           run: hugo --minify
         # 使用云开发 Github Action 部署
-        - name: Deploy
-          uses: cuiks/tcb-action@master
-          with: 
-            # 云开发的访问密钥 secretId 和 secretKey
-            secretId: ${{secrets.SECRET_ID}}
-            secretKey: ${{secrets.SECRET_KEY}}
-            # 云开发的环境id
-            envId: ${{secrets.ENV_ID}}
-            localPath: public/
-            cloudPath: /
+        - name: Upload COS
+          uses: zkqiang/tencent-cos-action@v0.1.0
+          with:
+            args: delete -r -f / && upload -r ./public/ /
+            secret_id: ${{ secrets.SECRET_ID }}
+            secret_key: ${{ secrets.SECRET_KEY }}
+            bucket: ${{ secrets.BUCKET }}
+            region: ap-beijing
