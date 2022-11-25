@@ -10,6 +10,37 @@ weight: 1
 
 <!--more-->
 
+## 单调栈
+#### 2022-12-02
+<img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/202211252303069.png"/>
+
+- 难度较大
+- <https://programmercarl.com/0084.柱状图中最大的矩形.html#双指针解法>
+
+#### 2022-12-01
+<img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/202211252302729.png"/>
+
+- 难度较大
+- <https://programmercarl.com/0042.接雨水.html>
+
+#### 2022-11-30
+<img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/202211252301198.png"/>
+
+- 一天一个
+- <https://programmercarl.com/0503.下一个更大元素II.html>
+
+#### 2022-11-29
+<img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/202211252259495.png"/>
+
+- 一天一个
+- <https://programmercarl.com/0496.下一个更大元素I.html>
+
+#### 2022-11-28
+<img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/202211252259575.png"/>
+
+- 单调栈先熟悉一下做一个
+- <https://programmercarl.com/0739.每日温度.html>
+
 ## 动态规划
 #### 2022-11-23
 <img src="https://note-site-pic-1259606004.cos.ap-beijing.myqcloud.com/img/202211061731789.png"/>
